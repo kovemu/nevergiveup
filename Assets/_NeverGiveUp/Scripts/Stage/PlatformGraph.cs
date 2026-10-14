@@ -43,7 +43,7 @@ namespace NeverGiveUp
         {
             terrain = terrainRoot; motor = actor;
             Rebuild();
-            StringBuilder geometry = new StringBuilder("M32-twojump-3|");
+            StringBuilder geometry = new StringBuilder("M33-learnpath-4|");
             geometry.Append(gameObject.scene.name).Append('|');
             foreach (Platform p in platforms)
                 if (!p.Movable) geometry.Append(p.Id).Append(Geometry(p.Collider));
@@ -115,7 +115,8 @@ namespace NeverGiveUp
             if (!walk && !motor.CanReach(from, to)) return null;
             return new Link { From = a, To = b, Launch = from, Landing = to, Walk = walk };
         }
-        public Link Next(Platform start, Platform goal, Vector3 position, string avoidImmediateReturn = null)
+        public Link Next(Platform start, Platform goal, Vector3 position,
+            string avoidImmediateReturn = null, System.Func<Link, float> learnedCost = null)
         {
             if (start == null || goal == null || start == goal) return null;
             var distance = new Dictionary<Platform, float>();
@@ -141,7 +142,8 @@ namespace NeverGiveUp
                     float backward = Mathf.Max(0f, toGoalX - fromGoalX);
                     float cost = closest + (link.Walk ? 0.8f : 2f) +
                         Vector3.SqrMagnitude(link.Landing - link.Launch) * 0.12f +
-                        drop * 5f + backward * 0.9f;
+                        drop * 5f + backward * 0.9f +
+                        (learnedCost != null ? Mathf.Max(0f, learnedCost(link)) : 0f);
                     if (current == start)
                     {
                         cost += Mathf.Abs(position.x - link.Launch.x) * 0.2f;
@@ -160,7 +162,8 @@ namespace NeverGiveUp
         // On a small movable box a full path can be temporarily unavailable.
         // Prefer a reachable higher/forward support instead of standing still.
         // This is a local fallback, not a teleport or a replacement for graph search.
-        public Link NextStepFrom(Platform start, Platform goal, string previousId)
+        public Link NextStepFrom(Platform start, Platform goal, string previousId,
+            System.Func<Link, float> learnedCost = null)
         {
             if (start == null || goal == null) return null;
             Link selected = null;
@@ -174,12 +177,32 @@ namespace NeverGiveUp
                 float horizontalGain = (link.To.Bounds.center.x - start.Bounds.center.x) * goalDirection;
                 if (rise < -0.1f && horizontalGain <= 0f) continue;
                 float score = -rise * 5f - horizontalGain * 0.6f +
-                    Vector3.Distance(link.Launch, link.Landing) * 0.1f;
+                    Vector3.Distance(link.Launch, link.Landing) * 0.1f +
+                    (learnedCost != null ? Mathf.Max(0f, learnedCost(link)) : 0f);
                 if (link.To.Id == previousId) score += 18f;
                 if (score >= best) continue;
                 best = score; selected = link;
             }
             return selected;
+        }
+        // Physical candidates are considered even if their edge cannot yet be
+        // planned. Those exploratory attempts must also be learned.
+        public Platform ProbeTarget(Platform start, float direction, Vector3 position)
+        {
+            if (start == null) return null;
+            direction = direction >= 0f ? 1f : -1f;
+            Platform best = null;
+            float bestScore = float.PositiveInfinity;
+            foreach (Platform candidate in platforms)
+            {
+                if (candidate.Id == start.Id || candidate.Movable != null && candidate.Movable.Held) continue;
+                float dx = (candidate.Bounds.center.x - position.x) * direction;
+                float dy = candidate.Bounds.max.y - start.Bounds.max.y;
+                if (dx < -0.3f || dx > 8f || dy < -0.35f) continue;
+                float score = Mathf.Abs(dx) + Mathf.Max(0f, dy) * 0.5f;
+                if (score < bestScore) { bestScore = score; best = candidate; }
+            }
+            return best;
         }
         public string Context(Link link)
         {
