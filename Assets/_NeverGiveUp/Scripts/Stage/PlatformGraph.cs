@@ -132,7 +132,15 @@ namespace NeverGiveUp
                 foreach (Link link in links)
                 {
                     if (link.From != current || link.To.Movable && link.To.Movable.Held) continue;
-                    float cost = closest + (link.Walk ? 0.8f : 2f) + Vector3.SqrMagnitude(link.Landing - link.Launch) * 0.12f;
+                    // Rising toward the goal is preferred. Descents remain possible when
+                    // required, but arbitrary down-up detours no longer win on raw distance.
+                    float drop = Mathf.Max(0f, link.From.Bounds.max.y - link.To.Bounds.max.y);
+                    float fromGoalX = Mathf.Abs(link.From.Bounds.center.x - goal.Bounds.center.x);
+                    float toGoalX = Mathf.Abs(link.To.Bounds.center.x - goal.Bounds.center.x);
+                    float backward = Mathf.Max(0f, toGoalX - fromGoalX);
+                    float cost = closest + (link.Walk ? 0.8f : 2f) +
+                        Vector3.SqrMagnitude(link.Landing - link.Launch) * 0.12f +
+                        drop * 5f + backward * 0.9f;
                     if (current == start) cost += Mathf.Abs(position.x - link.Launch.x) * 0.2f;
                     if (distance.TryGetValue(link.To, out float previous) && previous <= cost) continue;
                     distance[link.To] = cost;
