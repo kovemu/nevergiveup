@@ -10,6 +10,7 @@ namespace NeverGiveUp
         public JumpParameters parameters;
         public Vector3 launch, landing;
         public float vx, vy, flightTime;
+        public JumpMode mode;
         public string context;
         public bool reusedSuccess;
     }
@@ -43,28 +44,36 @@ namespace NeverGiveUp
                 launch = launch, landing = landing, context = context, reusedSuccess = reused };
             return ComputeVelocity(plan, launch, motor) ? plan : null;
         }
+        // The Y impulse is always one of two fixed heights. Learning can adjust
+        // launch X, target X and horizontal control but cannot invent a third height.
         public static bool ComputeVelocity(JumpPlan plan, Vector3 actualFeet, CharacterMotor motor)
+        {
+            if (TryVelocity(plan, actualFeet, motor, JumpMode.Short)) return true;
+            return TryVelocity(plan, actualFeet, motor, JumpMode.Long);
+        }
+
+        private static bool TryVelocity(JumpPlan plan, Vector3 from, CharacterMotor motor, JumpMode mode)
         {
             float g = -Physics.gravity.y;
             if (g <= 0f) return false;
-            float dy = plan.landing.y - actualFeet.y;
-            float apex = Mathf.Max(dy, 0f) + plan.parameters.clearance;
-            plan.vy = Mathf.Min(motor.JumpSpeed, Mathf.Sqrt(2f * g * apex));
-            float d = plan.vy * plan.vy - 2f * g * dy;
-            if (d <= 0f) return false;
-            plan.flightTime = (plan.vy + Mathf.Sqrt(d)) / g;
-            plan.vx = (plan.landing.x - actualFeet.x) / plan.flightTime * plan.parameters.horizontalScale;
-            if (Mathf.Abs(plan.vx) > motor.MaxJumpHorizontal)
-            {
-                // A longer flight is allowed only within the same Inspector jump ceiling.
-                plan.vy = motor.JumpSpeed;
-                d = plan.vy * plan.vy - 2f * g * dy;
-                if (d <= 0f) return false;
-                plan.flightTime = (plan.vy + Mathf.Sqrt(d)) / g;
-                plan.vx = Mathf.Clamp((plan.landing.x - actualFeet.x) / plan.flightTime * plan.parameters.horizontalScale,
-                    -motor.MaxJumpHorizontal, motor.MaxJumpHorizontal);
-            }
-            return Feasible(actualFeet, plan.landing, motor.JumpSpeed, motor.MaxJumpHorizontal);
+            float height = mode == JumpMode.Short ? motor.ShortJumpHeight : motor.LongJumpHeight;
+            // A small amount of headroom is needed to get the capsule over the ledge.
+            // The learned clearance may select the LONG mode, not increase jump power.
+            float requiredHeight = Mathf.Max(0f, plan.landing.y - from.y) +
+                Mathf.Clamp(plan.parameters.clearance, 0.16f, 0.28f);
+            if (height < requiredHeight) return false;
+            float vertical = motor.JumpVelocity(mode);
+            float dy = plan.landing.y - from.y;
+            float discriminant = vertical * vertical - 2f * g * dy;
+            if (discriminant <= 0.0001f) return false;
+            float duration = (vertical + Mathf.Sqrt(discriminant)) / g;
+            float horizontal = (plan.landing.x - from.x) / duration * plan.parameters.horizontalScale;
+            if (Mathf.Abs(horizontal) > motor.MaxJumpHorizontal + 0.0001f) return false;
+            plan.mode = mode;
+            plan.vy = vertical;
+            plan.vx = horizontal;
+            plan.flightTime = duration;
+            return true;
         }
         public static JumpParameters Improve(JumpParameters previous, JumpObservation result, float moveSpeed)
         {
