@@ -255,6 +255,7 @@ namespace NeverGiveUp
             // Treat a player-placed box or low step as a potential stepping stone:
             // first land ON it, then replan from the newly gained support.
             if (obstacleTop != null && obstacleTop.Id != support.Id &&
+                (obstacleTop.Movable == null || !obstacleTop.Movable.Held) &&
                 b.max.y > motor.Feet.y + 0.16f &&
                 AdaptiveJumpPlanner.Feasible(support.Surface(motor.Feet.x),
                     obstacleTop.Surface(b.center.x), motor.JumpSpeed, motor.MaxJumpHorizontal))
