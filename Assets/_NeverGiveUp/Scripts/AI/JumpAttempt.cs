@@ -58,7 +58,10 @@ namespace NeverGiveUp
             { Observation.takeoffVelocity = motor.Body.linearVelocity; sampledVelocity = true; }
             if (motor.ExternalVersion != externalVersion) MarkExternal(motor.ExternalSource, motor.LastExternalTime);
             if (graph.PlayerChanged(Plan.link, Observation.startTime - 0.2f)) MarkExternal("player-moved environment", Time.time);
-            Observation.changedEnvironment |= graph.Context(Plan.link) != Plan.context;
+            // Tiny passive PhysX movement of a landed-on box is not a new player
+            // obstacle arrangement. Do not erase successful attempts for that.
+            Observation.changedEnvironment |= graph.Context(Plan.link) != Plan.context &&
+                graph.PlayerChanged(Plan.link, Observation.startTime - 0.2f);
             closestDistance = Mathf.Min(closestDistance, Mathf.Abs(Plan.landing.x - motor.Feet.x));
             if (!motor.Grounded) leftGround = true;
             bool onTarget = motor.Grounded && motor.Support == Plan.link.To.Collider;
