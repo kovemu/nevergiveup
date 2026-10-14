@@ -43,7 +43,7 @@ namespace NeverGiveUp
         {
             terrain = terrainRoot; motor = actor;
             Rebuild();
-            StringBuilder geometry = new StringBuilder("M3-graph-1|");
+            StringBuilder geometry = new StringBuilder("M31-graph-2|");
             geometry.Append(gameObject.scene.name).Append('|');
             foreach (Platform p in platforms)
                 if (!p.Movable) geometry.Append(p.Id).Append(Geometry(p.Collider));
