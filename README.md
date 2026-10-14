@@ -3,6 +3,42 @@
 Unity **6000.6.0f1**, URP, Windows PC, 2.5D. 얼굴 없는 파란 클레이 캐릭터가 스스로
 올라가고, 마우스 손은 작은 직접 간섭과 상자 조작을 담당합니다.
 
+## M3.2 — Two fixed jump heights & box-top continuation
+
+Code-only patch; no scene/prefab regeneration and no `Upgrade Open Scenes` rerun required.
+Pull `feat/core-prototype`, let Unity compile, then launch `Prologue`.
+
+- **SHORT** jump: target height **1.55 Unity units**, **LONG** jump: **3.0 units**;
+  both are additionally limited by existing `CharacterMotor/Jump Speed` (7.8 by default).
+  Set `Short Jump Height` and `Long Jump Height` on the existing Blue Clay
+  `CharacterMotor` Inspector to tune; the choices remain exactly two.
+- The AI chooses SHORT when a physically achievable landing allows it; LONG
+  only for a higher/distant landing. It still learns run-up, launch position,
+  horizontal timing, air steering, and landing. It cannot learn arbitrary
+  additional vertical strengths.
+- Replan after landing on a stationary movable box, using that box as the
+  current physical support and the next reachable platform as the target.
+  Passive support jitter no longer discards a valid launch plan.
+- When a full route is not available from a box, consider a reachable onward
+  ledge. This does not conjure a route through an impossible obstacle.
+- The no-route exploratory hop also uses SHORT or LONG, never the old
+  unrestricted default vertical impulse.
+- Previous JSON files are left intact but are not loaded into the changed
+  fixed-height trajectory policy; new learning is stored with the M3.2 map signature.
+
+**Check locally (Unity not available in the implementation environment):**
+
+1. On a low Prologue ledge the debug overlay should show SHORT and a visibly
+   lower apex. It should not jump excessively high after reaching the ledge.
+2. Place a movable box, let the character land and stabilize on it, then
+   observe an onward jump toward the next platform. It must not stand frozen.
+3. Move the box under the character; the plan should be reconsidered rather
+   than teleporting or standing on stale coordinates.
+4. Where a taller ledge needs LONG, the planner should select LONG rather
+   than increasing SHORT height.
+5. Revisit the same jump and inspect attempts/success counts. Gameplay QA
+   and physics tuning must be done in the local Unity Editor.
+
 ## M3.1 — AI perception, routing and persistence fix
 
 This is a **code-only** update to the existing M3 prototype. Pull `feat/core-prototype`,
