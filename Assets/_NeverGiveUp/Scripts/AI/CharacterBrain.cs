@@ -5,7 +5,7 @@ namespace NeverGiveUp
     public enum CharacterState
     {
         Idle, Running, InspectingObstacle, Jumping, Falling, KnockedDown,
-        GettingUp, Recovering, Retrying, GoalReached, Stumbling
+        GettingUp, Recovering, Retrying, GoalReached, Stumbling, Resting
     }
     [RequireComponent(typeof(CharacterMotor), typeof(CharacterRecovery))]
     public sealed class CharacterBrain : MonoBehaviour
@@ -23,6 +23,10 @@ namespace NeverGiveUp
         private JumpAttempt attempt;
         private PlatformGraph.Link walkLink;
         private float waitTime, cooldown, stalledTime, bestDistance, saveAt;
+        private float restUntil, noRouteUntil;
+        private int unsuccessfulAttempts;
+        [SerializeField, Min(1)] private int failuresBeforeRest = 4;
+        [SerializeField, Min(0.2f)] private float restDuration = 2.5f;
         private bool runup, inspecting, recovering;
         private string lastOutcome = "none";
         private string lastParameters = "none";
@@ -98,7 +102,19 @@ namespace NeverGiveUp
                 motor.Stop(); // Observe an actual stable landing before crediting success.
                 return;
             }
-            if (stage.Completed) { State = CharacterState.GoalReached; motor.Stop(); return; }
+            if (stage.Completed)
+            {
+                unsuccessfulAttempts = 0;
+                restUntil = 0f;
+                State = CharacterState.GoalReached; motor.Stop(); return;
+            }
+            // Rest is an emotional pause, never a terminal failure state. External
+            // physics still acts while the character is seated.
+            if (Time.time < restUntil)
+            {
+                State = CharacterState.Resting; motor.Stop(); return;
+            }
+            if (State == CharacterState.Resting) { restUntil = 0f; cooldown = 0.25f; }
             if (cooldown > 0f) { motor.Stop(); return; }
             PlatformGraph.Platform support = stage.Graph.Support(motor.Support);
             if (support == null) { State = CharacterState.InspectingObstacle; motor.Stop(); return; }
@@ -114,8 +130,27 @@ namespace NeverGiveUp
                 PlatformGraph.Link link = stage.Graph.Next(support, goal, motor.Feet);
                 if (link == null)
                 {
-                    State = CharacterState.InspectingObstacle;
-                    motor.Stop(); cooldown = 0.5f; stage.Graph.Rebuild(); return;
+                    // Do not become an idle statue when no complete graph route exists.
+                    // Probe the way forward; when physically blocked, retry after a
+                    // short pause and occasionally sit before trying again.
+                    float heading = Mathf.Sign(stage.GoalPosition.x - motor.Feet.x);
+                    if (Mathf.Abs(heading) < 0.1f) heading = motor.Facing;
+                    if (motor.ObstacleAhead(heading, out RaycastHit obstacle))
+                        PlanObstacleHop(support, obstacle, heading);
+                    else if (motor.GroundAhead(heading))
+                        WalkToward(Mathf.Clamp(stage.GoalPosition.x,
+                            support.Bounds.min.x + 0.35f, support.Bounds.max.x - 0.35f), support, dt);
+                    else if (Time.time >= noRouteUntil)
+                    {
+                        // A bounded physical attempt at the ledge, not a fake path or teleport.
+                        // Only jump from a grounded location. Failure cannot unlock higher jump power.
+                        motor.Jump(heading * motor.MoveSpeed * 0.8f, motor.JumpSpeed);
+                        noRouteUntil = Time.time + 2.0f;
+                        NoteBlocked();
+                    }
+                    else { State = CharacterState.InspectingObstacle; motor.Stop(); }
+                    stage.Graph.Rebuild();
+                    return;
                 }
                 if (link.Walk) walkLink = link;
                 else SetPlan(AdaptiveJumpPlanner.Plan(stage.Graph, link, motor, memory));
@@ -180,6 +215,12 @@ namespace NeverGiveUp
             float direction = Mathf.Sign(delta);
             if (Mathf.Abs(delta) > 0.2f && motor.ObstacleAhead(direction, out RaycastHit obstruction))
             { PlanObstacleHop(support, obstruction, direction); return; }
+            if (Mathf.Abs(delta) > 0.35f && !motor.GroundAhead(direction))
+            {
+                // A missing floor is not an instruction to walk off a cliff.
+                State = CharacterState.InspectingObstacle;
+                motor.Stop(); NoteBlocked(); return;
+            }
             motor.Drive(Mathf.Clamp(delta * 4f, -motor.MoveSpeed, motor.MoveSpeed));
             if (ProgressStalled(Mathf.Abs(delta), dt))
             { walkLink = null; stalledTime = 0f; bestDistance = float.PositiveInfinity; cooldown = 0.3f; stage.Graph.Rebuild(); }
@@ -189,11 +230,22 @@ namespace NeverGiveUp
             Bounds b = obstruction.collider.bounds;
             float destinationX = direction > 0f ? b.max.x + 0.7f : b.min.x - 0.7f;
             PlatformGraph.Platform destination = support;
-            if (destinationX < support.Bounds.min.x + 0.35f || destinationX > support.Bounds.max.x - 0.35f)
+            PlatformGraph.Platform obstacleTop = stage.Graph.Support(obstruction.collider);
+            // Treat a player-placed box or low step as a potential stepping stone:
+            // first land ON it, then replan from the newly gained support.
+            if (obstacleTop != null && obstacleTop.Id != support.Id &&
+                b.max.y > motor.Feet.y + 0.16f &&
+                AdaptiveJumpPlanner.Feasible(support.Surface(motor.Feet.x),
+                    obstacleTop.Surface(b.center.x), motor.JumpSpeed, motor.MaxJumpHorizontal))
             {
-                destination = stage.Graph.Support(obstruction.collider);
-                if (destination == null) { RestartRoute(); return; }
-                destinationX = destination.Bounds.center.x;
+                destination = obstacleTop;
+                destinationX = b.center.x;
+            }
+            else if (destinationX < support.Bounds.min.x + 0.35f ||
+                     destinationX > support.Bounds.max.x - 0.35f)
+            {
+                // No landing space beyond the obstacle and no reachable top.
+                NoteBlocked(); return;
             }
             Vector3 landing = destination.Surface(destinationX);
             var local = new PlatformGraph.Link { From = support, To = destination,
@@ -208,7 +260,24 @@ namespace NeverGiveUp
                 next.parameters.Bound(motor.MoveSpeed);
                 AdaptiveJumpPlanner.ComputeVelocity(next, next.launch, motor);
             }
+            if (next == null) { NoteBlocked(); return; }
             SetPlan(next);
+        }
+        private void NoteBlocked()
+        {
+            // Never equate blocked geometry with successful passage.
+            // Even an impossible obstacle is tried again after a brief rest.
+            if (Time.time < restUntil) return;
+            unsuccessfulAttempts++;
+            cooldown = 0.65f;
+            State = CharacterState.InspectingObstacle;
+            motor.Stop();
+            if (unsuccessfulAttempts >= failuresBeforeRest)
+            {
+                unsuccessfulAttempts = 0;
+                restUntil = Time.time + restDuration;
+                State = CharacterState.Resting;
+            }
         }
         private void AirControl(JumpPlan current)
         {
@@ -237,7 +306,19 @@ namespace NeverGiveUp
             lastOutcome = observation.outcome.ToString(); lastParameters = observation.parameters.Summary;
             lastInterference = observation.interfered ? observation.interferenceSource : "none";
             memory.Observe(attempt.Plan.experience, attempt.Plan.action, observation, motor.MoveSpeed);
-            if (observation.outcome != JumpOutcome.Success && !observation.interfered) FailureCount++;
+            if (observation.outcome == JumpOutcome.Success)
+                unsuccessfulAttempts = 0;
+            else if (!observation.interfered && observation.outcome != JumpOutcome.Cancelled &&
+                     observation.outcome != JumpOutcome.EnvironmentChanged)
+            {
+                FailureCount++;
+                unsuccessfulAttempts++;
+                if (unsuccessfulAttempts >= failuresBeforeRest)
+                {
+                    unsuccessfulAttempts = 0;
+                    restUntil = Time.time + restDuration;
+                }
+            }
             attempt = null; plan = null; walkLink = null;
             runup = inspecting = false; stalledTime = waitTime = 0f;
             bestDistance = float.PositiveInfinity; cooldown = 0.35f;
