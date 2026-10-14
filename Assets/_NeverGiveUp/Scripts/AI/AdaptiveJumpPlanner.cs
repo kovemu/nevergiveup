@@ -11,6 +11,7 @@ namespace NeverGiveUp
         public Vector3 launch, landing;
         public float vx, vy, flightTime;
         public JumpMode mode;
+        public bool exploratory;
         public string context;
         public bool reusedSuccess;
     }
@@ -41,7 +42,7 @@ namespace NeverGiveUp
             Vector3 landing = link.To.Surface(Mathf.Clamp(link.Landing.x + p.landingOffset * sign,
                 target.min.x + targetMargin, target.max.x - targetMargin));
             var plan = new JumpPlan { link = link, experience = section, action = action, parameters = p,
-                launch = launch, landing = landing, context = context, reusedSuccess = reused };
+                launch = launch, landing = landing, mode = action.mode, context = context, reusedSuccess = reused };
             if (ComputeVelocity(plan, launch, motor)) return plan;
             // A learned horizontal multiplier may become impossible after changing
             // to fixed-height jumping; re-normalize without raising jump strength.
@@ -52,8 +53,12 @@ namespace NeverGiveUp
         // launch X, target X and horizontal control but cannot invent a third height.
         public static bool ComputeVelocity(JumpPlan plan, Vector3 actualFeet, CharacterMotor motor)
         {
-            if (TryVelocity(plan, actualFeet, motor, JumpMode.Short)) return true;
-            return TryVelocity(plan, actualFeet, motor, JumpMode.Long);
+            // Respect the LEARNED mode. Only switch when the preferred arc is
+            // physically infeasible; a failed SHORT can therefore become LONG.
+            JumpMode preferred = plan.mode;
+            if (TryVelocity(plan, actualFeet, motor, preferred)) return true;
+            JumpMode alternative = preferred == JumpMode.Short ? JumpMode.Long : JumpMode.Short;
+            return TryVelocity(plan, actualFeet, motor, alternative);
         }
 
         private static bool TryVelocity(JumpPlan plan, Vector3 from, CharacterMotor motor, JumpMode mode)
@@ -79,6 +84,49 @@ namespace NeverGiveUp
             plan.flightTime = duration;
             return true;
         }
+        // Probe even when the graph cannot find a full route. This must create
+        // an observable JumpAttempt, not an unrecorded random hop.
+        public static JumpPlan Probe(PlatformGraph graph, PlatformGraph.Platform support,
+            PlatformGraph.Platform candidate, CharacterMotor motor, LearningMemory memory,
+            float direction)
+        {
+            if (support == null) return null;
+            direction = direction < 0f ? -1f : 1f;
+            Vector3 from = motor.Feet;
+            Vector3 destination = candidate == null
+                ? from + new Vector3(direction * 2.5f, 0.5f, 0f)
+                : candidate.Surface(candidate.Bounds.center.x);
+            var link = new PlatformGraph.Link
+            {
+                From = support, To = candidate ?? support,
+                Launch = from, Landing = destination,
+                Tag = candidate == null ? ":probe:edge:" + (direction > 0f ? "R" : "L") :
+                    ":probe:target:" + (direction > 0f ? "R" : "L")
+            };
+            string context = graph.Context(link);
+            JumpExperience experience = memory.Section(link.Id + ":" + context);
+            LearnedAction action = memory.Select(experience, out bool reused);
+            JumpParameters p = action.parameters.Copy();
+            p.Bound(motor.MoveSpeed);
+            JumpMode mode = action.mode;
+            float vertical = motor.JumpVelocity(mode);
+            float gravity = -Physics.gravity.y;
+            if (gravity <= 0f) return null;
+            float flightTime = 2f * vertical / gravity;
+            float desiredDx = destination.x - from.x;
+            float vx = Mathf.Clamp(desiredDx / Mathf.Max(0.2f, flightTime) *
+                p.horizontalScale, -motor.MaxJumpHorizontal, motor.MaxJumpHorizontal);
+            // Keep heading when target lies vertically above or too close in X.
+            if (Mathf.Abs(vx) < 0.6f) vx = direction * Mathf.Min(1f, motor.MaxJumpHorizontal);
+            return new JumpPlan
+            {
+                link = link, experience = experience, action = action,
+                parameters = p, launch = from, landing = destination,
+                mode = mode, vx = vx, vy = vertical, flightTime = flightTime,
+                context = context, reusedSuccess = reused, exploratory = true
+            };
+        }
+
         public static JumpParameters Improve(JumpParameters previous, JumpObservation result, float moveSpeed)
         {
             JumpParameters next = previous.Copy();
