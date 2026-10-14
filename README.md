@@ -3,6 +3,43 @@
 Unity **6000.6.0f1**, URP, Windows PC, 2.5D. 얼굴 없는 파란 클레이 캐릭터가 스스로
 올라가고, 마우스 손은 작은 직접 간섭과 상자 조작을 담당합니다.
 
+## M3.1 — AI perception, routing and persistence fix
+
+This is a **code-only** update to the existing M3 prototype. Pull `feat/core-prototype`,
+allow Unity to recompile, and press Play in the existing `Prologue` scene.
+**Do not run Build Prototype Scenes again.** Existing M3 scene upgrades remain valid.
+
+- Multiple forward-height spherecasts distinguish wall/box faces from ordinary floor slopes.
+- Low steps and boxes are recognized as possible intermediate landing supports.
+- A jump counts as successful when the character actually stabilizes on the intended
+  platform, even if it is not exactly on the planned X coordinate.
+- Path selection favors progress toward the summit and discourages immediate
+  backtracking; necessary descents are still allowed.
+- When the route graph cannot find a full path, the character moves toward the ledge,
+  tries a physically bounded jump, and tries again. It never teleports to the goal.
+- After several unsuccessful/blocked attempts the character **sits briefly** (wordless
+  crouched clay pose), stands up and continues trying. Rest never means giving up.
+- Dragging a box causes the route context to be re-evaluated. The character may jump
+  onto a stationary reachable box, try jumping over an obstruction, or keep trying
+  when a blockage is impossible. It does **not** pick up or push objects itself.
+- The map-signature prefix changed for M3.1. Old M3 JSON learning is preserved on
+  disk, but **not loaded** into this revised planner: learning begins fresh.
+
+**Manual Unity QA (not run in the code-editing environment):**
+1. In the Prologue, let the AI climb the low obstacle. It should continue toward the
+   exit, not jump back off the same ledge in an endless loop.
+2. Place a box ahead and move it while the AI approaches. It should notice the new
+   obstruction, try a reachable top/alternate local jump, and re-plan after movement.
+3. Block the path with a physically impassable arrangement. The AI must keep attempting,
+   occasionally sit for a short rest, and then resume, without teleporting.
+4. Flick it from an upper platform. It should fall under physics, land below and
+   reconsider the route without respawning.
+5. Revisit a previously solved jump. Check that learned attempts and successful
+   actions are retained in the development-only on-screen AI debug information.
+
+Unity compilation, Play Mode results and learned performance are **not verified**
+by the GitHub editing environment and need local Unity validation.
+
 ## 기존 프로젝트에 적용
 
 1. `feat/core-prototype`을 pull하고 Unity 6000.6.0f1로 엽니다.
