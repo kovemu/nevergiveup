@@ -111,7 +111,8 @@ namespace NeverGiveUp
             float boundary = direction > 0 ? a.Bounds.max.x : a.Bounds.min.x;
             bool walk = gap < 0.18f && gap > -0.3f &&
                 Mathf.Abs(a.Surface(boundary).y - b.Surface(boundary).y) < 0.25f;
-            if (!walk && !AdaptiveJumpPlanner.Feasible(from, to, motor.JumpSpeed, motor.MaxJumpHorizontal)) return null;
+            // Only advertise links reachable by the actual two jump strengths.
+            if (!walk && !motor.CanReach(from, to)) return null;
             return new Link { From = a, To = b, Launch = from, Landing = to, Walk = walk };
         }
         public Link Next(Platform start, Platform goal, Vector3 position, string avoidImmediateReturn = null)
@@ -155,6 +156,30 @@ namespace NeverGiveUp
                 }
             }
             return null;
+        }
+        // On a small movable box a full path can be temporarily unavailable.
+        // Prefer a reachable higher/forward support instead of standing still.
+        // This is a local fallback, not a teleport or a replacement for graph search.
+        public Link NextStepFrom(Platform start, Platform goal, string previousId)
+        {
+            if (start == null || goal == null) return null;
+            Link selected = null;
+            float best = float.PositiveInfinity;
+            foreach (Link link in links)
+            {
+                if (link.From.Id != start.Id || link.To.Movable && link.To.Movable.Held) continue;
+                if (link.To.Id == start.Id) continue;
+                float rise = link.To.Bounds.max.y - start.Bounds.max.y;
+                float goalDirection = Mathf.Sign(goal.Bounds.center.x - start.Bounds.center.x);
+                float horizontalGain = (link.To.Bounds.center.x - start.Bounds.center.x) * goalDirection;
+                if (rise < -0.1f && horizontalGain <= 0f) continue;
+                float score = -rise * 5f - horizontalGain * 0.6f +
+                    Vector3.Distance(link.Launch, link.Landing) * 0.1f;
+                if (link.To.Id == previousId) score += 18f;
+                if (score >= best) continue;
+                best = score; selected = link;
+            }
+            return selected;
         }
         public string Context(Link link)
         {
