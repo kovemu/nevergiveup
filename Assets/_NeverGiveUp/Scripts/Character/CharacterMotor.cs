@@ -95,18 +95,28 @@ namespace NeverGiveUp
             Grounded = false;
         }
 
+        // Side-on capsule-height scan; the old single low ray was blind to overhangs
+        // and often mistook an ordinary sloped floor for a blocking wall.
         public bool ObstacleAhead(float direction, out RaycastHit obstacle)
         {
             obstacle = default;
-            Vector3 origin = Feet + Vector3.up * 0.45f;
-            int count = Physics.RaycastNonAlloc(origin, Vector3.right * direction, hits,
-                0.85f, groundMask, QueryTriggerInteraction.Ignore);
+            if (Mathf.Abs(direction) < 0.1f) return false;
             float closest = float.PositiveInfinity;
-            for (int i = 0; i < count; i++)
+            float[] levels = { 0.33f, 0.9f, 1.43f };
+            for (int level = 0; level < levels.Length; level++)
             {
-                if (hits[i].rigidbody == body || hits[i].distance >= closest) continue;
-                closest = hits[i].distance;
-                obstacle = hits[i];
+                Vector3 origin = Feet + Vector3.up * levels[level];
+                int count = Physics.SphereCastNonAlloc(origin, 0.12f,
+                    Vector3.right * Mathf.Sign(direction), hits, 0.9f,
+                    groundMask, QueryTriggerInteraction.Ignore);
+                for (int i = 0; i < count; i++)
+                {
+                    RaycastHit hit = hits[i];
+                    if (!hit.collider || hit.rigidbody == body || hit.collider == Support ||
+                        hit.distance >= closest || Mathf.Abs(hit.normal.x) < 0.45f) continue;
+                    closest = hit.distance;
+                    obstacle = hit;
+                }
             }
             return closest < float.PositiveInfinity;
         }
