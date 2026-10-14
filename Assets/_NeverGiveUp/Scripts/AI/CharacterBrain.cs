@@ -32,6 +32,8 @@ namespace NeverGiveUp
         private string lastOutcome = "none";
         private string lastParameters = "none";
         private string lastInterference = "none";
+        private JumpMode lastJumpMode = JumpMode.Short;
+        private JumpExperience lastExperience;
         public CharacterState State { get; private set; } = CharacterState.Idle;
         public int FailureCount { get; private set; }
         public bool PreparingJump => inspecting && plan != null && waitTime > inspectDuration;
@@ -40,11 +42,12 @@ namespace NeverGiveUp
         {
             get
             {
-                JumpExperience experience = plan?.experience;
+                JumpExperience experience = plan?.experience ?? attempt?.Plan.experience ?? lastExperience;
                 return $"{State} | target: {plan?.link.To.Id ?? walkLink?.To.Id ?? stage?.GoalPlatform?.Id ?? "none"}\n" +
                     $"attempts: {experience?.trials ?? 0}, successes: {experience?.successes ?? 0}, excluded: {experience?.excluded ?? 0} | last: {lastOutcome}\n" +
                     $"success memory: {plan?.reusedSuccess ?? false}, learned action: {(plan != null && plan.experience.trials > 0)} | interference: {lastInterference}\n" +
-                    (plan != null ? $"jump: {plan.mode} | " + plan.parameters.Summary : lastParameters);
+                    (plan != null ? $"jump: {plan.mode} | " + plan.parameters.Summary :
+                        $"last jump: {lastJumpMode} | " + lastParameters);
             }
         }
         private void Awake()
@@ -145,9 +148,11 @@ namespace NeverGiveUp
                 if (goal == null) { motor.Stop(); return; }
                 if (support.Id == goal.Id)
                 { WalkToward(stage.GoalPosition.x, support, dt); return; }
-                PlatformGraph.Link link = stage.Graph.Next(support, goal, motor.Feet, previousSupportId);
-                if (link == null && support.Movable != null && !support.Movable.Held)
-                    link = stage.Graph.NextStepFrom(support, goal, previousSupportId);
+                PlatformGraph.Link link = stage.Graph.Next(support, goal, motor.Feet,
+                    previousSupportId, LearnedRouteCost);
+                if (link == null)
+                    link = stage.Graph.NextStepFrom(support, goal, previousSupportId,
+                        LearnedRouteCost);
                 if (link == null)
                 {
                     // Do not become an idle statue when no complete graph route exists.
@@ -165,14 +170,10 @@ namespace NeverGiveUp
                             WalkToward(edge, support, dt);
                         else if (Time.time >= noRouteUntil)
                         {
-                            // Even when the graph finds no route, try a physically bounded
-                            // jump from the edge. It can fail; it can never teleport.
-                            JumpMode fallback = unsuccessfulAttempts % 3 == 2 ?
-                                JumpMode.Long : JumpMode.Short;
-                            motor.Jump(heading * motor.MoveSpeed * 0.8f,
-                                motor.JumpVelocity(fallback));
-                            noRouteUntil = Time.time + 2.0f;
-                            NoteBlocked();
+                            // All exploratory jumps must have an outcome and affect
+                            // the next jump mode / trajectory selection.
+                            StartProbe(support, stage.Graph.ProbeTarget(support, heading,
+                                motor.Feet), heading);
                         }
                         else { State = CharacterState.InspectingObstacle; motor.Stop(); }
                     }
@@ -229,6 +230,34 @@ namespace NeverGiveUp
                 else BlockedAttempt(JumpOutcome.Unknown);
             }
         }
+        private float LearnedRouteCost(PlatformGraph.Link link)
+        {
+            return memory == null || stage == null ? 0f :
+                memory.RoutePenalty(link.Id + ":" + stage.Graph.Context(link));
+        }
+        private void StartProbe(PlatformGraph.Platform support,
+            PlatformGraph.Platform candidate, float direction)
+        {
+            if (!motor.Grounded || Time.time < noRouteUntil)
+            {
+                State = CharacterState.InspectingObstacle;
+                motor.Stop();
+                return;
+            }
+            JumpPlan probing = AdaptiveJumpPlanner.Probe(stage.Graph, support, candidate,
+                motor, memory, direction);
+            if (probing == null)
+            {
+                NoteBlocked();
+                return;
+            }
+            plan = null;
+            walkLink = null;
+            attempt = new JumpAttempt(probing, motor);
+            motor.Jump(probing.vx, probing.vy);
+            noRouteUntil = Time.time + 1.2f;
+            State = CharacterState.Jumping;
+        }
         private void SetPlan(JumpPlan next)
         {
             plan = next; walkLink = null;
@@ -283,8 +312,9 @@ namespace NeverGiveUp
             else if (destinationX < support.Bounds.min.x + 0.35f ||
                      destinationX > support.Bounds.max.x - 0.35f)
             {
-                // No landing space beyond the obstacle and no reachable top.
-                NoteBlocked(); return;
+                // When this cannot be planned, physically probe the blockage
+                // and LEARN from the outcome rather than repeating blind retries.
+                StartProbe(support, obstacleTop, direction); return;
             }
             Vector3 landing = destination.Surface(destinationX);
             var local = new PlatformGraph.Link { From = support, To = destination,
@@ -299,7 +329,7 @@ namespace NeverGiveUp
                 next.parameters.Bound(motor.MoveSpeed);
                 AdaptiveJumpPlanner.ComputeVelocity(next, next.launch, motor);
             }
-            if (next == null) { NoteBlocked(); return; }
+            if (next == null) { StartProbe(support, obstacleTop, direction); return; }
             SetPlan(next);
         }
         private void NoteBlocked()
@@ -343,6 +373,8 @@ namespace NeverGiveUp
         {
             JumpObservation observation = attempt.Observation;
             lastOutcome = observation.outcome.ToString(); lastParameters = observation.parameters.Summary;
+            lastJumpMode = observation.mode;
+            lastExperience = attempt.Plan.experience;
             lastInterference = observation.interfered ? observation.interferenceSource : "none";
             memory.Observe(attempt.Plan.experience, attempt.Plan.action, observation, motor.MoveSpeed);
             if (observation.outcome == JumpOutcome.Success)
