@@ -3,12 +3,16 @@ using UnityEngine;
 
 namespace NeverGiveUp
 {
+    public enum JumpMode { Short, Long }
+
     [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
     public sealed class CharacterMotor : MonoBehaviour
     {
         [SerializeField, Min(0.1f)] private float moveSpeed = 4f;
         [SerializeField, Min(1f)] private float acceleration = 24f;
-        [SerializeField, Min(1f)] private float jumpSpeed = 7.8f;
+        [SerializeField, Min(1f)] private float jumpSpeed = 7.8f; // Hard upper bound retained for older scenes.
+        [SerializeField, Min(0.2f)] private float shortJumpHeight = 1.55f;
+        [SerializeField, Min(0.2f)] private float longJumpHeight = 3.0f;
         [SerializeField] private LayerMask groundMask = ~0;
         private readonly RaycastHit[] hits = new RaycastHit[16];
         private static readonly float[] ObstacleScanHeights = { 0.33f, 0.9f, 1.43f };
@@ -31,6 +35,29 @@ namespace NeverGiveUp
         public CapsuleCollider Capsule => capsule;
         public float MoveSpeed => moveSpeed;
         public float JumpSpeed => jumpSpeed;
+        public float ShortJumpHeight => Mathf.Min(shortJumpHeight, longJumpHeight, MaxJumpHeight);
+        public float LongJumpHeight => Mathf.Min(Mathf.Max(longJumpHeight, shortJumpHeight), MaxJumpHeight);
+        private float MaxJumpHeight => Physics.gravity.y < -0.001f ?
+            jumpSpeed * jumpSpeed / (-2f * Physics.gravity.y) : 0f;
+        public float JumpVelocity(JumpMode mode)
+        {
+            float height = mode == JumpMode.Short ? ShortJumpHeight : LongJumpHeight;
+            return Physics.gravity.y < -0.001f ? Mathf.Sqrt(-2f * Physics.gravity.y * height) : 0f;
+        }
+
+        public bool CanReach(Vector3 from, Vector3 to, JumpMode mode)
+        {
+            float g = -Physics.gravity.y;
+            float vertical = JumpVelocity(mode);
+            float discriminant = vertical * vertical - 2f * g * (to.y - from.y);
+            if (g < 0.001f || discriminant <= 0.0001f) return false;
+            float duration = (vertical + Mathf.Sqrt(discriminant)) / g;
+            return Mathf.Abs(to.x - from.x) <= MaxJumpHorizontal * duration + 0.01f;
+        }
+        public bool CanReach(Vector3 from, Vector3 to)
+        {
+            return CanReach(from, to, JumpMode.Short) || CanReach(from, to, JumpMode.Long);
+        }
         public float HalfHeight => capsule.height * 0.5f;
         public Vector3 Feet => body.position + Vector3.down * HalfHeight;
         public bool Grounded { get; private set; }
