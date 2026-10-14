@@ -91,9 +91,14 @@ namespace NeverGiveUp.Editor
             floor.name = "Preview floor - not gameplay";
             floor.transform.position = new Vector3(0f, -0.07f, 0f);
             floor.transform.localScale = new Vector3(5f, 0.14f, 4f);
-            Material floorMat = new Material(floorShader);
-            floorMat.name = "Preview warm stone (temporary)";
-            floorMat.SetColor("_BaseColor", new Color(0.72f, 0.68f, 0.63f));
+            const string floorMaterialPath = DirectoryPath + "/M4_PreviewFloor.mat";
+            Material floorMat = AssetDatabase.LoadAssetAtPath<Material>(floorMaterialPath);
+            if (!floorMat)
+            {
+                floorMat = new Material(floorShader) { name = "M4 Preview Floor" };
+                floorMat.SetColor("_BaseColor", new Color(0.72f, 0.68f, 0.63f));
+                AssetDatabase.CreateAsset(floorMat, floorMaterialPath);
+            }
             floor.GetComponent<Renderer>().sharedMaterial = floorMat;
 
             GameObject lightObject = new GameObject("Soft key light", typeof(Light));
