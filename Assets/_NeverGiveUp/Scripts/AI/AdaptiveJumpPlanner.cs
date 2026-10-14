@@ -42,6 +42,10 @@ namespace NeverGiveUp
                 target.min.x + targetMargin, target.max.x - targetMargin));
             var plan = new JumpPlan { link = link, experience = section, action = action, parameters = p,
                 launch = launch, landing = landing, context = context, reusedSuccess = reused };
+            if (ComputeVelocity(plan, launch, motor)) return plan;
+            // A learned horizontal multiplier may become impossible after changing
+            // to fixed-height jumping; re-normalize without raising jump strength.
+            plan.parameters.horizontalScale = 1f;
             return ComputeVelocity(plan, launch, motor) ? plan : null;
         }
         // The Y impulse is always one of two fixed heights. Learning can adjust
