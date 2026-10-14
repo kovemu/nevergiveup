@@ -3,6 +3,54 @@
 Unity **6000.6.0f1**, URP, Windows PC, 2.5D. 얼굴 없는 파란 클레이 캐릭터가 스스로
 올라가고, 마우스 손은 작은 직접 간섭과 상자 조작을 담당합니다.
 
+## M3.3 — Actual strategy learning and loop-aware navigation
+
+**Code-only update.** Pull `feat/core-prototype` in your existing Unity 6000.6.0f1
+project and run `Prologue`. Do not rebuild or upgrade existing scenes again.
+
+- Every **AI-initiated** jump now has a `JumpAttempt`, including the no-route
+  edge probes that previously bypassed learning. Player-thrown falls are not
+  confused with an AI jump, and external interference is still excluded from
+  self-inflicted failure rewards.
+- `LearnedAction.mode` stores the chosen **Short/Long** strategy. The
+  planner evaluates that learned mode first, switches only if the current
+  mode is physically infeasible, and records the **actual** mode in each
+  observation. Neither mode changes its configured vertical height.
+- Shortfalls, side collisions, blockages and uncertain failures can propose
+  switching between the two jump modes; overshoots or ceiling hits favor
+  lower jumps. Timing, approach, landing and horizontal steering are still
+  refined independently.
+- A physically completed jump on the same floor past a small obstacle
+  counts as success. An exploratory jump which merely returns to its
+  launch floor cannot produce a false success.
+- Route costs now incorporate previous physical failures as well as
+  repeated platform transitions when there has been no meaningful ascent.
+  The same route remains available when it is the only path. New heights
+  clear the temporary loop counters; the character never decides to quit.
+- For graph links with no valid trajectory, the AI performs an observable,
+  bounded exploratory jump instead of silently skipping the attempt.
+- The learning JSON schema is now version 4 and the M3.3 map signature is
+  distinct. Existing files remain on disk; learning begins fresh under
+  the new logic.
+
+**Manual acceptance checks (not run by GitHub editing tools):**
+
+1. Let the AI fail the same ledge at least 5-10 times without hand interference.
+   Verify trial counts actually rise, attempted jump modes vary when needed,
+   and the debug display changes from `Short` to `Long` on suitable failures.
+2. Give it a small same-floor hurdle. Confirm the first successful jump is
+   not incorrectly marked as failure, and normal movement resumes.
+3. Deliberately make an unreachable ledge. Confirm every AI jump is recorded;
+   after repeated failure, the character rests and resumes without teleporting.
+4. Introduce an alternate route / movable box. Confirm repeated failing
+   edges become less preferred and the AI can change route, but still keeps
+   trying when no alternative exists.
+5. Revisit a successful ledge after learning. Verify successful mode and
+   launch strategy are prioritized. Test Prologue -> MainPrototype transition.
+6. Check Console errors and `CharacterBrain/Show Learning Debug`.
+   A real improvement in completion rate is not guaranteed before Unity
+   physics and learning-policy tuning.
+
 ## M3.2 — Two fixed jump heights & box-top continuation
 
 Code-only patch; no scene/prefab regeneration and no `Upgrade Open Scenes` rerun required.
