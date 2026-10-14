@@ -25,7 +25,8 @@ namespace NeverGiveUp.Editor
             if (EditorApplication.isPlayingOrWillChangePlaymode)
             { Debug.LogWarning("Exit Play Mode before generating prototype scenes."); return; }
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
-            if ((File.Exists(ProloguePath) || File.Exists(MainPath)) &&
+            if ((File.Exists(ProloguePath) || File.Exists(MainPath) || File.Exists(Root + "/Prefabs/BlueClay.prefab") ||
+                File.Exists(Root + "/Prefabs/Box.prefab")) &&
                 !EditorUtility.DisplayDialog("Rebuild NeverGiveUp prototype?",
                     "Replace the generated Prologue/MainPrototype scenes and BlueClay/Box prefabs? " +
                     "Manual changes to those generated assets will be replaced. Other assets are preserved.",
@@ -36,9 +37,61 @@ namespace NeverGiveUp.Editor
         // Can also be called via Unity -batchmode -executeMethod NeverGiveUp.Editor.PrototypeSceneBuilder.BuildBatch.
         public static void BuildBatch()
         {
-            if (File.Exists(ProloguePath) || File.Exists(MainPath))
+            if (File.Exists(ProloguePath) || File.Exists(MainPath) ||
+                File.Exists(Root + "/Prefabs/BlueClay.prefab") || File.Exists(Root + "/Prefabs/Box.prefab"))
                 throw new System.InvalidOperationException("Batch generation only accepts missing prototype scenes.");
             Generate();
+        }
+
+        [MenuItem("NeverGiveUp/Upgrade Open Scenes to M3 (Preserve Layout)")]
+        public static void UpgradeOpenScenes()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode) return;
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            int undoGroup = Undo.GetCurrentGroup();
+            Undo.SetCurrentGroupName("Upgrade NeverGiveUp scene to M3");
+            int upgraded = 0;
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                Scene scene = SceneManager.GetSceneAt(i);
+                if (!scene.isLoaded || string.IsNullOrEmpty(scene.path)) continue;
+                List<StageController> stages = new List<StageController>();
+                foreach (GameObject root in scene.GetRootGameObjects())
+                    stages.AddRange(root.GetComponentsInChildren<StageController>(true));
+                if (stages.Count == 0) continue;
+                string backupFolder = Path.GetDirectoryName(scene.path).Replace('\\', '/') + "/M3Backups";
+                Directory.CreateDirectory(backupFolder);
+                AssetDatabase.Refresh();
+                string backup = AssetDatabase.GenerateUniqueAssetPath(backupFolder + "/" + scene.name + "-before-M3.unity");
+                if (!EditorSceneManager.SaveScene(scene, backup, true))
+                    throw new System.IO.IOException("Could not back up " + scene.path);
+                foreach (StageController stage in stages)
+                {
+                    var existing = new HashSet<GameObject>();
+                    foreach (Transform t in stage.GetComponentsInChildren<Transform>(true)) existing.Add(t.gameObject);
+                    stage.EnsureM3Geometry();
+                    foreach (Transform t in stage.GetComponentsInChildren<Transform>(true))
+                        if (!existing.Contains(t.gameObject)) Undo.RegisterCreatedObjectUndo(t.gameObject, "Add physical safety boundary");
+                }
+                foreach (GameObject root in scene.GetRootGameObjects())
+                {
+                    foreach (HandInteraction hand in root.GetComponentsInChildren<HandInteraction>(true))
+                    {
+                        Undo.RecordObject(hand, "M3 hand defaults"); hand.ApplyM3Defaults();
+                        PrefabUtility.RecordPrefabInstancePropertyModifications(hand);
+                    }
+                    foreach (CharacterRecovery recovery in root.GetComponentsInChildren<CharacterRecovery>(true))
+                    {
+                        Undo.RecordObject(recovery, "M3 recovery defaults"); recovery.ApplyM3Defaults();
+                        PrefabUtility.RecordPrefabInstancePropertyModifications(recovery);
+                    }
+                }
+                EditorSceneManager.MarkSceneDirty(scene);
+                upgraded++;
+            }
+            Undo.CollapseUndoOperations(undoGroup);
+            Debug.Log($"M3 upgrade prepared in {upgraded} open scene(s). Layout and prefab assets preserved. " +
+                "Pre-upgrade scene copies are in M3Backups. Save the scene to keep changes; Undo is available.");
         }
 
         private static void Generate()
@@ -58,7 +111,7 @@ namespace NeverGiveUp.Editor
             if (!characterFriction)
             {
                 characterFriction = new PhysicsMaterial("CharacterSlide")
-                { dynamicFriction = 0f, staticFriction = 0f, bounciness = 0f, frictionCombine = PhysicsMaterialCombine.Minimum };
+                { dynamicFriction = 0.08f, staticFriction = 0.12f, bounciness = 0f, frictionCombine = PhysicsMaterialCombine.Minimum };
                 AssetDatabase.CreateAsset(characterFriction, frictionPath);
             }
             CreateScene(true);
@@ -72,7 +125,7 @@ namespace NeverGiveUp.Editor
             EditorBuildSettings.scenes = scenes.ToArray();
             AssetDatabase.SaveAssets();
             EditorSceneManager.OpenScene(ProloguePath, OpenSceneMode.Single);
-            Debug.Log("NeverGiveUp M0–M2 scenes generated. Press Play in Prologue. Left click: flick; hold box: drag.");
+            Debug.Log("NeverGiveUp M3 scenes generated. Press Play in Prologue. Left click: flick; hold box: drag.");
         }
 
         private static Material MaterialAsset(string name, Color color, Shader shader)
@@ -165,6 +218,7 @@ namespace NeverGiveUp.Editor
                 Goal(terrain, new Vector3(16f, 7.4f, 0f));
             }
             stage.Configure(character, game, origin, route.ToArray(), -5f);
+            stage.EnsureM3Geometry();
             EditorSceneManager.SaveScene(scene, prologue ? ProloguePath : MainPath);
         }
 

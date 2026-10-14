@@ -47,11 +47,7 @@ namespace NeverGiveUp
                     prologue ? "KEEP GOING" : "PROTOTYPE COMPLETE", title);
             if (!string.IsNullOrEmpty(loadError))
                 GUI.Label(new Rect(20, Screen.height - 70, Screen.width - 40, 50), loadError);
-#if UNITY_EDITOR
-            if (character)
-                GUI.Label(new Rect(16, Screen.height - 28, 500, 24),
-                    $"{character.State}  |  retries: {character.FailureCount}");
-#endif
+
         }
     }
 }

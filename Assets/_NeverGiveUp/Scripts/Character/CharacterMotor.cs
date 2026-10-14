@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace NeverGiveUp
@@ -14,6 +15,16 @@ namespace NeverGiveUp
         private Rigidbody body;
         private CapsuleCollider capsule;
         private float groundIgnoreUntil;
+        private PhysicsMaterial standingMaterial;
+        private PhysicsMaterial fallenMaterial;
+        [SerializeField, Min(0.1f)] private float airAcceleration = 3f;
+        public Collider Support { get; private set; }
+        public Vector3 SupportPoint { get; private set; }
+        public int ExternalVersion { get; private set; }
+        public float LastExternalTime { get; private set; } = -100f;
+        public string ExternalSource { get; private set; } = "none";
+        public event Action<Collision> Contact;
+        public float MaxJumpHorizontal => moveSpeed * 1.6f;
 
         public Rigidbody Body => body;
         public CapsuleCollider Capsule => capsule;
@@ -30,12 +41,21 @@ namespace NeverGiveUp
             capsule = GetComponent<CapsuleCollider>();
             body.interpolation = RigidbodyInterpolation.Interpolate;
             body.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            standingMaterial = new PhysicsMaterial("Character standing (runtime)");
+            PhysicsMaterial original = capsule.sharedMaterial;
+            standingMaterial.dynamicFriction = original && original.dynamicFriction > 0f ? original.dynamicFriction : 0.08f;
+            standingMaterial.staticFriction = original && original.staticFriction > 0f ? original.staticFriction : 0.12f;
+            standingMaterial.frictionCombine = PhysicsMaterialCombine.Minimum;
+            fallenMaterial = new PhysicsMaterial("Character fallen (runtime)")
+            { dynamicFriction = 0.12f, staticFriction = 0.2f, frictionCombine = PhysicsMaterialCombine.Minimum };
             SetUpright(true);
         }
 
         public void SampleGround()
         {
             Grounded = false;
+            Support = null;
+            float nearest = float.PositiveInfinity;
             if (Time.time < groundIgnoreUntil) return;
             // A sphere at the lowest point also works while the capsule is lying down.
             Bounds bounds = capsule.bounds;
@@ -45,16 +65,20 @@ namespace NeverGiveUp
             for (int i = 0; i < count; i++)
             {
                 if (hits[i].rigidbody == body || hits[i].normal.y < 0.45f) continue;
+                if (hits[i].distance >= nearest) continue;
+                nearest = hits[i].distance;
                 Grounded = true;
-                break;
+                Support = hits[i].collider;
+                SupportPoint = hits[i].point;
             }
         }
 
-        public void Drive(float desiredVelocity)
+        public void Drive(float desiredVelocity, float authority = 1f)
         {
             if (Mathf.Abs(desiredVelocity) > 0.05f) Facing = Mathf.Sign(desiredVelocity);
             float delta = Mathf.Clamp(desiredVelocity - body.linearVelocity.x,
-                -acceleration * Time.fixedDeltaTime, acceleration * Time.fixedDeltaTime);
+                -(Grounded ? acceleration : airAcceleration) * authority * Time.fixedDeltaTime,
+                (Grounded ? acceleration : airAcceleration) * authority * Time.fixedDeltaTime);
             body.AddForce(Vector3.right * delta, ForceMode.VelocityChange);
         }
 
@@ -63,7 +87,10 @@ namespace NeverGiveUp
         public void Jump(float horizontalSpeed, float verticalSpeed)
         {
             if (!Grounded) return;
-            body.linearVelocity = new Vector3(horizontalSpeed, verticalSpeed, 0f);
+            horizontalSpeed = Mathf.Clamp(horizontalSpeed, -MaxJumpHorizontal, MaxJumpHorizontal);
+            verticalSpeed = Mathf.Clamp(verticalSpeed, 0f, jumpSpeed);
+            body.AddForce(new Vector3(horizontalSpeed - body.linearVelocity.x,
+                verticalSpeed - body.linearVelocity.y, 0f), ForceMode.VelocityChange);
             groundIgnoreUntil = Time.time + 0.18f;
             Grounded = false;
         }
@@ -86,7 +113,7 @@ namespace NeverGiveUp
 
         public bool GroundAhead(float direction)
         {
-            Vector3 origin = Feet + new Vector3(direction * 0.65f, 0.5f, 0f);
+            Vector3 origin = new Vector3(body.position.x + direction * 0.65f, capsule.bounds.min.y + 0.5f, 0f);
             int count = Physics.RaycastNonAlloc(origin, Vector3.down, hits, 1.1f,
                 groundMask, QueryTriggerInteraction.Ignore);
             for (int i = 0; i < count; i++)
@@ -99,6 +126,7 @@ namespace NeverGiveUp
             body.constraints = RigidbodyConstraints.FreezePositionZ |
                 RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
             if (upright) body.constraints |= RigidbodyConstraints.FreezeRotationZ;
+            if (standingMaterial) capsule.sharedMaterial = upright ? standingMaterial : fallenMaterial;
         }
 
         public bool IsClear(Vector3 center)
@@ -113,6 +141,34 @@ namespace NeverGiveUp
             return count < overlaps.Length;
         }
 
+        public void NotifyExternal(string source)
+        {
+            ExternalVersion++;
+            LastExternalTime = Time.time;
+            ExternalSource = source;
+        }
+
+        public void GroundDrag(float rate)
+        {
+            if (Grounded) body.AddForce(Vector3.right * (-body.linearVelocity.x * rate), ForceMode.Acceleration);
+        }
+
+        private void OnCollisionEnter(Collision collision) => ObserveContact(collision);
+        private void OnCollisionStay(Collision collision) => ObserveContact(collision);
+        private void ObserveContact(Collision collision)
+        {
+            DraggableBody item = collision.collider.GetComponentInParent<DraggableBody>();
+            if (item && item.PlayerInfluenced)
+                NotifyExternal("player-moved object");
+            Contact?.Invoke(collision);
+        }
+        private void OnDestroy()
+        {
+            if (standingMaterial) Destroy(standingMaterial);
+            if (fallenMaterial) Destroy(fallenMaterial);
+        }
+
+        // Technical recovery API only. Normal falling/learning never calls this method.
         public void Teleport(Vector3 center)
         {
             body.position = new Vector3(center.x, center.y, 0f);

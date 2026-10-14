@@ -10,6 +10,11 @@ namespace NeverGiveUp
         private Vector3 origin;
         public Rigidbody Body => body;
         public bool Held { get; set; }
+        public float LastManipulatedTime { get; private set; } = -100f;
+        public int ManipulationRevision { get; private set; }
+        public bool PlayerInfluenced => Held || Time.time - LastManipulatedTime < 3f;
+        public void MarkManipulated()
+        { LastManipulatedTime = Time.time; ManipulationRevision++; }
         private void Awake()
         {
             body = GetComponent<Rigidbody>();

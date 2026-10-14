@@ -20,6 +20,7 @@ namespace NeverGiveUp
             Release();
             held = item;
             held.Held = true;
+            held.MarkManipulated();
             point.z = item.Body.position.z;
             localAnchor = item.transform.InverseTransformPoint(point);
             desired = target = point;
@@ -31,6 +32,7 @@ namespace NeverGiveUp
         private void FixedUpdate()
         {
             if (!held) return;
+            held.MarkManipulated();
             Rigidbody body = held.Body;
             Vector3 anchor = held.transform.TransformPoint(localAnchor);
             Vector3 limited = anchor + Vector3.ClampMagnitude(desired - anchor, maxReach);
@@ -44,7 +46,7 @@ namespace NeverGiveUp
 
         public void Release()
         {
-            if (held) held.Held = false;
+            if (held) { held.Held = false; held.MarkManipulated(); }
             held = null;
         }
         private void OnDisable() => Release();

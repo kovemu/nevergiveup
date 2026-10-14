@@ -7,9 +7,12 @@ namespace NeverGiveUp
     {
         [SerializeField] private Camera view;
         [SerializeField] private PhysicsObjectInteraction dragging;
-        [SerializeField, Min(0.1f)] private float flickForce = 5.5f;
-        [SerializeField, Range(0f, 1f)] private float upwardBias = 0.4f;
-        [SerializeField, Min(0f)] private float flickCooldown = 0.15f;
+        [SerializeField, Min(0.1f)] private float flickForce = 1.5f;
+        [SerializeField, Range(0f, 1f)] private float upwardBias = 0.05f;
+        [SerializeField, Min(0f)] private float flickCooldown = 0.6f;
+        [SerializeField] private int physicsVersion;
+        private float heldSince;
+        private bool canPush;
         private CharacterRecovery hoveredCharacter;
         private DraggableBody hoveredBox;
         private RaycastHit hoveredHit;
@@ -29,8 +32,23 @@ namespace NeverGiveUp
 
         private void OnEnable()
         {
+            ApplyM3Defaults();
             hand = CreateHand();
             AcquireCursor();
+        }
+        public void ApplyM3Defaults()
+        {
+            if (physicsVersion >= 3) return;
+            if (Mathf.Approximately(flickForce, 5.5f)) flickForce = 1.5f;
+            if (Mathf.Approximately(upwardBias, 0.4f)) upwardBias = 0.05f;
+            if (Mathf.Approximately(flickCooldown, 0.15f)) flickCooldown = 0.6f;
+            physicsVersion = 3;
+        }
+        private void FixedUpdate()
+        {
+            if (focused && ownsCursor && canPush && hoveredCharacter && Mouse.current != null &&
+                Mouse.current.leftButton.isPressed && Time.time - heldSince > 0.25f)
+                hoveredCharacter.Push(Mathf.Sign(flickDirection.x), worldPoint);
         }
         private void AcquireCursor()
         {
@@ -57,6 +75,7 @@ namespace NeverGiveUp
         private void OnApplicationFocus(bool value)
         {
             focused = value;
+            if (!value) canPush = false;
             if (value) AcquireCursor();
             else { RestoreCursor(); if (dragging) dragging.Release(); }
         }
@@ -67,7 +86,7 @@ namespace NeverGiveUp
             mousePosition = mouse.position.ReadValue();
             bool inside = mousePosition.x >= 0 && mousePosition.x < Screen.width &&
                 mousePosition.y >= 0 && mousePosition.y < Screen.height;
-            if (!inside) { dragging.Release(); RestoreCursor(); return; }
+            if (!inside) { canPush = false; dragging.Release(); RestoreCursor(); return; }
             AcquireCursor();
             Ray ray = view.ScreenPointToRay(mousePosition);
             Plane plane = new Plane(Vector3.forward, Vector3.zero);
@@ -87,6 +106,8 @@ namespace NeverGiveUp
             }
             if (mouse.leftButton.wasPressedThisFrame)
             {
+                heldSince = Time.time;
+                canPush = hoveredCharacter;
                 if (hoveredCharacter && Time.time >= nextFlick)
                 {
                     hoveredCharacter.Flick(flickDirection * flickForce, worldPoint);
@@ -96,7 +117,7 @@ namespace NeverGiveUp
                 else if (hoveredBox) dragging.Grab(hoveredBox, worldPoint);
             }
             if (dragging.IsDragging) dragging.SetTarget(worldPoint);
-            if (!mouse.leftButton.isPressed) dragging.Release();
+            if (!mouse.leftButton.isPressed) { dragging.Release(); canPush = false; }
         }
         private void OnGUI()
         {

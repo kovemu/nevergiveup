@@ -15,3 +15,22 @@ Existing Packages and ProjectSettings are preserved. Editor builder creates stan
 scenes and prefabs and appends them to build scenes without removing existing scenes.
 The user requested implementation only; comprehensive review, balance and long playtesting
 are reserved for a separate session.
+
+## M3 update
+
+The M0–M2 respawn/sequential waypoint descriptions above are historical.
+M3 keeps the existing MonoBehaviour responsibilities and replaces normal respawn with physical landing
+and collider platform graph replanning. Stage/Terrain owns graph geometry and generated safety bounds.
+The final StageWaypoint remains the goal; normal fall recovery never resets its index or the character pose.
+The character mass remains 1. Ground friction/damping and a weak contact-only hand push replace exaggerated impulses.
+
+New plain classes: LearningMemory (+ bounded serializable records), AdaptiveJumpPlanner,
+JumpAttempt. One new MonoBehaviour: PlatformGraph. No package changes, external AI or training pipeline.
+JSON memory is map/version-specific, under Application.persistentDataPath. Dirty data saves periodically
+and on pause/exit. External interference outcomes do not update action failure values.
+
+Existing local scenes are not in the baseline repository. The preserve-layout upgrade menu creates
+scene backups and adds only missing support geometry and exact-legacy default migrations. Runtime
+compatibility also adds missing geometry; it never writes source scenes/prefab assets while playing.
+CameraFollow and the blue faceless primitive geometry remain unchanged.
+Unity Editor remains unavailable; no Unity compilation or gameplay claims were made.

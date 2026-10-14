@@ -38,6 +38,7 @@ namespace NeverGiveUp
             visual.localScale = Vector3.Lerp(visual.localScale, scale, Time.deltaTime * 18f);
             visual.localPosition = new Vector3(0f, Mathf.Abs(swing) * 0.045f * stride - crouch * 0.35f, 0f);
             float tilt = running ? -motor.Facing * 7f : 0f;
+            if (brain.State == CharacterState.Stumbling) tilt = Mathf.Sin(Time.time * 15f) * 8f;
             if (brain.State == CharacterState.InspectingObstacle) tilt = motor.Facing * 9f;
             visual.localRotation = Quaternion.Slerp(visual.localRotation,
                 Quaternion.Euler(0f, 0f, tilt), Time.deltaTime * 9f);
