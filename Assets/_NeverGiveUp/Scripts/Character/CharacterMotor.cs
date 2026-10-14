@@ -11,6 +11,7 @@ namespace NeverGiveUp
         [SerializeField, Min(1f)] private float jumpSpeed = 7.8f;
         [SerializeField] private LayerMask groundMask = ~0;
         private readonly RaycastHit[] hits = new RaycastHit[16];
+        private static readonly float[] ObstacleScanHeights = { 0.33f, 0.9f, 1.43f };
         private readonly Collider[] overlaps = new Collider[16];
         private Rigidbody body;
         private CapsuleCollider capsule;
@@ -102,10 +103,9 @@ namespace NeverGiveUp
             obstacle = default;
             if (Mathf.Abs(direction) < 0.1f) return false;
             float closest = float.PositiveInfinity;
-            float[] levels = { 0.33f, 0.9f, 1.43f };
-            for (int level = 0; level < levels.Length; level++)
+            for (int level = 0; level < ObstacleScanHeights.Length; level++)
             {
-                Vector3 origin = Feet + Vector3.up * levels[level];
+                Vector3 origin = Feet + Vector3.up * ObstacleScanHeights[level];
                 int count = Physics.SphereCastNonAlloc(origin, 0.12f,
                     Vector3.right * Mathf.Sign(direction), hits, 0.9f,
                     groundMask, QueryTriggerInteraction.Ignore);
