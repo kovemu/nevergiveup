@@ -67,10 +67,13 @@ namespace NeverGiveUp
                 graph.PlayerChanged(Plan.link, Observation.startTime - 0.2f);
             closestDistance = Mathf.Min(closestDistance, Mathf.Abs(Plan.landing.x - motor.Feet.x));
             if (!motor.Grounded) leftGround = true;
-            // An exploratory leap with no external target must not be credited
-            // with success merely for landing back on its starting floor.
+            // A probe that returns to its own floor is NOT progress. A deliberate
+            // same-floor obstacle hop IS progress if it crosses its landing goal.
+            bool sameSupport = Plan.link.To.Collider == Plan.link.From.Collider;
+            bool crossedHop = !Plan.exploratory && sameSupport &&
+                Mathf.Abs(motor.Feet.x - Plan.landing.x) <= 0.5f;
             bool onTarget = motor.Grounded && motor.Support == Plan.link.To.Collider &&
-                Plan.link.To.Collider != Plan.link.From.Collider;
+                (!sameSupport || crossedHop);
             // A safe landing anywhere on the intended platform counts, not only at
             // the planner's ideal X coordinate. Reject edges and unstable contacts.
             Bounds footprint = Plan.link.To.Bounds;
