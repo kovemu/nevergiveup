@@ -180,7 +180,12 @@ namespace NeverGiveUp
                     return;
                 }
                 if (link.Walk) walkLink = link;
-                else SetPlan(AdaptiveJumpPlanner.Plan(stage.Graph, link, motor, memory));
+                else
+                {
+                    JumpPlan routePlan = AdaptiveJumpPlanner.Plan(stage.Graph, link, motor, memory);
+                    if (routePlan != null) SetPlan(routePlan);
+                    else StartProbe(support, link.To, link.Direction);
+                }
             }
             if (walkLink != null) { WalkToward(walkLink.Landing.x, support, dt); return; }
             if (plan == null) return;
