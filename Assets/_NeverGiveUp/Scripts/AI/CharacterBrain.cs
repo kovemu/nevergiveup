@@ -25,6 +25,7 @@ namespace NeverGiveUp
         private float waitTime, cooldown, stalledTime, bestDistance, saveAt;
         private float restUntil, noRouteUntil;
         private int unsuccessfulAttempts;
+        private string lastSupportId, previousSupportId;
         [SerializeField, Min(1)] private int failuresBeforeRest = 4;
         [SerializeField, Min(0.2f)] private float restDuration = 2.5f;
         private bool runup, inspecting, recovering;
@@ -118,6 +119,11 @@ namespace NeverGiveUp
             if (cooldown > 0f) { motor.Stop(); return; }
             PlatformGraph.Platform support = stage.Graph.Support(motor.Support);
             if (support == null) { State = CharacterState.InspectingObstacle; motor.Stop(); return; }
+            if (lastSupportId != support.Id)
+            {
+                previousSupportId = lastSupportId;
+                lastSupportId = support.Id;
+            }
             if (plan != null && (plan.link.From.Id != support.Id || stage.Graph.Context(plan.link) != plan.context))
             { RestartRoute(); return; }
             if (walkLink != null && walkLink.From.Id != support.Id) walkLink = null;
@@ -127,7 +133,7 @@ namespace NeverGiveUp
                 if (goal == null) { motor.Stop(); return; }
                 if (support.Id == goal.Id)
                 { WalkToward(stage.GoalPosition.x, support, dt); return; }
-                PlatformGraph.Link link = stage.Graph.Next(support, goal, motor.Feet);
+                PlatformGraph.Link link = stage.Graph.Next(support, goal, motor.Feet, previousSupportId);
                 if (link == null)
                 {
                     // Do not become an idle statue when no complete graph route exists.
