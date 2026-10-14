@@ -1,0 +1,8 @@
+# NeverGiveUp M4.0 - single blue clay finish
+newmtl BlueClay_M4
+Ka 0.035 0.105 0.30
+Kd 0.048 0.28 0.82
+Ks 0.08 0.09 0.13
+Ns 25
+d 1.0
+illum 2
