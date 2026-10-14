@@ -35,6 +35,8 @@ namespace NeverGiveUp
     public sealed class LearnedAction
     {
         public JumpParameters parameters = new JumpParameters();
+        // Discrete jump decision is learned alongside the continuous controls.
+        public JumpMode mode = JumpMode.Short;
         public int trials, successes;
         public float value = 0.5f;
         public Vector3 lastSuccessfulLaunch, lastSuccessfulVelocity, lastStableLanding;
@@ -49,7 +51,7 @@ namespace NeverGiveUp
     [Serializable]
     public sealed class LearningData
     {
-        public int version = 3;
+        public int version = 4;
         public string map;
         public List<JumpExperience> sections = new List<JumpExperience>();
         public List<JumpObservation> recent = new List<JumpObservation>();
@@ -70,7 +72,7 @@ namespace NeverGiveUp
             {
                 if (!load || !File.Exists(path) || new FileInfo(path).Length > 2000000) return;
                 LearningData loaded = JsonUtility.FromJson<LearningData>(File.ReadAllText(path));
-                if (loaded == null || loaded.version != 3 || loaded.map != map || loaded.sections == null || loaded.recent == null) return;
+                if (loaded == null || loaded.version != 4 || loaded.map != map || loaded.sections == null || loaded.recent == null) return;
                 loaded.sections.RemoveAll(x => x == null || string.IsNullOrEmpty(x.key) || x.actions == null);
                 foreach (JumpExperience section in loaded.sections)
                 {
@@ -96,14 +98,19 @@ namespace NeverGiveUp
             if (found != null) return found;
             if (data.sections.Count >= 128) data.sections.RemoveAt(0);
             found = new JumpExperience { key = key };
-            found.actions.Add(new LearnedAction());
+            found.actions.Add(new LearnedAction { mode = JumpMode.Short });
+            found.actions.Add(new LearnedAction { mode = JumpMode.Long });
             data.sections.Add(found);
             dirty = true;
             return found;
         }
         public LearnedAction Select(JumpExperience section, out bool reusedSuccess)
         {
-            if (section.actions.Count == 0) section.actions.Add(new LearnedAction());
+            if (section.actions.Count == 0)
+            {
+                section.actions.Add(new LearnedAction { mode = JumpMode.Short });
+                section.actions.Add(new LearnedAction { mode = JumpMode.Long });
+            }
             LearnedAction best = section.actions[0];
             float score = float.NegativeInfinity;
             foreach (LearnedAction action in section.actions)
@@ -130,6 +137,7 @@ namespace NeverGiveUp
             if (result.outcome == JumpOutcome.Success)
             {
                 section.successes++; action.successes++;
+                action.mode = result.mode;
                 action.parameters = result.parameters.Copy();
                 action.lastSuccessfulLaunch = result.takeoff;
                 action.lastSuccessfulVelocity = result.takeoffVelocity;
@@ -137,15 +145,41 @@ namespace NeverGiveUp
                 return;
             }
             JumpParameters variation = AdaptiveJumpPlanner.Improve(result.parameters, result, moveSpeed);
-            // Preserve the strongest successful action while replacing the least useful alternative.
+            JumpMode newMode = result.mode;
+            // Failures can change the STRATEGY, not merely the approach speed.
+            if (result.outcome == JumpOutcome.Shortfall || result.outcome == JumpOutcome.SideCollision ||
+                result.outcome == JumpOutcome.Blocked || result.outcome == JumpOutcome.Unknown)
+                newMode = result.mode == JumpMode.Short ? JumpMode.Long : JumpMode.Short;
+            else if (result.outcome == JumpOutcome.CeilingCollision || result.outcome == JumpOutcome.Overshoot)
+                newMode = JumpMode.Short;
+            // Do not flood the candidate pool with indistinguishable actions.
+            foreach (LearnedAction candidate in section.actions)
+                if (candidate.mode == newMode && candidate.trials == 0 &&
+                    Mathf.Abs(candidate.parameters.launchOffset - variation.launchOffset) < 0.04f &&
+                    Mathf.Abs(candidate.parameters.horizontalScale - variation.horizontalScale) < 0.025f)
+                    return;
             if (section.actions.Count >= 8)
             {
                 LearnedAction worst = null;
-                foreach (LearnedAction a in section.actions)
-                    if (a != action && (worst == null || a.value < worst.value)) worst = a;
+                foreach (LearnedAction candidate in section.actions)
+                {
+                    if (candidate == action || candidate.successes > 0) continue;
+                    if (worst == null || candidate.value < worst.value) worst = candidate;
+                }
                 if (worst != null) section.actions.Remove(worst);
             }
-            section.actions.Add(new LearnedAction { parameters = variation });
+            if (section.actions.Count < 8)
+                section.actions.Add(new LearnedAction { mode = newMode, parameters = variation });
+        }
+        // Failure history influences ROUTE choice, while successes reduce its cost.
+        // A difficult route remains available if it is the only option.
+        public float RoutePenalty(string key)
+        {
+            JumpExperience section = data.sections.Find(x => x.key == key);
+            if (section == null || section.trials == 0) return 0f;
+            int failures = Mathf.Max(0, section.trials - section.successes);
+            return Mathf.Min(12f, Mathf.Log(1f + failures) * 3f) /
+                (1f + section.successes * 0.8f);
         }
         public void Save()
         {
