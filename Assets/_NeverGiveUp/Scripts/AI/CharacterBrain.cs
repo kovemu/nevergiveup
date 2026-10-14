@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace NeverGiveUp
@@ -26,6 +27,8 @@ namespace NeverGiveUp
         private float restUntil, noRouteUntil;
         private int unsuccessfulAttempts;
         private string lastSupportId, previousSupportId;
+        private readonly Dictionary<string, int> repeatedTransitions = new Dictionary<string, int>();
+        private float bestReachedHeight = float.NegativeInfinity;
         [SerializeField, Min(1)] private int failuresBeforeRest = 4;
         [SerializeField, Min(0.2f)] private float restDuration = 2.5f;
         private bool runup, inspecting, recovering;
@@ -125,8 +128,20 @@ namespace NeverGiveUp
             // The feet position is a reliable fallback when already grounded.
             if (support == null) support = stage.Graph.At(motor.Feet);
             if (support == null) { State = CharacterState.InspectingObstacle; motor.Stop(); return; }
+            if (support.Bounds.max.y > bestReachedHeight + 0.45f)
+            {
+                // Reaching a genuinely new height resets recent loop suspicion.
+                bestReachedHeight = support.Bounds.max.y;
+                repeatedTransitions.Clear();
+            }
             if (lastSupportId != support.Id)
             {
+                if (!string.IsNullOrEmpty(lastSupportId))
+                {
+                    string transition = lastSupportId + ">" + support.Id;
+                    repeatedTransitions.TryGetValue(transition, out int visits);
+                    repeatedTransitions[transition] = Mathf.Min(12, visits + 1);
+                }
                 previousSupportId = lastSupportId;
                 lastSupportId = support.Id;
             }
@@ -237,8 +252,12 @@ namespace NeverGiveUp
         }
         private float LearnedRouteCost(PlatformGraph.Link link)
         {
-            return memory == null || stage == null ? 0f :
-                memory.RoutePenalty(link.Id + ":" + stage.Graph.Context(link));
+            if (memory == null || stage == null) return 0f;
+            repeatedTransitions.TryGetValue(link.From.Id + ">" + link.To.Id, out int visits);
+            // Traversing the same small loop repeatedly without gaining height
+            // adds temporary cost, even when each individual jump succeeded.
+            return memory.RoutePenalty(link.Id + ":" + stage.Graph.Context(link)) +
+                Mathf.Max(0, visits - 1) * 3f;
         }
         private void StartProbe(PlatformGraph.Platform support,
             PlatformGraph.Platform candidate, float direction)
