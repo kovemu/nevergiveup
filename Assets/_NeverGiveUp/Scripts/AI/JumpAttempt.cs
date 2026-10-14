@@ -10,6 +10,8 @@ namespace NeverGiveUp
     {
         public string from, to, context, interferenceSource, utc;
         public JumpParameters parameters;
+        public JumpMode mode;
+        public bool exploratory;
         public Vector3 takeoff, takeoffVelocity, commandedVelocity, landing;
         public JumpOutcome outcome, physicalOutcome;
         public bool interfered, touchedTarget, changedEnvironment;
@@ -31,7 +33,8 @@ namespace NeverGiveUp
             Plan = plan; externalVersion = motor.ExternalVersion;
             targetBounds = plan.link.To.Bounds;
             Observation = new JumpObservation { from = plan.link.From.Id, to = plan.link.To.Id,
-                context = plan.context, parameters = plan.parameters.Copy(), takeoff = motor.Feet,
+                context = plan.context, parameters = plan.parameters.Copy(),
+                mode = plan.mode, exploratory = plan.exploratory, takeoff = motor.Feet,
                 commandedVelocity = new Vector3(plan.vx, plan.vy, 0f), startTime = Time.time,
                 utc = DateTime.UtcNow.ToString("O"), interferenceTime = -1f, interferenceSource = "none" };
             closestDistance = Mathf.Abs(plan.landing.x - motor.Feet.x);
@@ -64,7 +67,10 @@ namespace NeverGiveUp
                 graph.PlayerChanged(Plan.link, Observation.startTime - 0.2f);
             closestDistance = Mathf.Min(closestDistance, Mathf.Abs(Plan.landing.x - motor.Feet.x));
             if (!motor.Grounded) leftGround = true;
-            bool onTarget = motor.Grounded && motor.Support == Plan.link.To.Collider;
+            // An exploratory leap with no external target must not be credited
+            // with success merely for landing back on its starting floor.
+            bool onTarget = motor.Grounded && motor.Support == Plan.link.To.Collider &&
+                Plan.link.To.Collider != Plan.link.From.Collider;
             // A safe landing anywhere on the intended platform counts, not only at
             // the planner's ideal X coordinate. Reject edges and unstable contacts.
             Bounds footprint = Plan.link.To.Bounds;
@@ -93,6 +99,9 @@ namespace NeverGiveUp
         {
             if (ceilingContact) return JumpOutcome.CeilingCollision;
             if (sideContact) return JumpOutcome.SideCollision;
+            if (Plan.exploratory && Plan.link.To.Collider == Plan.link.From.Collider &&
+                motor.Grounded && motor.Support == Plan.link.From.Collider)
+                return JumpOutcome.Blocked;
             float direction = Mathf.Sign(Plan.landing.x - Observation.takeoff.x);
             float near = direction > 0 ? targetBounds.min.x : targetBounds.max.x;
             float far = direction > 0 ? targetBounds.max.x : targetBounds.min.x;
