@@ -62,11 +62,16 @@ namespace NeverGiveUp
             closestDistance = Mathf.Min(closestDistance, Mathf.Abs(Plan.landing.x - motor.Feet.x));
             if (!motor.Grounded) leftGround = true;
             bool onTarget = motor.Grounded && motor.Support == Plan.link.To.Collider;
-            bool nearTarget = Mathf.Abs(motor.Feet.x - Plan.landing.x) <= 0.55f;
+            // A safe landing anywhere on the intended platform counts, not only at
+            // the planner's ideal X coordinate. Reject edges and unstable contacts.
+            Bounds footprint = Plan.link.To.Bounds;
+            float margin = Mathf.Min(0.16f, footprint.size.x * 0.2f);
+            bool safelyOnPlatform = motor.Feet.x >= footprint.min.x + margin &&
+                motor.Feet.x <= footprint.max.x - margin;
             if (onTarget && leftGround && elapsed > 0.12f)
             {
                 Observation.touchedTarget = true;
-                bool stable = nearTarget && !recovery.Active && Mathf.Abs(motor.Body.linearVelocity.x) < 1.1f &&
+                bool stable = safelyOnPlatform && !recovery.Active && Mathf.Abs(motor.Body.linearVelocity.x) < 1.1f &&
                     Mathf.Abs(motor.Body.linearVelocity.y) < 0.6f;
                 stableTime = stable ? stableTime + Time.fixedDeltaTime : 0f;
                 if (stableTime >= 0.3f) { Finish(JumpOutcome.Success, motor); return true; }
