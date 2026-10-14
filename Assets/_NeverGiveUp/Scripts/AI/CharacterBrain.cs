@@ -137,19 +137,22 @@ namespace NeverGiveUp
                     if (Mathf.Abs(heading) < 0.1f) heading = motor.Facing;
                     if (motor.ObstacleAhead(heading, out RaycastHit obstacle))
                         PlanObstacleHop(support, obstacle, heading);
-                    else if (motor.GroundAhead(heading))
-                        WalkToward(Mathf.Clamp(stage.GoalPosition.x,
-                            support.Bounds.min.x + 0.35f, support.Bounds.max.x - 0.35f), support, dt);
-                    else if (Time.time >= noRouteUntil)
+                    else
                     {
-                        // A bounded physical attempt at the ledge, not a fake path or teleport.
-                        // Only jump from a grounded location. Failure cannot unlock higher jump power.
-                        motor.Jump(heading * motor.MoveSpeed * 0.8f, motor.JumpSpeed);
-                        noRouteUntil = Time.time + 2.0f;
-                        NoteBlocked();
+                        float edge = heading > 0f ? support.Bounds.max.x - 0.55f :
+                            support.Bounds.min.x + 0.55f;
+                        if (Mathf.Abs(motor.Feet.x - edge) > 0.25f && motor.GroundAhead(heading))
+                            WalkToward(edge, support, dt);
+                        else if (Time.time >= noRouteUntil)
+                        {
+                            // Even when the graph finds no route, try a physically bounded
+                            // jump from the edge. It can fail; it can never teleport.
+                            motor.Jump(heading * motor.MoveSpeed * 0.8f, motor.JumpSpeed);
+                            noRouteUntil = Time.time + 2.0f;
+                            NoteBlocked();
+                        }
+                        else { State = CharacterState.InspectingObstacle; motor.Stop(); }
                     }
-                    else { State = CharacterState.InspectingObstacle; motor.Stop(); }
-                    stage.Graph.Rebuild();
                     return;
                 }
                 if (link.Walk) walkLink = link;
@@ -173,6 +176,14 @@ namespace NeverGiveUp
             }
             State = runup ? CharacterState.Running : CharacterState.Retrying;
             float delta = target - motor.Feet.x;
+            // The player may have placed a box in the approach lane after the
+            // route was chosen. Re-evaluate the obstruction, don't walk into it.
+            if (Mathf.Abs(delta) > 0.25f && motor.ObstacleAhead(Mathf.Sign(delta),
+                out RaycastHit approachObstacle) && approachObstacle.collider != plan.link.To.Collider)
+            {
+                PlanObstacleHop(support, approachObstacle, Mathf.Sign(delta));
+                return;
+            }
             if (runup && delta * direction <= 0.07f)
             {
                 if (!AdaptiveJumpPlanner.ComputeVelocity(plan, motor.Feet, motor))
@@ -223,7 +234,11 @@ namespace NeverGiveUp
             }
             motor.Drive(Mathf.Clamp(delta * 4f, -motor.MoveSpeed, motor.MoveSpeed));
             if (ProgressStalled(Mathf.Abs(delta), dt))
-            { walkLink = null; stalledTime = 0f; bestDistance = float.PositiveInfinity; cooldown = 0.3f; stage.Graph.Rebuild(); }
+            {
+                walkLink = null; stalledTime = 0f; bestDistance = float.PositiveInfinity;
+                stage.Graph.Rebuild();
+                NoteBlocked();
+            }
         }
         private void PlanObstacleHop(PlatformGraph.Platform support, RaycastHit obstruction, float direction)
         {
