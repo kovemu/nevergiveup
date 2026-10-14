@@ -114,7 +114,7 @@ namespace NeverGiveUp
             if (!walk && !AdaptiveJumpPlanner.Feasible(from, to, motor.JumpSpeed, motor.MaxJumpHorizontal)) return null;
             return new Link { From = a, To = b, Launch = from, Landing = to, Walk = walk };
         }
-        public Link Next(Platform start, Platform goal, Vector3 position)
+        public Link Next(Platform start, Platform goal, Vector3 position, string avoidImmediateReturn = null)
         {
             if (start == null || goal == null || start == goal) return null;
             var distance = new Dictionary<Platform, float>();
@@ -141,7 +141,14 @@ namespace NeverGiveUp
                     float cost = closest + (link.Walk ? 0.8f : 2f) +
                         Vector3.SqrMagnitude(link.Landing - link.Launch) * 0.12f +
                         drop * 5f + backward * 0.9f;
-                    if (current == start) cost += Mathf.Abs(position.x - link.Launch.x) * 0.2f;
+                    if (current == start)
+                    {
+                        cost += Mathf.Abs(position.x - link.Launch.x) * 0.2f;
+                        // A newly reached ledge should not immediately send the character
+                        // back to the previous ledge unless all better routes are exhausted.
+                        if (!string.IsNullOrEmpty(avoidImmediateReturn) &&
+                            link.To.Id == avoidImmediateReturn) cost += 12f;
+                    }
                     if (distance.TryGetValue(link.To, out float previous) && previous <= cost) continue;
                     distance[link.To] = cost;
                     first[link.To] = current == start ? link : first[current];
