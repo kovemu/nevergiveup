@@ -3,6 +3,18 @@
 Unity **6000.6.0f1**, URP, Windows PC, 2.5D. 얼굴 없는 파란 클레이 캐릭터가 스스로
 올라가고, 마우스 손은 작은 직접 간섭과 상자 조작을 담당합니다.
 
+## M4.0 — Character Art Preview (feat/character-polish)
+
+A seamless faceless blue clay OBJ character model is now available at
+`Assets/_NeverGiveUp/Art/Characters/BlueClay_M4_Concept.obj`.
+Open **NeverGiveUp > M4 > Create Clay Preview (No Gameplay Changes)** in Unity
+to generate a **separate, non-destructive preview**. This is the static shape
+approval pass, not a replacement for the rigged gameplay actor. The existing
+M3 character, AI, input and scenes remain unchanged.
+
+See [Docs/M4_CHARACTER_MODEL.md](Docs/M4_CHARACTER_MODEL.md) for the exact steps,
+constraints and M4.1 rig/animation handoff.
+
 ## M3.3 — Actual strategy learning and loop-aware navigation
 
 **Code-only update.** Pull `feat/core-prototype` in your existing Unity 6000.6.0f1
