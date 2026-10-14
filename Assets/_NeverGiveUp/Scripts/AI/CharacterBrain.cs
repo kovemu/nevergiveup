@@ -44,7 +44,7 @@ namespace NeverGiveUp
                 return $"{State} | target: {plan?.link.To.Id ?? walkLink?.To.Id ?? stage?.GoalPlatform?.Id ?? "none"}\n" +
                     $"attempts: {experience?.trials ?? 0}, successes: {experience?.successes ?? 0}, excluded: {experience?.excluded ?? 0} | last: {lastOutcome}\n" +
                     $"success memory: {plan?.reusedSuccess ?? false}, learned action: {(plan != null && plan.experience.trials > 0)} | interference: {lastInterference}\n" +
-                    (plan != null ? plan.parameters.Summary : lastParameters);
+                    (plan != null ? $"jump: {plan.mode} | " + plan.parameters.Summary : lastParameters);
             }
         }
         private void Awake()
@@ -118,14 +118,26 @@ namespace NeverGiveUp
             if (State == CharacterState.Resting) { restUntil = 0f; cooldown = 0.25f; }
             if (cooldown > 0f) { motor.Stop(); return; }
             PlatformGraph.Platform support = stage.Graph.Support(motor.Support);
+            // Moving supports sometimes change the best contact for a single frame.
+            // The feet position is a reliable fallback when already grounded.
+            if (support == null) support = stage.Graph.At(motor.Feet);
             if (support == null) { State = CharacterState.InspectingObstacle; motor.Stop(); return; }
             if (lastSupportId != support.Id)
             {
                 previousSupportId = lastSupportId;
                 lastSupportId = support.Id;
             }
-            if (plan != null && (plan.link.From.Id != support.Id || stage.Graph.Context(plan.link) != plan.context))
-            { RestartRoute(); return; }
+            if (plan != null &&
+                (plan.link.From.Id != support.Id ||
+                 plan.link.From.Movable != null && plan.link.From.Movable.Held ||
+                 plan.link.To.Movable != null && plan.link.To.Movable.Held ||
+                 stage.Graph.Context(plan.link) != plan.context &&
+                 stage.Graph.PlayerChanged(plan.link, Time.time - 0.7f)))
+            {
+                // A resting box may move by a few millimetres from PhysX contact.
+                // Re-plan for player manipulation, not passive support jitter.
+                RestartRoute(); return;
+            }
             if (walkLink != null && walkLink.From.Id != support.Id) walkLink = null;
             if (plan == null && walkLink == null)
             {
@@ -134,6 +146,8 @@ namespace NeverGiveUp
                 if (support.Id == goal.Id)
                 { WalkToward(stage.GoalPosition.x, support, dt); return; }
                 PlatformGraph.Link link = stage.Graph.Next(support, goal, motor.Feet, previousSupportId);
+                if (link == null && support.Movable != null && !support.Movable.Held)
+                    link = stage.Graph.NextStepFrom(support, goal, previousSupportId);
                 if (link == null)
                 {
                     // Do not become an idle statue when no complete graph route exists.
@@ -153,7 +167,10 @@ namespace NeverGiveUp
                         {
                             // Even when the graph finds no route, try a physically bounded
                             // jump from the edge. It can fail; it can never teleport.
-                            motor.Jump(heading * motor.MoveSpeed * 0.8f, motor.JumpSpeed);
+                            JumpMode fallback = unsuccessfulAttempts % 3 == 2 ?
+                                JumpMode.Long : JumpMode.Short;
+                            motor.Jump(heading * motor.MoveSpeed * 0.8f,
+                                motor.JumpVelocity(fallback));
                             noRouteUntil = Time.time + 2.0f;
                             NoteBlocked();
                         }
@@ -257,8 +274,8 @@ namespace NeverGiveUp
             if (obstacleTop != null && obstacleTop.Id != support.Id &&
                 (obstacleTop.Movable == null || !obstacleTop.Movable.Held) &&
                 b.max.y > motor.Feet.y + 0.16f &&
-                AdaptiveJumpPlanner.Feasible(support.Surface(motor.Feet.x),
-                    obstacleTop.Surface(b.center.x), motor.JumpSpeed, motor.MaxJumpHorizontal))
+                motor.CanReach(support.Surface(motor.Feet.x),
+                    obstacleTop.Surface(b.center.x)))
             {
                 destination = obstacleTop;
                 destinationX = b.center.x;
