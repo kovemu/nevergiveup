@@ -6,7 +6,7 @@ namespace NeverGiveUp
     public enum CharacterState
     {
         Idle, Running, InspectingObstacle, Jumping, Falling, KnockedDown,
-        GettingUp, Recovering, Retrying, GoalReached, Stumbling, Resting
+        GettingUp, Recovering, Retrying, GoalReached, Stumbling, Resting, SittingDown, GettingUpFromSit
     }
     [RequireComponent(typeof(CharacterMotor), typeof(CharacterRecovery))]
     public sealed class CharacterBrain : MonoBehaviour
@@ -24,7 +24,7 @@ namespace NeverGiveUp
         private JumpAttempt attempt;
         private PlatformGraph.Link walkLink;
         private float waitTime, cooldown, stalledTime, bestDistance, saveAt;
-        private float restUntil, noRouteUntil;
+        private float restUntil, noRouteUntil, sitStarted, standUntil;
         private int unsuccessfulAttempts;
         private string lastSupportId, previousSupportId;
         private readonly Dictionary<string, int> repeatedTransitions = new Dictionary<string, int>();
@@ -40,7 +40,8 @@ namespace NeverGiveUp
         public CharacterState State { get; private set; } = CharacterState.Idle;
         public int FailureCount { get; private set; }
         public bool PreparingJump => inspecting && plan != null && waitTime > inspectDuration;
-        public bool SafeForGoal => !recovery.Active && attempt == null;
+        public bool SafeForGoal => !recovery.ExternalReaction && attempt == null;
+        public JumpMode CurrentJumpMode => attempt?.Plan.mode ?? plan?.mode ?? lastJumpMode;
         public string DebugSummary
         {
             get
@@ -84,6 +85,7 @@ namespace NeverGiveUp
             recovery.Tick(dt);
             if (attempt != null && attempt.Tick(motor, recovery, stage.Graph)) RecordAttempt();
             if (Time.time >= saveAt) { if (persistLearning) memory.Save(); saveAt = Time.time + 10f; }
+            if (recovery.ExternalReaction) { restUntil = standUntil = 0f; recovering = true; }
             if (recovery.Active)
             {
                 recovering = true;
@@ -91,6 +93,11 @@ namespace NeverGiveUp
                 return;
             }
             if (recovery.Stumbling) { State = CharacterState.Stumbling; return; }
+            if (motor.ControlSuppressed)
+            {
+                State = motor.Grounded ? CharacterState.Stumbling : CharacterState.Falling;
+                return;
+            }
             if (recovering)
             {
                 recovering = false;
@@ -119,9 +126,13 @@ namespace NeverGiveUp
             // physics still acts while the character is seated.
             if (Time.time < restUntil)
             {
-                State = CharacterState.Resting; motor.Stop(); return;
+                State = Time.time - sitStarted < 0.35f ? CharacterState.SittingDown : CharacterState.Resting;
+                motor.Stop(); return;
             }
-            if (State == CharacterState.Resting) { restUntil = 0f; cooldown = 0.25f; }
+            if (State == CharacterState.Resting || State == CharacterState.SittingDown)
+            { restUntil = 0f; standUntil = Time.time + 0.5f; }
+            if (Time.time < standUntil)
+            { State = CharacterState.GettingUpFromSit; motor.Stop(); return; }
             if (cooldown > 0f) { motor.Stop(); return; }
             PlatformGraph.Platform support = stage.Graph.Support(motor.Support);
             // Moving supports sometimes change the best contact for a single frame.
@@ -368,7 +379,7 @@ namespace NeverGiveUp
             if (unsuccessfulAttempts >= failuresBeforeRest)
             {
                 unsuccessfulAttempts = 0;
-                restUntil = Time.time + restDuration;
+                sitStarted = Time.time; restUntil = Time.time + restDuration;
                 State = CharacterState.Resting;
             }
         }
@@ -411,7 +422,7 @@ namespace NeverGiveUp
                 if (unsuccessfulAttempts >= failuresBeforeRest)
                 {
                     unsuccessfulAttempts = 0;
-                    restUntil = Time.time + restDuration;
+                    sitStarted = Time.time; restUntil = Time.time + restDuration;
                 }
             }
             attempt = null; plan = null; walkLink = null;

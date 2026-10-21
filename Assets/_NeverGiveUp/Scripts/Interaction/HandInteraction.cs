@@ -7,135 +7,150 @@ namespace NeverGiveUp
     {
         [SerializeField] private Camera view;
         [SerializeField] private PhysicsObjectInteraction dragging;
-        [SerializeField, Min(0.1f)] private float flickForce = 1.5f;
-        [SerializeField, Range(0f, 1f)] private float upwardBias = 0.05f;
-        [SerializeField, Min(0f)] private float flickCooldown = 0.6f;
-        [SerializeField] private int physicsVersion;
-        private float heldSince;
-        private bool canPush;
-        private CharacterRecovery hoveredCharacter;
+        [Header("Speed in viewport heights per second; impulse in N s")]
+        [SerializeField, Min(0.01f)] private float minimumSlapSpeed = 0.15f;
+        [SerializeField, Min(0.02f)] private float maximumSlapSpeed = 3f;
+        [SerializeField, Min(0f)] private float minimumSlapImpulse = 0.25f;
+        [SerializeField, Min(0f)] private float maximumSlapImpulse = 4.5f;
+        [SerializeField] private AnimationCurve slapResponse = AnimationCurve.EaseInOut(0, 0, 1, 1);
+        [SerializeField, Min(0.01f)] private float slapRadius = 0.22f;
+        [SerializeField, Min(0f)] private float slapCooldown = 0.18f;
+        [SerializeField] private bool showSlapDebug;
+        private enum Gesture { None, Palm, Box }
+        private Gesture gesture;
+        private readonly HandDragSampler sampler = new HandDragSampler();
+        private readonly Collider[] contacts = new Collider[32];
+        private CharacterRecovery hoveredCharacter, lastTarget;
         private DraggableBody hoveredBox;
-        private RaycastHit hoveredHit;
-        private Vector2 mousePosition;
+        private Vector2 mousePosition, direction;
         private Vector3 worldPoint;
-        private Vector3 flickDirection;
-        private float nextFlick;
+        private float nextSlap, feedbackUntil, lastSpeed, lastImpulse;
+        private string result = "ready";
+        private bool hit;
         private Texture2D hand;
-        private bool focused = true;
-        private bool cursorWasVisible;
+        private bool focused = true, cursorWasVisible, ownsCursor;
         private CursorLockMode oldLock;
-        private bool ownsCursor;
-        public int FlickCount { get; private set; }
-
+        public int SlapCount { get; private set; }
+        public int FlickCount => SlapCount; // Existing scene consumers remain compatible.
         public void Configure(Camera camera, PhysicsObjectInteraction objects)
         { view = camera; dragging = objects; }
-
-        private void OnEnable()
-        {
-            ApplyM3Defaults();
-            hand = CreateHand();
-            AcquireCursor();
-        }
-        public void ApplyM3Defaults()
-        {
-            if (physicsVersion >= 3) return;
-            if (Mathf.Approximately(flickForce, 5.5f)) flickForce = 1.5f;
-            if (Mathf.Approximately(upwardBias, 0.4f)) upwardBias = 0.05f;
-            if (Mathf.Approximately(flickCooldown, 0.15f)) flickCooldown = 0.6f;
-            physicsVersion = 3;
-        }
-        private void FixedUpdate()
-        {
-            if (focused && ownsCursor && canPush && hoveredCharacter && Mouse.current != null &&
-                Mouse.current.leftButton.isPressed && Time.time - heldSince > 0.25f)
-                hoveredCharacter.Push(Mathf.Sign(flickDirection.x), worldPoint);
-        }
+        public void ApplyM3Defaults() { } // Old preserve-layout editor menu compatibility.
+        private void OnEnable() { hand = CreateHand(); AcquireCursor(); }
         private void AcquireCursor()
         {
             if (ownsCursor) return;
-            cursorWasVisible = Cursor.visible;
-            oldLock = Cursor.lockState;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.None;
-            ownsCursor = true;
+            cursorWasVisible = Cursor.visible; oldLock = Cursor.lockState;
+            Cursor.visible = false; Cursor.lockState = CursorLockMode.None; ownsCursor = true;
         }
         private void RestoreCursor()
         {
             if (!ownsCursor) return;
-            Cursor.visible = cursorWasVisible;
-            Cursor.lockState = oldLock;
-            ownsCursor = false;
+            Cursor.visible = cursorWasVisible; Cursor.lockState = oldLock; ownsCursor = false;
         }
-        private void OnDisable()
-        {
-            if (dragging) dragging.Release();
-            RestoreCursor();
-            if (hand) Destroy(hand);
-        }
+        private void Cancel()
+        { gesture = Gesture.None; sampler.Clear(); if (dragging) dragging.Release(); }
+        private void OnDisable() { Cancel(); RestoreCursor(); if (hand) Destroy(hand); }
         private void OnApplicationFocus(bool value)
         {
             focused = value;
-            if (!value) canPush = false;
-            if (value) AcquireCursor();
-            else { RestoreCursor(); if (dragging) dragging.Release(); }
+            if (!value) { Cancel(); RestoreCursor(); }
+            else AcquireCursor();
         }
         private void Update()
         {
             Mouse mouse = Mouse.current;
-            if (!focused || mouse == null || !view || !dragging) return;
+            if (!focused || mouse == null || !view || !dragging || Time.timeScale <= 0f)
+            { Cancel(); RestoreCursor(); return; }
             mousePosition = mouse.position.ReadValue();
-            bool inside = mousePosition.x >= 0 && mousePosition.x < Screen.width &&
-                mousePosition.y >= 0 && mousePosition.y < Screen.height;
-            if (!inside) { canPush = false; dragging.Release(); RestoreCursor(); return; }
+            if (!view.pixelRect.Contains(mousePosition)) { Cancel(); RestoreCursor(); return; }
             AcquireCursor();
-            Ray ray = view.ScreenPointToRay(mousePosition);
-            Plane plane = new Plane(Vector3.forward, Vector3.zero);
-            if (plane.Raycast(ray, out float distance)) worldPoint = ray.GetPoint(distance);
+            Vector2 sample = (mousePosition - view.pixelRect.position) / view.pixelHeight;
+            worldPoint = Project(sample);
             hoveredCharacter = null; hoveredBox = null;
-            if (Physics.Raycast(ray, out hoveredHit, 100f, ~0, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(view.ScreenPointToRay(mousePosition), out RaycastHit hover, 100f,
+                ~0, QueryTriggerInteraction.Ignore))
             {
-                hoveredCharacter = hoveredHit.collider.GetComponentInParent<CharacterRecovery>();
-                hoveredBox = hoveredHit.collider.GetComponentInParent<DraggableBody>();
+                hoveredCharacter = hover.collider.GetComponentInParent<CharacterRecovery>();
+                hoveredBox = hover.collider.GetComponentInParent<DraggableBody>();
             }
-            if (hoveredCharacter)
-            {
-                float dx = hoveredCharacter.transform.position.x - worldPoint.x;
-                // Left half pushes right, right half pushes left. Arrow previews this before clicking.
-                float direction = Mathf.Abs(dx) < 0.04f ? 1f : Mathf.Sign(dx);
-                flickDirection = new Vector3(direction, upwardBias, 0f).normalized;
-            }
+            float now = Time.unscaledTime;
             if (mouse.leftButton.wasPressedThisFrame)
             {
-                heldSince = Time.time;
-                canPush = hoveredCharacter;
-                if (hoveredCharacter && Time.time >= nextFlick)
-                {
-                    hoveredCharacter.Flick(flickDirection * flickForce, worldPoint);
-                    FlickCount++;
-                    nextFlick = Time.time + flickCooldown;
-                }
-                else if (hoveredBox) dragging.Grab(hoveredBox, worldPoint);
+                Cancel();
+                if (hoveredBox) { gesture = Gesture.Box; dragging.Grab(hoveredBox, worldPoint); }
+                else { gesture = Gesture.Palm; sampler.Add(sample, now); }
             }
-            if (dragging.IsDragging) dragging.SetTarget(worldPoint);
-            if (!mouse.leftButton.isPressed) { dragging.Release(); canPush = false; }
+            if (gesture == Gesture.Box) dragging.SetTarget(worldPoint);
+            if (gesture == Gesture.Palm)
+            {
+                sampler.Add(sample, now);
+                if (sampler.Velocity(now, out Vector2 velocity)) lastSpeed = velocity.magnitude;
+                else lastSpeed = 0f;
+            }
+            if (mouse.leftButton.wasReleasedThisFrame)
+            {
+                if (gesture == Gesture.Palm) ReleaseSlap(now);
+                Cancel();
+            }
+            else if (!mouse.leftButton.isPressed) Cancel();
+        }
+        private Vector3 Project(Vector2 normalized)
+        {
+            Vector2 screen = view.pixelRect.position + normalized * view.pixelHeight;
+            Ray ray = view.ScreenPointToRay(screen);
+            Plane plane = new Plane(Vector3.forward, Vector3.zero);
+            return plane.Raycast(ray, out float d) ? ray.GetPoint(d) : worldPoint;
+        }
+        private void ReleaseSlap(float now)
+        {
+            hit = false; lastImpulse = 0f; result = "no stroke";
+            if (!sampler.Velocity(now, out Vector2 velocity) || velocity.magnitude < minimumSlapSpeed) return;
+            if (Time.time < nextSlap) { result = "cooldown"; return; }
+            lastSpeed = velocity.magnitude;
+            Vector3 delta = Project(sampler.Latest + velocity.normalized * 0.01f) - Project(sampler.Latest);
+            delta.z = 0f;
+            if (delta.sqrMagnitude < 0.000001f) return;
+            direction = delta.normalized;
+            float t = Mathf.InverseLerp(minimumSlapSpeed, Mathf.Max(minimumSlapSpeed + 0.01f, maximumSlapSpeed), lastSpeed);
+            float response = slapResponse == null ? t : Mathf.Clamp01(slapResponse.Evaluate(t));
+            lastImpulse = Mathf.Lerp(minimumSlapImpulse, Mathf.Max(minimumSlapImpulse, maximumSlapImpulse), response);
+            nextSlap = Time.time + slapCooldown; feedbackUntil = now + 0.18f;
+            result = "miss";
+            // Only the recent stroke (100ms) is swept, at release. Earlier crossings never hit.
+            // Reproject all samples through the SAME camera pose: follow motion cannot generate a slap.
+            for (int i = sampler.Count - 1; i > 0; i--)
+            {
+                Vector3 a = Project(sampler.Point(i - 1)), b = Project(sampler.Point(i));
+                int count = Physics.OverlapCapsuleNonAlloc(a, b, slapRadius, contacts, ~0, QueryTriggerInteraction.Ignore);
+                for (int j = 0; j < count; j++)
+                {
+                    CharacterRecovery target = contacts[j].GetComponentInParent<CharacterRecovery>();
+                    if (!target) continue;
+                    Vector3 closest = contacts[j].ClosestPoint(b);
+                    target.PalmSlap((Vector3)direction * lastImpulse, closest);
+                    lastTarget = target; SlapCount++; hit = true; result = "hit";
+                    return; // Exactly one impulse per release, even with compound colliders.
+                }
+            }
         }
         private void OnGUI()
         {
-            if (!focused || !ownsCursor || Mouse.current == null || !hand) return;
-            Vector2 p = new Vector2(mousePosition.x, Screen.height - mousePosition.y);
-            Color previous = GUI.color;
-            GUI.color = hoveredCharacter ? new Color(1f, 0.76f, 0.25f) :
-                (hoveredBox || dragging.IsDragging ? Color.cyan : Color.white);
-            GUI.DrawTexture(new Rect(p.x - 9f, p.y - 4f, 38f, 46f), hand);
-            GUI.color = previous;
-            if (hoveredCharacter)
-            {
-                Vector3 screen = view.WorldToScreenPoint(worldPoint + flickDirection * 0.9f);
-                DrawLine(p, new Vector2(screen.x, Screen.height - screen.y), new Color(1f, 0.65f, 0.12f));
-                GUI.Label(new Rect(p.x + 28, p.y - 28, 130, 28), flickDirection.x > 0 ? "FLICK  >" : "<  FLICK");
-            }
-            else if (hoveredBox || dragging.IsDragging)
-                GUI.Label(new Rect(p.x + 30, p.y - 26, 130, 28), "HOLD TO DRAG");
+            if (!focused || !ownsCursor || !hand) return;
+            Vector2 point = new Vector2(mousePosition.x, Screen.height - mousePosition.y);
+            float feedback = Mathf.Clamp01((feedbackUntil - Time.unscaledTime) / 0.18f);
+            Vector2 recoil = new Vector2(-direction.x, direction.y) * feedback * (hit ? 9f + lastImpulse * 2f : 5f);
+            Color old = GUI.color;
+            GUI.color = hit && feedback > 0f ? new Color(1f, 0.65f, 0.2f) :
+                hoveredBox || gesture == Gesture.Box ? Color.cyan : hoveredCharacter ? Color.yellow : Color.white;
+            GUI.DrawTexture(new Rect(point.x - 18 + recoil.x, point.y - 23 + recoil.y, 38, 46), hand);
+            GUI.color = old;
+            if (gesture == Gesture.Palm && sampler.Velocity(Time.unscaledTime, out Vector2 v))
+                DrawLine(point, point + new Vector2(v.x, -v.y).normalized * Mathf.Min(55, v.magnitude * 30), Color.yellow);
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            if (showSlapDebug)
+                GUI.Box(new Rect(12, 108, 520, 100), $"Palm: {gesture}, speed {lastSpeed:F2}, direction {direction}, impulse {lastImpulse:F2}: {result}\n" +
+                    (lastTarget ? lastTarget.SlapDebug : "No target hit"));
+#endif
         }
         private static void DrawLine(Vector2 start, Vector2 end, Color color)
         {

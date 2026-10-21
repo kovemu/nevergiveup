@@ -28,15 +28,69 @@ namespace NeverGiveUp
             if (Mathf.Approximately(knockdownImpulse, 2.5f)) knockdownImpulse = 1f;
             physicsVersion = 3;
         }
-        public void Flick(Vector3 impulse, Vector3 point)
+        [Header("Palm slap response")]
+        [SerializeField, Range(0.1f, 2f)] private float airborneImpulseMultiplier = 0.85f;
+        [SerializeField, Range(0f, 2f)] private float angularImpulseMultiplier = 0.65f;
+        [SerializeField, Min(1f)] private float maximumKnockbackSpeed = 10f;
+        [SerializeField, Min(0.1f)] private float maximumAngularSpeed = 7f;
+        [SerializeField, Min(0f)] private float stumbleThreshold = 0.4f;
+        [SerializeField, Min(0.1f)] private float knockDownThreshold = 1.6f;
+        private bool palmFlight;
+        private float lastPalmTime;
+        private Vector3 pendingVelocity;
+        private float pendingAngularVelocity;
+        // Several rendered releases may occur before one physics step when cooldown is zero.
+        private void FixedUpdate() { pendingVelocity = Vector3.zero; pendingAngularVelocity = 0f; }
+        public Vector3 LastSlapDirection { get; private set; }
+        public float LastSlapStrength { get; private set; }
+        public bool ExternalReaction => palmFlight || Active || Stumbling || motor.ControlSuppressed;
+        public string SlapDebug => $"{(motor.Grounded ? "Grounded" : "Airborne")} / " +
+            $"{(GettingUp ? "Recovery" : Active ? "KnockDown" : Stumbling ? "Stumble" : "Balance")}\n" +
+            $"velocity {motor.Body.linearVelocity}, angular {motor.Body.angularVelocity}\n" +
+            $"external {motor.ExternalSource}, AI suppressed {motor.ControlSuppressed}";
+        public void PalmSlap(Vector3 impulse, Vector3 point)
         {
-            motor.NotifyExternal("hand flick");
+            motor.SampleGround();
+            motor.NotifyExternal("player-palm-slap");
             impulse.z = 0f;
-            point.z = motor.Body.position.z;
-            stumbleUntil = Time.time + 0.5f;
-            if (impulse.magnitude >= knockdownImpulse)
-                LoseBalance(Mathf.Abs(impulse.x) > 0.01f ? -Mathf.Sign(impulse.x) : 1f);
-            motor.Body.AddForceAtPosition(impulse, point, ForceMode.Impulse);
+            if (!motor.Grounded) impulse *= airborneImpulseMultiplier;
+            LastSlapStrength = impulse.magnitude;
+            LastSlapDirection = impulse.normalized;
+            bool knock = Active || LastSlapStrength >= Mathf.Max(stumbleThreshold, knockDownThreshold);
+            if (knock)
+            {
+                Active = true; GettingUp = false;
+                timer = stableTime = 0f;
+                motor.SetUpright(false);
+            }
+            if (LastSlapStrength >= stumbleThreshold) stumbleUntil = Time.time + 0.45f;
+            palmFlight = true; lastPalmTime = Time.time;
+            motor.SuppressControl(Mathf.Lerp(0.18f, 0.65f, Mathf.Clamp01(LastSlapStrength / 4.5f)));
+            Rigidbody body = motor.Body;
+            point.z = body.worldCenterOfMass.z;
+            // Bound the resulting momentum, not each contribution separately. No duplicate impulse.
+            Vector3 velocity = body.linearVelocity + pendingVelocity;
+            Vector3 target = Vector3.ClampMagnitude(velocity + impulse / body.mass, maximumKnockbackSpeed);
+            Vector3 applied = (target - velocity) * body.mass; applied.z = 0f;
+            body.AddForce(applied, ForceMode.Impulse);
+            pendingVelocity += applied / body.mass;
+            if (knock)
+            {
+                // AddForce + lever-arm torque is equivalent to AddForceAtPosition, with independent
+                // angular gain and a predicted angular-speed limit for an asymmetric capsule.
+                float torque = Vector3.Cross(point - body.worldCenterOfMass, applied).z * angularImpulseMultiplier;
+                Quaternion inertiaFrame = body.rotation * body.inertiaTensorRotation;
+                Vector3 axis = Quaternion.Inverse(inertiaFrame) * Vector3.forward;
+                Vector3 inertia = body.inertiaTensor;
+                float inverseInertia = axis.x * axis.x / Mathf.Max(0.0001f, inertia.x) +
+                    axis.y * axis.y / Mathf.Max(0.0001f, inertia.y) + axis.z * axis.z / Mathf.Max(0.0001f, inertia.z);
+                float angular = body.angularVelocity.z + pendingAngularVelocity;
+                float desired = Mathf.Clamp(angular + torque * inverseInertia,
+                    -maximumAngularSpeed, maximumAngularSpeed);
+                body.AddTorque(Vector3.forward * ((desired - angular) / inverseInertia), ForceMode.Impulse);
+                pendingAngularVelocity += desired - angular;
+                body.maxAngularVelocity = maximumAngularSpeed;
+            }
         }
         private void LoseBalance(float direction)
         {
@@ -46,19 +100,13 @@ namespace NeverGiveUp
             motor.SetUpright(false);
             motor.Body.AddTorque(Vector3.forward * direction * tumbleImpulse, ForceMode.Impulse);
         }
-        public void Push(float direction, Vector3 point)
-        {
-            if (!motor.Grounded || Mathf.Abs(point.x - motor.Body.position.x) > 0.65f ||
-                Mathf.Abs(point.y - motor.Body.position.y) > 0.8f) return;
-            motor.NotifyExternal("hand push");
-            // Horizontal contact force with a terminal speed, never lift or velocity snapping.
-            float along = motor.Body.linearVelocity.x * direction;
-            float force = 1.6f * Mathf.Clamp01(1f - along / 1.2f);
-            motor.Body.AddForce(Vector3.right * direction * force, ForceMode.Force);
-            stumbleUntil = Time.time + 0.18f;
-        }
         public void Tick(float dt)
         {
+            if (palmFlight)
+            {
+                if (Time.time - lastPalmTime < 0.12f || !motor.Grounded || motor.Body.linearVelocity.y > 0.3f) motor.SuppressControl(0.12f);
+                else palmFlight = false;
+            }
             if (Stumbling) { motor.GroundDrag(1.3f); return; }
             if (!Active) return;
             motor.GroundDrag(GettingUp ? 2f : 1.3f);

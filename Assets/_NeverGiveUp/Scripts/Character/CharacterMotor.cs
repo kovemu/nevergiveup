@@ -29,6 +29,10 @@ namespace NeverGiveUp
         public float LastExternalTime { get; private set; } = -100f;
         public string ExternalSource { get; private set; } = "none";
         public event Action<Collision> Contact;
+        private float controlSuppressedUntil;
+        public bool ControlSuppressed => Time.time < controlSuppressedUntil;
+        public void SuppressControl(float seconds)
+        { controlSuppressedUntil = Mathf.Max(controlSuppressedUntil, Time.time + seconds); }
         public float MaxJumpHorizontal => moveSpeed * 1.6f;
 
         public Rigidbody Body => body;
@@ -103,6 +107,7 @@ namespace NeverGiveUp
 
         public void Drive(float desiredVelocity, float authority = 1f)
         {
+            if (ControlSuppressed) return;
             if (Mathf.Abs(desiredVelocity) > 0.05f) Facing = Mathf.Sign(desiredVelocity);
             float delta = Mathf.Clamp(desiredVelocity - body.linearVelocity.x,
                 -(Grounded ? acceleration : airAcceleration) * authority * Time.fixedDeltaTime,
@@ -114,7 +119,7 @@ namespace NeverGiveUp
 
         public void Jump(float horizontalSpeed, float verticalSpeed)
         {
-            if (!Grounded) return;
+            if (!Grounded || ControlSuppressed) return;
             horizontalSpeed = Mathf.Clamp(horizontalSpeed, -MaxJumpHorizontal, MaxJumpHorizontal);
             verticalSpeed = Mathf.Clamp(verticalSpeed, 0f, jumpSpeed);
             body.AddForce(new Vector3(horizontalSpeed - body.linearVelocity.x,

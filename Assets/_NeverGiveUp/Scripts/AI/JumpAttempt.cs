@@ -114,6 +114,8 @@ namespace NeverGiveUp
         }
         public void Finish(JumpOutcome outcome, CharacterMotor motor)
         {
+            // Finish can also be called by a route interruption before the next Tick.
+            if (motor.ExternalVersion != externalVersion) MarkExternal(motor.ExternalSource, motor.LastExternalTime);
             Observation.landing = motor.Feet;
             Observation.endTime = Time.time;
             Observation.distanceError = (motor.Feet.x - Plan.landing.x) * Mathf.Sign(Plan.landing.x - Observation.takeoff.x);

@@ -44,3 +44,13 @@ New interfaces: PlatformGraph.Support/At/Next/Context; AdaptiveJumpPlanner.Plan/
 JumpAttempt.Tick/Collision/Finish; LearningMemory.Section/Select/Observe/Save.
 CharacterMotor.Contact and ExternalVersion connect physics/hand/object evidence to an active attempt.
 StageController.RequestRespawn and CharacterBrain.BeginRespawn remain non-teleporting compatibility aliases.
+
+## M5 palm slap update
+
+Extends M3.3 baseline 6add864 without regenerating assets. HandInteraction owns mutually
+exclusive box/palm gestures; HandDragSampler measures recent normalized screen motion.
+Recovery owns additive contact impulses and physical get-up; Motor gates AI authority;
+Brain continues learning observation and replans after real landing. JSON schema/map
+identity and SHORT/LONG policy are unchanged. CharacterAnimation offers a primitive
+fallback and optional child Animator integration, with separate seated/physical get-up.
+See Docs/M5_PALM_SLAP.md for defaults, setup, checks and unverified runtime cases.

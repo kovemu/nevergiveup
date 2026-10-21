@@ -40,8 +40,8 @@ namespace NeverGiveUp
                 title = new GUIStyle(GUI.skin.label) { fontSize = 26, alignment = TextAnchor.MiddleCenter };
             GUI.Label(new Rect(20, 16, Screen.width - 40, 36),
                 prologue ? "NEVER GIVE UP  /  PROLOGUE" : "NEVER GIVE UP", title);
-            if (prologue && hand && hand.FlickCount == 0 && !complete)
-                GUI.Label(new Rect(20, 60, Screen.width - 40, 36), "CLICK TO FLICK", title);
+            if (prologue && hand && hand.SlapCount == 0 && !complete)
+                GUI.Label(new Rect(20, 60, Screen.width - 40, 36), "DRAG & RELEASE TO SLAP", title);
             if (complete)
                 GUI.Label(new Rect(20, Screen.height * 0.42f, Screen.width - 40, 70),
                     prologue ? "KEEP GOING" : "PROTOTYPE COMPLETE", title);

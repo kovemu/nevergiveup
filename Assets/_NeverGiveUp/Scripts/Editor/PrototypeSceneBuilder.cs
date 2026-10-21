@@ -125,7 +125,7 @@ namespace NeverGiveUp.Editor
             EditorBuildSettings.scenes = scenes.ToArray();
             AssetDatabase.SaveAssets();
             EditorSceneManager.OpenScene(ProloguePath, OpenSceneMode.Single);
-            Debug.Log("NeverGiveUp M3 scenes generated. Press Play in Prologue. Left click: flick; hold box: drag.");
+            Debug.Log("NeverGiveUp M3 scenes generated. Press Play in Prologue. Drag and release: palm slap; hold box: drag.");
         }
 
         private static Material MaterialAsset(string name, Color color, Shader shader)

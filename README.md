@@ -1,7 +1,19 @@
-# NeverGiveUp — M3
+# NeverGiveUp — M5
 
 Unity **6000.6.0f1**, URP, Windows PC, 2.5D. 얼굴 없는 파란 클레이 캐릭터가 스스로
 올라가고, 마우스 손은 작은 직접 간섭과 상자 조작을 담당합니다.
+
+## M5 — Palm slap (current controls)
+
+기존 씬에서 코드만 업데이트하면 적용됩니다. 씬/프리팹을 재생성하지 마세요.
+왼쪽 버튼으로 손을 드래그하고 놓으면 최근 100ms의 속도와 궤적에 따라 찰싹 때립니다.
+단순 클릭·누른 채 밀기는 제거되었습니다. 상자에서 시작한 드래그는 기존 상자 조작입니다.
+지상/공중 반복 타격, 접촉 위치에 따른 회전, 공중 허우적거림, 물리적 회복을 연결했습니다.
+SHORT/LONG, 경로, 기존 학습 JSON을 유지하며 손 타격 실패는 자기 실패 학습에서 제외합니다.
+
+튜닝값·Animator 연결·검증 범위는 [M5 적용 안내](Docs/M5_PALM_SLAP.md)를 참고하세요.
+Unity Editor가 없어 실제 컴파일과 Play Mode 검증은 아직 수행하지 않았습니다.
+아래 M3 변경 이력의 딱콩/밀기 설명은 과거 조작입니다.
 
 ## M3.3 — Actual strategy learning and loop-aware navigation
 
