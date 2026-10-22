@@ -1,0 +1,520 @@
+6.939586 NGU_Inspect
+InspectingObstacle | target: Low Obstacle#3
+attempts: 18, successes: 18, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+7.140026 NGU_Run
+Running | target: Low Obstacle#3
+attempts: 18, successes: 18, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+7.240507 NGU_JumpShort
+Jumping | target: Low Obstacle#3
+attempts: 18, successes: 18, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+7.848329 NGU_Fall
+Falling | target: Low Obstacle#3
+attempts: 18, successes: 18, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+8.253002 NGU_Land
+Recovering | target: Low Obstacle#3
+attempts: 18, successes: 18, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+8.455307 NGU_Idle
+Recovering | target: Low Obstacle#3
+attempts: 18, successes: 18, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+8.958888 NGU_Inspect
+InspectingObstacle | target: After Small Pit#4
+attempts: 9, successes: 9, excluded: 8 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+9.664218 NGU_Run
+Running | target: After Small Pit#4
+attempts: 9, successes: 9, excluded: 8 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+9.764553 NGU_JumpShort
+Jumping | target: After Small Pit#4
+attempts: 9, successes: 9, excluded: 8 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+10.37102 NGU_Fall
+Falling | target: After Small Pit#4
+attempts: 9, successes: 9, excluded: 8 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+10.9754 NGU_Land
+Recovering | target: After Small Pit#4
+attempts: 9, successes: 9, excluded: 8 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+11.17826 NGU_Idle
+Recovering | target: After Small Pit#4
+attempts: 9, successes: 9, excluded: 8 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+11.78335 NGU_Run
+Running | target: After Small Pit#4
+attempts: 10, successes: 10, excluded: 8 | last: Success
+success memory: False, learned action: False | interference: none
+last jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+12.78934 NGU_Idle
+GoalReached | target: After Small Pit#4
+attempts: 10, successes: 10, excluded: 8 | last: Success
+success memory: False, learned action: False | interference: none
+last jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+14.10102 NGU_Land
+Recovering | target: 06 Summit#6
+attempts: 0, successes: 0, excluded: 0 | last: none
+success memory: False, learned action: False | interference: none
+last jump: Short | none
+14.3038 NGU_Run
+Retrying | target: 02#2
+attempts: 0, successes: 0, excluded: 0 | last: none
+success memory: False, learned action: False | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+15.21335 NGU_Inspect
+InspectingObstacle | target: Movable Box#7
+attempts: 3, successes: 3, excluded: 2 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+16.01948 NGU_Run
+Running | target: Movable Box#7
+attempts: 3, successes: 3, excluded: 2 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+16.12009 NGU_JumpShort
+Jumping | target: Movable Box#7
+attempts: 3, successes: 3, excluded: 2 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+16.6263 NGU_Fall
+Jumping | target: Movable Box#7
+attempts: 3, successes: 3, excluded: 2 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+16.72667 NGU_AirFlail
+KnockedDown | target: Movable Box#7
+attempts: 3, successes: 3, excluded: 2 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+17.63424 NGU_KnockDown
+KnockedDown | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 3 | last: ExternalInterference
+success memory: False, learned action: False | interference: player-palm-slap
+last jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+18.745 NGU_GetUpFromKnockDown
+GettingUp | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 3 | last: ExternalInterference
+success memory: False, learned action: False | interference: player-palm-slap
+last jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+21.2716 NGU_Idle
+Recovering | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 3 | last: ExternalInterference
+success memory: False, learned action: False | interference: player-palm-slap
+last jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+21.47327 NGU_Inspect
+InspectingObstacle | target: 02#2
+attempts: 0, successes: 0, excluded: 0 | last: ExternalInterference
+success memory: False, learned action: False | interference: player-palm-slap
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+22.28391 NGU_Run
+Running | target: 02#2
+attempts: 0, successes: 0, excluded: 0 | last: ExternalInterference
+success memory: False, learned action: False | interference: player-palm-slap
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+22.38416 NGU_JumpShort
+Jumping | target: 02#2
+attempts: 0, successes: 0, excluded: 0 | last: ExternalInterference
+success memory: False, learned action: False | interference: player-palm-slap
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+22.98948 NGU_Fall
+Falling | target: 02#2
+attempts: 0, successes: 0, excluded: 0 | last: ExternalInterference
+success memory: False, learned action: False | interference: player-palm-slap
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+23.1897 NGU_Land
+Recovering | target: 02#2
+attempts: 0, successes: 0, excluded: 0 | last: ExternalInterference
+success memory: False, learned action: False | interference: player-palm-slap
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+23.29012 NGU_Idle
+Recovering | target: 02#2
+attempts: 0, successes: 0, excluded: 0 | last: ExternalInterference
+success memory: False, learned action: False | interference: player-palm-slap
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+23.89459 NGU_Run
+Retrying | target: 03#3
+attempts: 2, successes: 2, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+24.80504 NGU_Inspect
+InspectingObstacle | target: 03#3
+attempts: 2, successes: 2, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+25.51194 NGU_Run
+Running | target: 03#3
+attempts: 2, successes: 2, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+25.81502 NGU_JumpShort
+Jumping | target: 03#3
+attempts: 2, successes: 2, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+26.32026 NGU_Fall
+Falling | target: 03#3
+attempts: 2, successes: 2, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+26.52287 NGU_Land
+Recovering | target: 03#3
+attempts: 2, successes: 2, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+26.72459 NGU_Idle
+Recovering | target: 03#3
+attempts: 2, successes: 2, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+27.22872 NGU_Run
+Retrying | target: 04#4
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+28.137 NGU_Inspect
+InspectingObstacle | target: 04#4
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+28.94402 NGU_Run
+Running | target: 04#4
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+29.14738 NGU_JumpShort
+Jumping | target: 04#4
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+29.65498 NGU_Fall
+Falling | target: 04#4
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+29.85805 NGU_Land
+Recovering | target: 04#4
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+30.05846 NGU_Idle
+Recovering | target: 04#4
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+30.57159 NGU_Run
+Retrying | target: 05 Turnaround#5
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+31.48169 NGU_Inspect
+InspectingObstacle | target: 05 Turnaround#5
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+32.29047 NGU_Run
+Running | target: 05 Turnaround#5
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+32.49267 NGU_JumpShort
+Jumping | target: 05 Turnaround#5
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+32.99746 NGU_Fall
+Jumping | target: 05 Turnaround#5
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+33.19923 NGU_Land
+Recovering | target: 05 Turnaround#5
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+33.40181 NGU_Idle
+Recovering | target: 05 Turnaround#5
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+34.00809 NGU_Run
+Retrying | target: 06 Summit#6
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+34.10892 NGU_Inspect
+InspectingObstacle | target: 06 Summit#6
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+34.9153 NGU_Run
+Running | target: 06 Summit#6
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+35.01618 NGU_JumpLong
+Jumping | target: 06 Summit#6
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+35.72341 NGU_Fall
+Jumping | target: 06 Summit#6
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+36.02644 NGU_Land
+Recovering | target: 06 Summit#6
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+36.12708 NGU_Idle
+Recovering | target: 06 Summit#6
+attempts: 2, successes: 2, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+36.73298 NGU_Run
+Running | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: False, learned action: False | interference: none
+last jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+36.93553 NGU_Idle
+GoalReached | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: False, learned action: False | interference: none
+last jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+62.06657 NGU_Land
+Recovering | target: 06 Summit#6
+attempts: 0, successes: 0, excluded: 0 | last: none
+success memory: False, learned action: False | interference: none
+last jump: Short | none
+62.26834 NGU_Run
+Retrying | target: 02#2
+attempts: 1, successes: 1, excluded: 0 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+63.28025 NGU_Inspect
+InspectingObstacle | target: Movable Box#7
+attempts: 3, successes: 3, excluded: 3 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+63.98533 NGU_Run
+Running | target: Movable Box#7
+attempts: 3, successes: 3, excluded: 3 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+64.18649 NGU_JumpShort
+Jumping | target: Movable Box#7
+attempts: 3, successes: 3, excluded: 3 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+64.6922 NGU_Fall
+Falling | target: Movable Box#7
+attempts: 3, successes: 3, excluded: 3 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+64.99504 NGU_Land
+Recovering | target: Movable Box#7
+attempts: 3, successes: 3, excluded: 3 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+65.09569 NGU_Idle
+Recovering | target: Movable Box#7
+attempts: 3, successes: 3, excluded: 3 | last: none
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+65.70199 NGU_Inspect
+InspectingObstacle | target: 02#2
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+66.40598 NGU_Run
+Running | target: 02#2
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+66.60799 NGU_JumpShort
+Jumping | target: 02#2
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+67.11202 NGU_Fall
+Falling | target: 02#2
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+67.71669 NGU_Land
+Recovering | target: 02#2
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+67.8181 NGU_Idle
+Recovering | target: 02#2
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+68.42156 NGU_Run
+Retrying | target: 03#3
+attempts: 3, successes: 3, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+69.2279 NGU_Inspect
+InspectingObstacle | target: 03#3
+attempts: 3, successes: 3, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+70.03651 NGU_Run
+Running | target: 03#3
+attempts: 3, successes: 3, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+70.23797 NGU_JumpShort
+Jumping | target: 03#3
+attempts: 3, successes: 3, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+70.84066 NGU_Fall
+Falling | target: 03#3
+attempts: 3, successes: 3, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+71.04154 NGU_Land
+Recovering | target: 03#3
+attempts: 3, successes: 3, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+71.14267 NGU_Idle
+Recovering | target: 03#3
+attempts: 3, successes: 3, excluded: 1 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+71.74726 NGU_Run
+Retrying | target: 04#4
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+72.66202 NGU_Inspect
+InspectingObstacle | target: 04#4
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+73.36976 NGU_Run
+Running | target: 04#4
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+73.67362 NGU_JumpShort
+Jumping | target: 04#4
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+74.17805 NGU_Fall
+Falling | target: 04#4
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+74.37939 NGU_Land
+Recovering | target: 04#4
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+74.58195 NGU_Idle
+Recovering | target: 04#4
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+75.08867 NGU_Run
+Retrying | target: 05 Turnaround#5
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+75.99662 NGU_Inspect
+InspectingObstacle | target: 05 Turnaround#5
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+76.80563 NGU_Run
+Running | target: 05 Turnaround#5
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+77.00764 NGU_JumpShort
+Jumping | target: 05 Turnaround#5
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+77.51157 NGU_Fall
+Falling | target: 05 Turnaround#5
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+77.71354 NGU_Land
+Recovering | target: 05 Turnaround#5
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+77.91589 NGU_Idle
+Recovering | target: 05 Turnaround#5
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Short | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+78.4209 NGU_Run
+Retrying | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+78.62365 NGU_Inspect
+InspectingObstacle | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+79.43188 NGU_Run
+Running | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+79.53305 NGU_JumpLong
+Jumping | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+80.2382 NGU_Fall
+Jumping | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+80.44136 NGU_Land
+Recovering | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+80.64365 NGU_Idle
+Recovering | target: 06 Summit#6
+attempts: 3, successes: 3, excluded: 0 | last: Success
+success memory: True, learned action: True | interference: none
+jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+81.25096 NGU_Run
+Running | target: 06 Summit#6
+attempts: 4, successes: 4, excluded: 0 | last: Success
+success memory: False, learned action: False | interference: none
+last jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65
+81.45354 NGU_Idle
+GoalReached | target: 06 Summit#6
+attempts: 4, successes: 4, excluded: 0 | last: Success
+success memory: False, learned action: False | interference: none
+last jump: Long | launch 0.00, approach 2.50, wait 0.18, vx x1.00, land 0.00, air 0.60, arc 0.65

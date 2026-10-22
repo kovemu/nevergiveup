@@ -1,0 +1,71 @@
+[
+  {
+    "file": "C:/Users/rudxo/Desktop/NeverGiveUpCharacter/M6_Integration_Backup_2026-10-22T03-29-02-615Z/NeverGiveUp_Animations_v4_manual.blend",
+    "mesh": "32b69ca21c137c7960d9f4aab2d7a9b6e4a93bab2fa13e36ff169c656b3878d5",
+    "weights": "bf6b9f23c0e5c191427998fab020210bb1c537d564c54a0ead315ccbffdda63e",
+    "actions": {
+      "knockdown_front": "737b2d6e700373ea6a473a3f368a2255bc447575623e1773f236eb04e120047d",
+      "NGU_Fall": "5524856b64f99d97ea3f0b947800df663cb6478740e28746c4bb47a9baf9e36e",
+      "NGU_GetUp": "4bad54592d1e6066f5abc1d3060414ebcac7f9f3f294dadabd62965a689da0ee",
+      "NGU_GetUpFromKnockDown": "cd3ae6ab6f5e4f4123b3465522c84cb2441171c99262ea7cb3e70fe8c0b8bfd6",
+      "NGU_GetUpFromSit": "a8f47e18b4d84d1ed85de0be671b01705c76b4ca813b71b771ba483de80d97c2",
+      "NGU_Idle": "572a016f3b58a74aa94bfc87da9448bd49b1a0c687326f6414b2f98121d5db5e",
+      "NGU_Inspect": "904fdda0c49be6a56f2fbfd082c676031cc20b8e70918066933ac38cb69b153f",
+      "NGU_JumpLong": "665dbe9eed4c56689c80a3e6baa3cc15ba0cf3d7b2930d3609afbf219578cdaf",
+      "NGU_JumpShort": "3feb3812ba019b713e20b28eb7084c4e6fc1461923cfb3c3a9ab6d972cd6e4e4",
+      "NGU_KnockDown": "66c6b3c16359eea9dc34a062ca36f1ab3a1769a316f67b782d0c3bafb8af2d1f",
+      "NGU_KnockDown_Front": "66c6b3c16359eea9dc34a062ca36f1ab3a1769a316f67b782d0c3bafb8af2d1f",
+      "NGU_Land": "0215b06823cd97029c345d5b59508c59d1d50fcbd04f19b2d16b6bda04906684",
+      "NGU_Rest": "e8303082addc10012a3d8991380de173a58bb5e0d0e3573b8b9ee6908e55cf47",
+      "NGU_Run": "a1e426a8ce13d25b30282c5174fd243b51eb709892459ce90cc4e819fac7299a",
+      "NGU_SitDown": "3e944d76526b3794902cb87aad99f64e0006fba8d491f1e0e102eb247bed1def",
+      "NGU_Stumble": "3e4def66d294484bc9c601ac0e6f0d44b84a8cef9d6df939fee3d225ddee1b9d"
+    }
+  },
+  {
+    "file": "C:/Users/rudxo/Desktop/NeverGiveUpCharacter/NeverGiveUp_Animations_v4_manual.blend",
+    "mesh": "32b69ca21c137c7960d9f4aab2d7a9b6e4a93bab2fa13e36ff169c656b3878d5",
+    "weights": "bf6b9f23c0e5c191427998fab020210bb1c537d564c54a0ead315ccbffdda63e",
+    "actions": {
+      "knockdown_front": "737b2d6e700373ea6a473a3f368a2255bc447575623e1773f236eb04e120047d",
+      "NGU_Fall": "5524856b64f99d97ea3f0b947800df663cb6478740e28746c4bb47a9baf9e36e",
+      "NGU_GetUp": "4bad54592d1e6066f5abc1d3060414ebcac7f9f3f294dadabd62965a689da0ee",
+      "NGU_GetUpFromKnockDown": "cd3ae6ab6f5e4f4123b3465522c84cb2441171c99262ea7cb3e70fe8c0b8bfd6",
+      "NGU_GetUpFromSit": "a8f47e18b4d84d1ed85de0be671b01705c76b4ca813b71b771ba483de80d97c2",
+      "NGU_Idle": "572a016f3b58a74aa94bfc87da9448bd49b1a0c687326f6414b2f98121d5db5e",
+      "NGU_Inspect": "904fdda0c49be6a56f2fbfd082c676031cc20b8e70918066933ac38cb69b153f",
+      "NGU_JumpLong": "665dbe9eed4c56689c80a3e6baa3cc15ba0cf3d7b2930d3609afbf219578cdaf",
+      "NGU_JumpShort": "3feb3812ba019b713e20b28eb7084c4e6fc1461923cfb3c3a9ab6d972cd6e4e4",
+      "NGU_KnockDown": "66c6b3c16359eea9dc34a062ca36f1ab3a1769a316f67b782d0c3bafb8af2d1f",
+      "NGU_KnockDown_Front": "66c6b3c16359eea9dc34a062ca36f1ab3a1769a316f67b782d0c3bafb8af2d1f",
+      "NGU_Land": "0215b06823cd97029c345d5b59508c59d1d50fcbd04f19b2d16b6bda04906684",
+      "NGU_Rest": "e8303082addc10012a3d8991380de173a58bb5e0d0e3573b8b9ee6908e55cf47",
+      "NGU_Run": "a1e426a8ce13d25b30282c5174fd243b51eb709892459ce90cc4e819fac7299a",
+      "NGU_SitDown": "3e944d76526b3794902cb87aad99f64e0006fba8d491f1e0e102eb247bed1def",
+      "NGU_Stumble": "3e4def66d294484bc9c601ac0e6f0d44b84a8cef9d6df939fee3d225ddee1b9d"
+    }
+  },
+  {
+    "file": "C:/Users/rudxo/Desktop/NeverGiveUpCharacter/NeverGiveUp_M6_Export.blend",
+    "mesh": "32b69ca21c137c7960d9f4aab2d7a9b6e4a93bab2fa13e36ff169c656b3878d5",
+    "weights": "bf6b9f23c0e5c191427998fab020210bb1c537d564c54a0ead315ccbffdda63e",
+    "actions": {
+      "knockdown_front": "737b2d6e700373ea6a473a3f368a2255bc447575623e1773f236eb04e120047d",
+      "NGU_Fall": "5524856b64f99d97ea3f0b947800df663cb6478740e28746c4bb47a9baf9e36e",
+      "NGU_GetUp": "4bad54592d1e6066f5abc1d3060414ebcac7f9f3f294dadabd62965a689da0ee",
+      "NGU_GetUpFromKnockDown": "cd3ae6ab6f5e4f4123b3465522c84cb2441171c99262ea7cb3e70fe8c0b8bfd6",
+      "NGU_GetUpFromSit": "a8f47e18b4d84d1ed85de0be671b01705c76b4ca813b71b771ba483de80d97c2",
+      "NGU_Idle": "572a016f3b58a74aa94bfc87da9448bd49b1a0c687326f6414b2f98121d5db5e",
+      "NGU_Inspect": "904fdda0c49be6a56f2fbfd082c676031cc20b8e70918066933ac38cb69b153f",
+      "NGU_JumpLong": "665dbe9eed4c56689c80a3e6baa3cc15ba0cf3d7b2930d3609afbf219578cdaf",
+      "NGU_JumpShort": "3feb3812ba019b713e20b28eb7084c4e6fc1461923cfb3c3a9ab6d972cd6e4e4",
+      "NGU_KnockDown": "66c6b3c16359eea9dc34a062ca36f1ab3a1769a316f67b782d0c3bafb8af2d1f",
+      "NGU_KnockDown_Front": "66c6b3c16359eea9dc34a062ca36f1ab3a1769a316f67b782d0c3bafb8af2d1f",
+      "NGU_Land": "0215b06823cd97029c345d5b59508c59d1d50fcbd04f19b2d16b6bda04906684",
+      "NGU_Rest": "e8303082addc10012a3d8991380de173a58bb5e0d0e3573b8b9ee6908e55cf47",
+      "NGU_Run": "a1e426a8ce13d25b30282c5174fd243b51eb709892459ce90cc4e819fac7299a",
+      "NGU_SitDown": "3e944d76526b3794902cb87aad99f64e0006fba8d491f1e0e102eb247bed1def",
+      "NGU_Stumble": "3e4def66d294484bc9c601ac0e6f0d44b84a8cef9d6df939fee3d225ddee1b9d"
+    }
+  }
+]

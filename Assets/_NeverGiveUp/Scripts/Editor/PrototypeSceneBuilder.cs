@@ -252,6 +252,7 @@ namespace NeverGiveUp.Editor
             Transform rightLeg = Limb("Right Leg", visual, new Vector3(0.17f, -0.43f, 0f), new Vector3(0.29f, 0.24f, 0.3f));
             CharacterAnimation animation = actor.AddComponent<CharacterAnimation>();
             animation.Configure(brain, motor, visual, leftArm, rightArm, leftLeg, rightLeg);
+            M6Integration.AttachToActor(actor);
             PrefabUtility.SaveAsPrefabAssetAndConnect(actor, Root + "/Prefabs/BlueClay.prefab", InteractionMode.AutomatedAction);
             return brain;
         }

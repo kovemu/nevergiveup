@@ -15,6 +15,9 @@ namespace NeverGiveUp
         [SerializeField] private Animator animator;
         [SerializeField] private Transform head;
         private CharacterRecovery recovery;
+        private ClayAnimator clayAnimator;
+        public float SitSeconds => clayAnimator && clayAnimator.Ready ? clayAnimator.SitSeconds : 0.35f;
+        public float StandSeconds => clayAnimator && clayAnimator.Ready ? clayAnimator.StandSeconds : 0.5f;
         private bool reactionPose;
         private bool animatorWasEnabled;
         private readonly Quaternion[] savedPose = new Quaternion[5];
@@ -26,6 +29,18 @@ namespace NeverGiveUp
         private void Awake()
         {
             recovery = GetComponent<CharacterRecovery>();
+            clayAnimator = GetComponentInChildren<ClayAnimator>();
+            if (visual) visual.gameObject.SetActive(!(clayAnimator && clayAnimator.Ready));
+            if (clayAnimator && !clayAnimator.Ready) clayAnimator.gameObject.SetActive(false);
+            if (!(clayAnimator && clayAnimator.Ready) && visual)
+            {
+                // Older scenes hid these six primitive children when M4 art was added.
+                // Restore only known fallback parts; keep extra imported art hidden.
+                foreach (Transform child in visual)
+                    child.gameObject.SetActive(child == leftArm || child == rightArm ||
+                        child == leftLeg || child == rightLeg ||
+                        child.name == "Round Head - no face" || child.name == "Soft Body");
+            }
             if (!animator) animator = GetComponentInChildren<Animator>();
             // An Animator must never own the physics root.
             if (animator && animator.transform == transform)
@@ -63,6 +78,8 @@ namespace NeverGiveUp
 
         private void LateUpdate()
         {
+            if (clayAnimator && clayAnimator.Ready)
+            { clayAnimator.Tick(); currentAction = clayAnimator.CurrentAction; return; }
             if (!brain || !motor || !visual) return;
             if (motor.Grounded && !wasGrounded) landing = 1f;
             wasGrounded = motor.Grounded;

@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_NeverGiveUp/Scenes/Prologue.unity
+    guid: 10c8693d2afcc6a4e9d233fb0f49d28b
+  - enabled: 1
+    path: Assets/_NeverGiveUp/Scenes/MainPrototype.unity
+    guid: 12000996f2a2f654db914d4d4cf1f4fb
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:

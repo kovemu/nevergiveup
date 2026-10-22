@@ -1,0 +1,12 @@
+{
+  "runtime": {
+    "code": 0,
+    "stdout": "Assets\\_NeverGiveUp\\Scripts\\Interaction\\HandInteraction.cs(149,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.\r\nAssets\\_NeverGiveUp\\Scripts\\AI\\CharacterBrain.cs(436,21): warning UAC0009: DEVELOPMENT_BUILD preprocessor directive has been deprecated. Please use one of the managed code variant directives (such as DEBUG, UNITY_ENABLE_CHECKS or UNITY_INCLUDE_INSTRUMENTATION) if different code paths are desired for different managed code variants. Checking for development build is possible at runtime using Debug.isDebugBuild. See the Conditional Compilation manual page for more details.\r\n",
+    "stderr": ""
+  },
+  "editor": {
+    "code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+}

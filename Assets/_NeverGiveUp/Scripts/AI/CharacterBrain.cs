@@ -18,6 +18,7 @@ namespace NeverGiveUp
         [SerializeField] private bool showLearningDebug = true;
         private CharacterMotor motor;
         private CharacterRecovery recovery;
+        private CharacterAnimation presentation;
         private StageController stage;
         private LearningMemory memory;
         private JumpPlan plan;
@@ -57,6 +58,7 @@ namespace NeverGiveUp
         private void Awake()
         {
             motor = GetComponent<CharacterMotor>(); recovery = GetComponent<CharacterRecovery>();
+            presentation = GetComponent<CharacterAnimation>();
             motor.Contact += OnContact;
         }
         private void OnContact(Collision collision) { if (attempt != null) attempt.Collision(collision); }
@@ -126,11 +128,11 @@ namespace NeverGiveUp
             // physics still acts while the character is seated.
             if (Time.time < restUntil)
             {
-                State = Time.time - sitStarted < 0.35f ? CharacterState.SittingDown : CharacterState.Resting;
+                State = Time.time - sitStarted < (presentation ? presentation.SitSeconds : 0.35f) ? CharacterState.SittingDown : CharacterState.Resting;
                 motor.Stop(); return;
             }
             if (State == CharacterState.Resting || State == CharacterState.SittingDown)
-            { restUntil = 0f; standUntil = Time.time + 0.5f; }
+            { restUntil = 0f; standUntil = Time.time + (presentation ? presentation.StandSeconds : 0.5f); }
             if (Time.time < standUntil)
             { State = CharacterState.GettingUpFromSit; motor.Stop(); return; }
             if (cooldown > 0f) { motor.Stop(); return; }
@@ -379,8 +381,8 @@ namespace NeverGiveUp
             if (unsuccessfulAttempts >= failuresBeforeRest)
             {
                 unsuccessfulAttempts = 0;
-                sitStarted = Time.time; restUntil = Time.time + restDuration;
-                State = CharacterState.Resting;
+                sitStarted = Time.time; restUntil = Time.time + restDuration + (presentation ? presentation.SitSeconds : 0f);
+                State = CharacterState.SittingDown;
             }
         }
         private void AirControl(JumpPlan current)
@@ -422,7 +424,7 @@ namespace NeverGiveUp
                 if (unsuccessfulAttempts >= failuresBeforeRest)
                 {
                     unsuccessfulAttempts = 0;
-                    sitStarted = Time.time; restUntil = Time.time + restDuration;
+                    sitStarted = Time.time; restUntil = Time.time + restDuration + (presentation ? presentation.SitSeconds : 0f);
                 }
             }
             attempt = null; plan = null; walkLink = null;
