@@ -54,16 +54,16 @@ Apply Root Motion=false. 월드 위치/회전은 Rigidbody만 소유한다. Unit
 - 별도 런타임 blocked-path 조건 시험에서 SitDown → Rest → GetUpFromSit → Run 확인. 씬/학습 파일을 초기화하지 않았다.
 - 14개 런타임 클립 각각 13시점 스킨 샘플링: NaN 정점 없음. 이는 모든 관절의 미적 품질을 보장하는 검사는 아니다. clip-sampling.txt 참조.
 - rest.png, physical-getup.png는 실제 Unity 게임 카메라 캡처다. 앉은 배와 머리 형태, 물리 기립 자세를 확인했다.
-- 마지막 폴백/검수 도구 수정 후 Unity 창 연결이 끊겨 동일 Editor 재생 검증은 아직 못 했다. 대신 Unity 자체 SDK/compiler/reference 설정으로 별도 출력 폴더에 런타임/에디터 코드를 컴파일했고 둘 다 종료 코드 0. 기존 DEVELOPMENT_BUILD 경고 2개 유지. compile-result.json 참조.
+- 마지막 폴백/검수 도구 수정 코드는 Unity 자체 SDK/compiler/reference 설정으로 컴파일해 둘 다 종료 코드 0을 확인했다. 이후 Unity 복구 후 실제 Editor 컴파일과 폴백 Play Mode 검증도 완료했다. 기존 DEVELOPMENT_BUILD 경고 2개 유지. compile-result.json 및 recovery-validation.txt 참조.
 
 ## 남은 검증과 제한
 1. 실제 마우스 자동 드래그는 no stroke로 판정됐고 SlapCount가 증가하지 않았다. 수동 손바닥 제스처 end-to-end 검증은 미완료다. 기존 M5 입력 판정을 이 테스트에 맞춰 임의로 완화하지 않았다.
 2. 상자 드래그 native 입력 성공도 확정하지 못했다. 기존 상자/타격 코드는 수정하지 않았다.
-3. 최신 원시 도형 폴백 복구를 Unity Play Mode에서 다시 검증해야 한다.
+3. 최신 원시 도형 폴백은 2026-10-22 복구 후 실제 Play Mode에서 검증 완료: 새 비주얼 제거 후 6개 원시 부위가 표시됨.
 4. 큰 머리와 단일 CapsuleCollider 특성상 모든 충격 각도의 메쉬/지면 비관통을 보장하지 않는다. 관찰한 기립/휴식에서는 큰 찌그러짐은 없었으나 구르기 각도 전체 검수는 남아 있다.
 5. Windows 실행 파일 빌드, Humanoid 리타게팅, 추가 애니메이션 제작은 하지 않았다.
 
-Unity 프로세스는 실행 중인데 Computer Use 창 목록에서 사라져 원래 창 ID 복구도 실패했다. 새 실행은 Already open project 경고가 나왔다. 미저장 상태를 잃지 않도록 기존 프로세스를 강제 종료하지 않고 사용자에게 창 복원을 요청했다.
+2026-10-22 후속 복구: 사용자가 Unity 다운 및 복원 불가를 확인했다. 저장된 씬/ProjectSettings와 로그를 캐릭터 폴더의 M6_Unity_Recovery_2026-10-22T10-36-33-732Z에 백업하고 멈춘 프로세스를 종료했다. 재실행 환경의 APPDATA/ProgramData 경로 누락을 확인해 해당 실행에만 보완했으며, UPM은 0.3초 만에 연결됐다. 프로젝트 재로딩/컴파일 후 Prologue를 실제 재생했고, MainPrototype의 런타임 입력 시험 장면을 열었다. 새 모델 제거 시 기존 6개 원시 부위 복구를 화면 및 로그로 확인했다. 시험 종료 후 원래 Prologue와 M6 모델로 돌아왔으며 런타임 변경은 저장하지 않았다. 자동 드래그 재시도는 상자 이동 성공을 확인하지 못했고 no stroke 표시가 유지되어 입력 종단 검증은 계속 미완료다.
 
 ## 검수 도구
 NeverGiveUp > M6 > Play Review Panel. 기록은 기본 꺼짐이며 Start recording으로 명시적으로 시작한다. API 충격 버튼은 실제 Recovery를 호출하지만 마우스 제스처 검증은 아니다. Input test scene은 Play Mode에서만 MainPrototype을 다시 열어 AI를 일시 정지한다. Stop Play Mode로 테스트 변경을 폐기한다. 폴백 버튼 역시 런타임 비주얼만 제거한다. Assets 생성 메뉴는 기존 씬/프리팹을 대상으로 하며 씬 전체 생성 메뉴를 호출하지 않는다.

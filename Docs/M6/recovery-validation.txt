@@ -1,0 +1,2 @@
+[Package Manager] Connected to IPC stream "Upm-32760" after 0.3 seconds.
+M6 runtime fallback: 6 visible primitive renderers
