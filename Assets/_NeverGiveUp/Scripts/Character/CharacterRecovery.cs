@@ -16,6 +16,79 @@ namespace NeverGiveUp
         private float stableTime;
         private float immunityUntil;
         private float stumbleUntil;
+        [Header("Obstacle reaction (M6.2)")]
+        [SerializeField, Range(0.5f, 1.2f)] private float obstacleRestSeconds = 0.8f;
+        [SerializeField, Range(0.1f, 1.5f)] private float obstacleRecoilSpeed = 0.85f;
+        [SerializeField, Range(0.1f, 0.8f)] private float obstacleRecoilSeconds = 0.28f;
+        [SerializeField, Min(0.5f)] private float strongObstacleSpeed = 7f;
+        private float obstaclePhaseAt, obstacleSitSeconds, obstacleStandSeconds;
+        private int obstaclePhase;
+        public bool ObstacleReacting => obstaclePhase != 0;
+        public Vector3 ObstacleImpulse { get; private set; }
+        public CharacterState ObstacleState { get; private set; }
+        public void ReactToObstacle(ObstacleContact contact, float sitSeconds, float standSeconds)
+        {
+            if (ExternalReaction || ObstacleReacting) return;
+            motor.SampleGround();
+            Vector3 recoil = contact.Ceiling ? Vector3.down * 0.25f :
+                new Vector3(Mathf.Sign(contact.Normal.x) * obstacleRecoilSpeed, 0, 0);
+            // No horizontal kick into an unsupported edge. In air retain natural
+            // collision momentum; the underside response is downward, never a jump.
+            if (!motor.Grounded || !motor.GroundAhead(Mathf.Sign(recoil.x))) recoil.x = 0;
+            Vector3 current = motor.Body.linearVelocity;
+            Vector3 change = Vector3.zero;
+            if (contact.Ceiling) change.y = Mathf.Clamp(recoil.y - current.y, -1.2f, 0f);
+            else change.x = Mathf.Clamp(recoil.x - current.x, -1.5f, 1.5f);
+            ObstacleImpulse = change * motor.Body.mass;
+            motor.Body.AddForce(ObstacleImpulse, ForceMode.Impulse);
+            motor.SuppressControl(obstacleRecoilSeconds);
+            if (contact.Speed >= strongObstacleSpeed)
+            {
+                LoseBalance(-contact.Approach);
+                return;
+            }
+            obstacleSitSeconds = sitSeconds; obstacleStandSeconds = standSeconds;
+            obstaclePhase = contact.Speed > 0f && contact.Speed < 0.75f ? 5 : 1;
+            obstaclePhaseAt = Time.time;
+            ObstacleState = CharacterState.Stumbling;
+        }
+        private void TickObstacle()
+        {
+            if (!ObstacleReacting) return;
+            if (Active || palmFlight) { obstaclePhase = 0; return; }
+            float elapsed = Time.time - obstaclePhaseAt;
+            if (obstaclePhase == 5)
+            {
+                motor.GroundDrag(4); ObstacleState = CharacterState.Stumbling;
+                if (elapsed > 0.45f) obstaclePhase = 0;
+                return;
+            }
+            if (!motor.Grounded)
+            { ObstacleState = CharacterState.Falling; obstaclePhaseAt = Time.time; return; }
+            if (obstaclePhase == 1)
+            {
+                ObstacleState = CharacterState.Stumbling;
+                if (elapsed < obstacleRecoilSeconds) return;
+                obstaclePhase = 2; obstaclePhaseAt = Time.time;
+            }
+            motor.GroundDrag(10f);
+            elapsed = Time.time - obstaclePhaseAt;
+            if (obstaclePhase == 2)
+            {
+                ObstacleState = CharacterState.SittingDown;
+                if (elapsed >= obstacleSitSeconds) { obstaclePhase = 3; obstaclePhaseAt = Time.time; }
+            }
+            else if (obstaclePhase == 3)
+            {
+                ObstacleState = CharacterState.Resting;
+                if (elapsed >= obstacleRestSeconds) { obstaclePhase = 4; obstaclePhaseAt = Time.time; }
+            }
+            else if (obstaclePhase == 4)
+            {
+                ObstacleState = CharacterState.GettingUpFromSit;
+                if (elapsed >= obstacleStandSeconds) obstaclePhase = 0;
+            }
+        }
         public bool Active { get; private set; }
         public bool GettingUp { get; private set; }
         public bool Stumbling => !Active && Time.time < stumbleUntil;
@@ -50,6 +123,7 @@ namespace NeverGiveUp
             $"external {motor.ExternalSource}, AI suppressed {motor.ControlSuppressed}";
         public void PalmSlap(Vector3 impulse, Vector3 point)
         {
+            obstaclePhase = 0;
             motor.SampleGround();
             motor.NotifyExternal("player-palm-slap");
             impulse.z = 0f;
@@ -102,6 +176,7 @@ namespace NeverGiveUp
         }
         public void Tick(float dt)
         {
+            TickObstacle();
             if (palmFlight)
             {
                 if (Time.time - lastPalmTime < 0.12f || !motor.Grounded || motor.Body.linearVelocity.y > 0.3f) motor.SuppressControl(0.12f);
@@ -155,6 +230,34 @@ namespace NeverGiveUp
         }
         private void OnCollisionEnter(Collision collision)
         {
+            // Side/underside obstruction belongs to the obstacle response; retain
+            // this existing handler for hard landings and moving-body impacts.
+            if (ObstacleReacting)
+            {
+                // A new hard landing or strong moving-body impact outranks a seated
+                // reaction. Do not let a ceiling bump mask a subsequent long fall.
+                for (int i = 0; i < collision.contactCount; i++)
+                {
+                    var hit = collision.GetContact(i);
+                    float incoming = Vector3.Dot(collision.relativeVelocity, hit.normal);
+                    bool hardLanding = hit.normal.y > .45f && incoming > 10f;
+                    bool strongBody = collision.rigidbody && incoming >= strongObstacleSpeed;
+                    if (!hardLanding && !strongBody) continue;
+                    obstaclePhase = 0;
+                    LoseBalance(hit.point.x >= motor.Body.position.x ? -1f : 1f);
+                    return;
+                }
+                return;
+            }
+            // Independent of Unity component callback order: side/underside contact
+            // is arbitrated by Brain through Motor.Contact, not this landing handler.
+            for (int i = 0; i < collision.contactCount; i++)
+            {
+                var c = collision.GetContact(i);
+                if ((Mathf.Abs(c.normal.x) > 0.65f && c.normal.y < 0.45f &&
+                    c.point.y > motor.Capsule.bounds.min.y + 0.25f) ||
+                    (c.normal.y < -0.55f && c.point.y > motor.Body.worldCenterOfMass.y + 0.15f)) return;
+            }
             if (Active || Time.time < immunityUntil || collision.contactCount == 0) return;
             bool movingObject = collision.rigidbody && !collision.rigidbody.isKinematic;
             bool hardFall = collision.relativeVelocity.magnitude > 10f;

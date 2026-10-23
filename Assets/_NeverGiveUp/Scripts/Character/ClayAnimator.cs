@@ -38,7 +38,7 @@ namespace NeverGiveUp
         {
             if (!Ready || !brain || !motor) return;
             bool physical = recovery && recovery.Active;
-            bool airHit = recovery && recovery.ExternalReaction && !motor.Grounded;
+            bool airHit = recovery && recovery.ExternalReaction && !recovery.ObstacleReacting && !motor.Grounded;
             if (motor.Grounded && !wasGrounded && !physical) landUntil = Time.time + 0.18f;
             wasGrounded = motor.Grounded;
             string next = Choose(physical, airHit);
@@ -77,6 +77,7 @@ namespace NeverGiveUp
             if (airHit) return "NGU_AirFlail";
             if (physical) return "NGU_KnockDown";
             if (recovery && recovery.Stumbling) return "NGU_Stumble";
+            if (brain.State == CharacterState.Stumbling) return "NGU_Stumble";
             if (brain.State == CharacterState.SittingDown) return "NGU_SitDown";
             if (brain.State == CharacterState.Resting) return "NGU_Rest";
             if (brain.State == CharacterState.GettingUpFromSit) return "NGU_GetUpFromSit";

@@ -38,6 +38,9 @@ namespace NeverGiveUp
         private Transform terrain;
         public IReadOnlyList<Platform> Platforms => platforms;
         public string MapSignature { get; private set; }
+        public int EnvironmentRevision { get; private set; }
+        readonly Dictionary<Collider, Bounds> observedBounds = new Dictionary<Collider, Bounds>();
+        readonly Dictionary<Collider, bool> observedHeld = new Dictionary<Collider, bool>();
 
         public void Initialize(Transform terrainRoot, CharacterMotor actor)
         {
@@ -63,8 +66,23 @@ namespace NeverGiveUp
                 if (b.size.x < 0.6f || b.min.z > 0.05f || b.max.z < -0.05f) continue;
                 platforms.Add(new Platform { Id = HierarchyId(collider.transform), Collider = collider,
                     Movable = collider.GetComponentInParent<DraggableBody>() });
+                var movable = platforms[platforms.Count - 1].Movable;
+                bool held = movable && movable.Held;
+                if (observedBounds.TryGetValue(collider, out Bounds old))
+                {
+                    if ((b.center - old.center).sqrMagnitude > 0.04f || (b.size - old.size).sqrMagnitude > 0.04f ||
+                        observedHeld[collider] != held)
+                    { EnvironmentRevision++; observedBounds[collider] = b; observedHeld[collider] = held; }
+                }
+                else { observedBounds[collider] = b; observedHeld[collider] = held; EnvironmentRevision++; }
             }
             platforms.Sort((a, b) => string.CompareOrdinal(a.Id, b.Id));
+            // Destroyed/disabled obstacles may reopen a route too.
+            var removed = new List<Collider>();
+            foreach (var pair in observedBounds)
+                if (!pair.Key || !pair.Key.enabled || !pair.Key.gameObject.activeInHierarchy ||
+                    !platforms.Exists(p => p.Collider == pair.Key)) removed.Add(pair.Key);
+            foreach (var item in removed) { observedBounds.Remove(item); observedHeld.Remove(item); EnvironmentRevision++; }
             foreach (Platform a in platforms)
             foreach (Platform b in platforms)
             {
@@ -100,10 +118,17 @@ namespace NeverGiveUp
             float launch = direction > 0 ? a.Bounds.max.x - marginA : a.Bounds.min.x + marginA;
             float landing = direction > 0 ? b.Bounds.min.x + marginB : b.Bounds.max.x - marginB;
             // A wide lower floor must approach the upper platform from outside its footprint.
-            if (a.Bounds.min.x < b.Bounds.min.x && a.Bounds.max.x > b.Bounds.max.x && b.Bounds.max.y > a.Bounds.max.y + 0.3f)
+            if (a.Bounds.min.x < b.Bounds.max.x && a.Bounds.max.x > b.Bounds.min.x && b.Bounds.max.y > a.Bounds.max.y + 0.3f)
             {
-                direction = b.Bounds.center.x < a.Bounds.center.x ? -1f : 1f;
-                launch = direction > 0 ? b.Bounds.min.x - 2.1f : b.Bounds.max.x + 2.1f;
+                // Partial overlap needs the same underside avoidance as full containment.
+                // A platform extending beyond the safety floor can only be approached
+                // from its exposed edge, not from a takeoff underneath its middle.
+                float left = b.Bounds.min.x - 2.1f, right = b.Bounds.max.x + 2.1f;
+                bool leftFits = left >= a.Bounds.min.x + marginA && left <= a.Bounds.max.x - marginA;
+                bool rightFits = right >= a.Bounds.min.x + marginA && right <= a.Bounds.max.x - marginA;
+                if (!leftFits && !rightFits) return null;
+                direction = leftFits && (!rightFits || b.Bounds.center.x >= a.Bounds.center.x) ? 1f : -1f;
+                launch = direction > 0 ? left : right;
                 landing = direction > 0 ? b.Bounds.min.x + marginB : b.Bounds.max.x - marginB;
             }
             Vector3 from = a.Surface(launch), to = b.Surface(landing);

@@ -30,6 +30,11 @@ namespace NeverGiveUp
         public string ExternalSource { get; private set; } = "none";
         public event Action<Collision> Contact;
         private float controlSuppressedUntil;
+        public float DesiredVelocity { get; private set; }
+        private float commandAt = -100f;
+        private Collider blockedCollider;
+        private float blockedSince, blockedAt;
+        public Vector3 CommandVelocity { get; private set; }
         public bool ControlSuppressed => Time.time < controlSuppressedUntil;
         public void SuppressControl(float seconds)
         { controlSuppressedUntil = Mathf.Max(controlSuppressedUntil, Time.time + seconds); }
@@ -108,6 +113,8 @@ namespace NeverGiveUp
         public void Drive(float desiredVelocity, float authority = 1f)
         {
             if (ControlSuppressed) return;
+            DesiredVelocity = desiredVelocity; commandAt = Time.time;
+            CommandVelocity = body.linearVelocity;
             if (Mathf.Abs(desiredVelocity) > 0.05f) Facing = Mathf.Sign(desiredVelocity);
             float delta = Mathf.Clamp(desiredVelocity - body.linearVelocity.x,
                 -(Grounded ? acceleration : airAcceleration) * authority * Time.fixedDeltaTime,
@@ -122,6 +129,8 @@ namespace NeverGiveUp
             if (!Grounded || ControlSuppressed) return;
             horizontalSpeed = Mathf.Clamp(horizontalSpeed, -MaxJumpHorizontal, MaxJumpHorizontal);
             verticalSpeed = Mathf.Clamp(verticalSpeed, 0f, jumpSpeed);
+            DesiredVelocity = horizontalSpeed; commandAt = Time.time;
+            CommandVelocity = new Vector3(horizontalSpeed, verticalSpeed, 0f);
             body.AddForce(new Vector3(horizontalSpeed - body.linearVelocity.x,
                 verticalSpeed - body.linearVelocity.y, 0f), ForceMode.VelocityChange);
             groundIgnoreUntil = Time.time + 0.18f;
@@ -193,6 +202,71 @@ namespace NeverGiveUp
         public void GroundDrag(float rate)
         {
             if (Grounded) body.AddForce(Vector3.right * (-body.linearVelocity.x * rate), ForceMode.Acceleration);
+        }
+
+        // Contact alone is not obstruction: require an opposed command/approach or
+        // sustained loss of commanded progress. Upward support normals never qualify.
+        public bool TryObstacle(Collision collision, out ObstacleContact obstacle)
+        {
+            obstacle = default;
+            for (int i = 0; i < collision.contactCount; i++)
+            {
+                ContactPoint c = collision.GetContact(i);
+                bool ceiling = c.normal.y < -0.55f && c.point.y > body.worldCenterOfMass.y + 0.15f;
+                bool side = Mathf.Abs(c.normal.x) > 0.65f && c.normal.y < 0.45f &&
+                    c.point.y > capsule.bounds.min.y + 0.25f;
+                if (!ceiling && !side) continue;
+                // Unity supplies the other body's velocity relative to this body.
+                // Incoming motion projects positively onto our outward contact normal.
+                float closing = Mathf.Max(0f, Vector3.Dot(collision.relativeVelocity, c.normal));
+                bool opposed = Time.time - commandAt < 0.15f && DesiredVelocity * c.normal.x < -0.2f;
+                bool stalled = side && opposed && Mathf.Abs(body.linearVelocity.x) < Mathf.Abs(DesiredVelocity) * 0.4f;
+                if (stalled)
+                {
+                    if (blockedCollider != collision.collider || Time.time - blockedAt > 0.08f) blockedSince = Time.time;
+                    blockedCollider = collision.collider; blockedAt = Time.time;
+                }
+                bool sustained = stalled && Time.time - blockedSince > 0.18f;
+                bool movingIntoActor = collision.rigidbody &&
+                    Vector3.Dot(collision.rigidbody.GetPointVelocity(c.point), c.normal) > 0.5f;
+                if (!(ceiling ? closing > 0.45f : closing > 0.5f && (opposed || !Grounded || movingIntoActor) || sustained)) continue;
+                obstacle = new ObstacleContact { Collider = collision.collider, Point = c.point,
+                    Normal = c.normal, Speed = closing, Ceiling = ceiling,
+                    Approach = Mathf.Abs(DesiredVelocity) > 0.1f ? Mathf.Sign(DesiredVelocity) : Facing };
+                return true;
+            }
+            return false;
+        }
+
+        // Swept capsule along the ballistic arc. It includes the target's sides and
+        // underside; only a descending top landing is permitted.
+        public bool ArcClear(Vector3 feet, Vector3 velocity, float duration, Collider target, out RaycastHit obstruction)
+        {
+            obstruction = default;
+            int steps = Mathf.Clamp(Mathf.CeilToInt(duration / 0.035f), 4, 120);
+            float radius = capsule.radius * 0.94f;
+            Vector3 previous = feet;
+            for (int s = 1; s <= steps; s++)
+            {
+                float t = duration * s / steps;
+                Vector3 next = feet + velocity * t + Physics.gravity * (0.5f * t * t);
+                Vector3 delta = next - previous;
+                if (delta.sqrMagnitude < 0.000001f) continue;
+                int count = Physics.CapsuleCastNonAlloc(previous + Vector3.up * (capsule.radius + 0.035f),
+                    previous + Vector3.up * (capsule.height - capsule.radius + 0.035f), radius,
+                    delta.normalized, hits, delta.magnitude, groundMask, QueryTriggerInteraction.Ignore);
+                if (count == hits.Length) return false;
+                for (int i = 0; i < count; i++)
+                {
+                    RaycastHit hit = hits[i];
+                    if (hit.rigidbody == body) continue;
+                    if (hit.normal.y > 0.5f && delta.y < 0 && hit.collider == target) continue;
+                    if (hit.normal.y > 0.5f && delta.y >= 0 && s <= 2) continue;
+                    obstruction = hit; return false;
+                }
+                previous = next;
+            }
+            return true;
         }
 
         private void OnCollisionEnter(Collision collision) => ObserveContact(collision);

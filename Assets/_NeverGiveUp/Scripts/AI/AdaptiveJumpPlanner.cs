@@ -27,7 +27,8 @@ namespace NeverGiveUp
             float time = (maximumY + Mathf.Sqrt(d)) / g;
             return Mathf.Abs(to.x - from.x) <= maximumX * time;
         }
-        public static JumpPlan Plan(PlatformGraph graph, PlatformGraph.Link link, CharacterMotor motor, LearningMemory memory)
+        public static JumpPlan Plan(PlatformGraph graph, PlatformGraph.Link link, CharacterMotor motor, LearningMemory memory,
+            ObstacleMemory obstacles = null)
         {
             string context = graph.Context(link);
             JumpExperience section = memory.Section(link.Id + ":" + context);
@@ -43,11 +44,24 @@ namespace NeverGiveUp
                 target.min.x + targetMargin, target.max.x - targetMargin));
             var plan = new JumpPlan { link = link, experience = section, action = action, parameters = p,
                 launch = launch, landing = landing, mode = action.mode, context = context, reusedSuccess = reused };
-            if (ComputeVelocity(plan, launch, motor)) return plan;
+            if ((obstacles == null || !obstacles.RepeatsLaunch(launch, sign)) && ComputeVelocity(plan, launch, motor)) return plan;
             // A learned horizontal multiplier may become impossible after changing
             // to fixed-height jumping; re-normalize without raising jump strength.
             plan.parameters.horizontalScale = 1f;
-            return ComputeVelocity(plan, launch, motor) ? plan : null;
+            // Try a different takeoff on the SAME support before escalating jump power
+            // or retrying a known ceiling/side impact at the same X.
+            for (int n = 0; n <= 12; n++)
+            {
+                float offset = n == 0 ? 0 : ((n + 1) / 2) * 0.55f * (n % 2 == 1 ? -sign : sign);
+                Vector3 alternative = link.From.Surface(Mathf.Clamp(launch.x + offset,
+                    source.min.x + sourceMargin, source.max.x - sourceMargin));
+                if (obstacles != null && obstacles.RepeatsLaunch(alternative, sign)) continue;
+                if (!motor.IsClear(alternative + Vector3.up * (motor.HalfHeight + 0.05f))) continue;
+                if (!ComputeVelocity(plan, alternative, motor)) continue;
+                plan.launch = alternative;
+                return plan;
+            }
+            return null;
         }
         // The Y impulse is always one of two fixed heights. Learning can adjust
         // launch X, target X and horizontal control but cannot invent a third height.
@@ -82,7 +96,8 @@ namespace NeverGiveUp
             plan.vy = vertical;
             plan.vx = horizontal;
             plan.flightTime = duration;
-            return true;
+            return motor.ArcClear(from, new Vector3(horizontal, vertical, 0), duration,
+                plan.link?.To.Collider, out _);
         }
         // Probe even when the graph cannot find a full route. This must create
         // an observable JumpAttempt, not an unrecorded random hop.

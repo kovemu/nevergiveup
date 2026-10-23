@@ -38,10 +38,23 @@ namespace NeverGiveUp
         private string lastInterference = "none";
         private JumpMode lastJumpMode = JumpMode.Short;
         private JumpExperience lastExperience;
+        readonly ObstacleMemory obstacles = new ObstacleMemory();
+        [SerializeField] private bool showObstacleDebug;
+        [SerializeField] private bool logObstacleEvents = true;
+        private float collisionAt = -100, retreatUntil, retreatX;
+        private bool retreatPending, obstacleWasReacting;
+        private int environmentRevision;
+        private string replanReason = "none";
+        private readonly Dictionary<string, float> rejectedRoutes = new Dictionary<string, float>();
+        public string ObstacleDebug => obstacles.Last == null ? "Obstacle: none | replan: " + replanReason :
+            $"Obstacle: {(obstacles.Last.Collider ? obstacles.Last.Collider.name : "removed")} | {(obstacles.Last.Ceiling ? "underside" : "side")} normal {obstacles.Last.Normal}\n" +
+            $"point {obstacles.Last.Point}, bounds {obstacles.Last.Bounds}, approach {obstacles.Last.Approach}, movable {obstacles.Last.Movable}\n" +
+            $"state {State}, grounded {motor.Grounded}, support {motor.Support?.name ?? "none"}, target {plan?.link.To.Id ?? attempt?.Plan.link.To.Id ?? "none"}\n" +
+            $"backward impulse {recovery.ObstacleImpulse}, repeated {obstacles.Last.Repeats}, moved {obstacles.LastMovement} | replan: {replanReason}";
         public CharacterState State { get; private set; } = CharacterState.Idle;
         public int FailureCount { get; private set; }
         public bool PreparingJump => inspecting && plan != null && waitTime > inspectDuration;
-        public bool SafeForGoal => !recovery.ExternalReaction && attempt == null;
+        public bool SafeForGoal => !recovery.ExternalReaction && !recovery.ObstacleReacting && attempt == null;
         public JumpMode CurrentJumpMode => attempt?.Plan.mode ?? plan?.mode ?? lastJumpMode;
         public string DebugSummary
         {
@@ -61,11 +74,35 @@ namespace NeverGiveUp
             presentation = GetComponent<CharacterAnimation>();
             motor.Contact += OnContact;
         }
-        private void OnContact(Collision collision) { if (attempt != null) attempt.Collision(collision); }
+        private void OnContact(Collision collision)
+        {
+            if (!enabled || !stage || memory == null) return;
+            if (attempt != null) attempt.Collision(collision);
+            if (stage.Completed || recovery.ObstacleReacting || recovery.ExternalReaction || Time.time - collisionAt < 0.75f) return;
+            if (!motor.TryObstacle(collision, out ObstacleContact contact)) return;
+            collisionAt = Time.time;
+            Vector3 takeoff = attempt?.Observation.takeoff ?? motor.Feet;
+            obstacles.Remember(contact, takeoff);
+            string target = attempt?.Plan.link.To.Id ?? plan?.link.To.Id ?? "walking";
+            if (attempt != null)
+            {
+                attempt.Finish(contact.Ceiling ? JumpOutcome.CeilingCollision : JumpOutcome.SideCollision, motor);
+                RecordAttempt(); // Exactly once: clears attempt before the next contact/FixedUpdate.
+            }
+            RestartRoute(); restUntil = standUntil = 0;
+            retreatPending = true; retreatUntil = 0;
+            replanReason = $"contact {contact.Collider.name} ({(contact.Ceiling ? "underside" : "side")}); former target {target}";
+            recovery.ReactToObstacle(contact, presentation ? presentation.SitSeconds : 0.35f,
+                presentation ? presentation.StandSeconds : 0.5f);
+            State = recovery.ObstacleState;
+            obstacleWasReacting = true;
+            if (logObstacleEvents) Debug.Log("[M62] collision " + ObstacleDebug, this);
+        }
         public void Initialize(StageController owner)
         {
             stage = owner;
             memory = new LearningMemory(stage.Graph.MapSignature, persistLearning);
+            environmentRevision = stage.Graph.EnvironmentRevision;
             RestartRoute();
         }
         public void RestartRoute()
@@ -86,6 +123,26 @@ namespace NeverGiveUp
             motor.SampleGround();
             recovery.Tick(dt);
             if (attempt != null && attempt.Tick(motor, recovery, stage.Graph)) RecordAttempt();
+            bool changed = obstacles.Refresh();
+            if (changed || environmentRevision != stage.Graph.EnvironmentRevision)
+            {
+                environmentRevision = stage.Graph.EnvironmentRevision;
+                rejectedRoutes.Clear();
+                if (plan != null || walkLink != null || changed)
+                {
+                    replanReason = "collider bounds/held state changed; discard stale route";
+                    if (attempt == null) { RestartRoute(); retreatPending = false; }
+                    if (logObstacleEvents) Debug.Log("[M62] environment " + replanReason, this);
+                }
+            }
+            if (recovery.ObstacleReacting)
+            { State = recovery.ObstacleState; obstacleWasReacting = true; return; }
+            if (obstacleWasReacting && !recovery.Active)
+            {
+                obstacleWasReacting = false; stage.Graph.Rebuild();
+                RestartRoute();
+                if (logObstacleEvents) Debug.Log("[M62] reaction finished; " + ObstacleDebug, this);
+            }
             if (Time.time >= saveAt) { if (persistLearning) memory.Save(); saveAt = Time.time + 10f; }
             if (recovery.ExternalReaction) { restUntil = standUntil = 0f; recovering = true; }
             if (recovery.Active)
@@ -141,6 +198,7 @@ namespace NeverGiveUp
             // The feet position is a reliable fallback when already grounded.
             if (support == null) support = stage.Graph.At(motor.Feet);
             if (support == null) { State = CharacterState.InspectingObstacle; motor.Stop(); return; }
+            if (RetreatFromObstacle(support)) return;
             if (support.Bounds.max.y > bestReachedHeight + 0.45f)
             {
                 // Reaching a genuinely new height resets recent loop suspicion.
@@ -210,9 +268,14 @@ namespace NeverGiveUp
                 if (link.Walk) walkLink = link;
                 else
                 {
-                    JumpPlan routePlan = AdaptiveJumpPlanner.Plan(stage.Graph, link, motor, memory);
+                    JumpPlan routePlan = AdaptiveJumpPlanner.Plan(stage.Graph, link, motor, memory, obstacles);
                     if (routePlan != null) SetPlan(routePlan);
-                    else StartProbe(support, link.To, link.Direction);
+                    else
+                    {
+                        rejectedRoutes[link.Id] = Time.time + 6f;
+                        replanReason = "no clear capsule arc: " + link.Id;
+                        StartProbe(support, link.To, link.Direction);
+                    }
                 }
             }
             if (walkLink != null) { WalkToward(walkLink.Landing.x, support, dt); return; }
@@ -244,7 +307,11 @@ namespace NeverGiveUp
             if (runup && delta * direction <= 0.07f)
             {
                 if (!AdaptiveJumpPlanner.ComputeVelocity(plan, motor.Feet, motor))
-                { BlockedAttempt(JumpOutcome.Unknown); return; }
+                {
+                    rejectedRoutes[plan.link.Id] = Time.time + 6f;
+                    replanReason = "takeoff arc changed; predicted blockage, no learning failure";
+                    RestartRoute(); return;
+                }
                 attempt = new JumpAttempt(plan, motor);
                 motor.Jump(plan.vx, plan.vy);
                 State = CharacterState.Jumping;
@@ -269,7 +336,8 @@ namespace NeverGiveUp
             repeatedTransitions.TryGetValue(link.From.Id + ">" + link.To.Id, out int visits);
             // Traversing the same small loop repeatedly without gaining height
             // adds temporary cost, even when each individual jump succeeded.
-            return memory.RoutePenalty(link.Id + ":" + stage.Graph.Context(link)) +
+            return (rejectedRoutes.TryGetValue(link.Id, out float until) && Time.time < until ? 50f : 0f) +
+                obstacles.Penalty(link) + memory.RoutePenalty(link.Id + ":" + stage.Graph.Context(link)) +
                 Mathf.Max(0, visits - 1) * 3f;
         }
         private void StartProbe(PlatformGraph.Platform support,
@@ -283,10 +351,20 @@ namespace NeverGiveUp
             }
             JumpPlan probing = AdaptiveJumpPlanner.Probe(stage.Graph, support, candidate,
                 motor, memory, direction);
+            plan = null; walkLink = null; runup = inspecting = false;
             if (probing == null)
             {
                 NoteBlocked();
                 return;
+            }
+            if (obstacles.RepeatsLaunch(motor.Feet, direction) ||
+                !motor.ArcClear(motor.Feet, new Vector3(probing.vx, probing.vy, 0), probing.flightTime,
+                    probing.link.To.Collider, out _))
+            {
+                // A prediction is not a failed physical jump and must not train the JSON.
+                replanReason = "probe rejected: known collision or occupied arc";
+                noRouteUntil = Time.time + 1.2f;
+                NoteBlocked(); return;
             }
             plan = null;
             walkLink = null;
@@ -301,6 +379,29 @@ namespace NeverGiveUp
             runup = inspecting = false; waitTime = stalledTime = 0f;
             bestDistance = float.PositiveInfinity;
             if (next == null) cooldown = 0.4f;
+        }
+        private bool RetreatFromObstacle(PlatformGraph.Platform support)
+        {
+            if (!retreatPending || obstacles.Last == null) return false;
+            if (retreatUntil == 0f)
+            {
+                var o = obstacles.Last;
+                float desired = motor.Feet.x - o.Approach * (0.9f + Mathf.Min(o.Repeats, 3) * 0.25f);
+                if (o.Ceiling && o.Collider)
+                    desired = o.Approach > 0 ? o.Collider.bounds.min.x - 0.65f : o.Collider.bounds.max.x + 0.65f;
+                retreatX = Mathf.Clamp(desired, support.Bounds.min.x + 0.45f, support.Bounds.max.x - 0.45f);
+                retreatUntil = Time.time + 3f;
+                replanReason = $"different approach X={retreatX:F2} after {o.Collider?.name}";
+                if (logObstacleEvents) Debug.Log("[M62] replan " + replanReason, this);
+            }
+            float delta = retreatX - motor.Feet.x;
+            float direction = Mathf.Sign(delta);
+            if (Mathf.Abs(delta) < 0.15f || Time.time > retreatUntil || !motor.GroundAhead(direction) ||
+                motor.ObstacleAhead(direction, out _))
+            { retreatPending = false; retreatUntil = 0; motor.Stop(); return false; }
+            State = CharacterState.Retrying;
+            motor.Drive(Mathf.Clamp(delta * 3f, -1.3f, 1.3f));
+            return true;
         }
         private bool ProgressStalled(float distance, float dt)
         {
@@ -357,14 +458,14 @@ namespace NeverGiveUp
             var local = new PlatformGraph.Link { From = support, To = destination,
                 Launch = support.Surface(motor.Feet.x - direction * 0.2f), Landing = landing,
                 Tag = ":obstacle:" + obstruction.collider.name };
-            JumpPlan next = AdaptiveJumpPlanner.Plan(stage.Graph, local, motor, memory);
+            JumpPlan next = AdaptiveJumpPlanner.Plan(stage.Graph, local, motor, memory, obstacles);
             if (next != null)
             {
                 // The obstacle's observed height seeds the first physical estimate, not a forced success.
                 next.parameters.clearance = Mathf.Max(next.parameters.clearance,
                     b.max.y - Mathf.Max(local.Launch.y, landing.y) + 0.25f);
                 next.parameters.Bound(motor.MoveSpeed);
-                AdaptiveJumpPlanner.ComputeVelocity(next, next.launch, motor);
+                if (!AdaptiveJumpPlanner.ComputeVelocity(next, next.launch, motor)) next = null;
             }
             if (next == null) { StartProbe(support, obstacleTop, direction); return; }
             SetPlan(next);
@@ -436,6 +537,8 @@ namespace NeverGiveUp
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
             if (showLearningDebug && stage)
                 GUI.Box(new Rect(12, Screen.height - 116, Mathf.Min(950, Screen.width - 24), 104), DebugSummary);
+            if (showObstacleDebug && stage)
+                GUI.Box(new Rect(12, 54, Mathf.Min(1000, Screen.width - 24), 140), ObstacleDebug);
 #endif
         }
         private void OnApplicationPause(bool pause) { if (pause && persistLearning) memory?.Save(); }
