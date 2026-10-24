@@ -34,6 +34,12 @@ namespace NeverGiveUp
         private Rigidbody body;
         private CapsuleCollider capsule;
         private float groundIgnoreUntil;
+        private Collider contactSupport;
+        private Vector3 contactSupportPoint;
+        private float supportContactAt = -100f;
+        private Vector3 supportedBodyPosition;
+        private Quaternion supportedBodyRotation;
+        private Matrix4x4 supportMatrix;
         private PhysicsMaterial standingMaterial;
         private PhysicsMaterial fallenMaterial;
         [SerializeField, Min(0.1f)] private float airAcceleration = 3f;
@@ -53,6 +59,7 @@ namespace NeverGiveUp
         public void SuppressControl(float seconds)
         { controlSuppressedUntil = Mathf.Max(controlSuppressedUntil, Time.time + seconds); }
         public float MaxJumpHorizontal => moveSpeed * 1.6f;
+        public float AirAcceleration => airAcceleration;
 
         public Rigidbody Body => body;
         public CapsuleCollider Capsule => capsule;
@@ -123,6 +130,21 @@ namespace NeverGiveUp
                 Grounded = true;
                 Support = hits[i].collider;
                 SupportPoint = hits[i].point;
+            }
+            // The narrow center probe can miss a real capsule/ledge corner contact.
+            // Only a recent upward contact on the lower capsule counts; walls and
+            // ceilings never supply support, and the post-jump ignore still applies.
+            if (!Grounded && contactSupport && contactSupport.enabled &&
+                contactSupport.gameObject.activeInHierarchy &&
+                (Time.fixedTime - supportContactAt <= Time.fixedDeltaTime * 2.1f ||
+                    body.IsSleeping() && body.position == supportedBodyPosition &&
+                    body.rotation == supportedBodyRotation &&
+                    contactSupport.transform.localToWorldMatrix == supportMatrix) &&
+                body.linearVelocity.y <= .3f)
+            {
+                Grounded = true;
+                Support = contactSupport;
+                SupportPoint = contactSupportPoint;
             }
         }
 
@@ -311,10 +333,27 @@ namespace NeverGiveUp
         private void OnCollisionStay(Collision collision) => ObserveContact(collision);
         private void ObserveContact(Collision collision)
         {
+            if ((groundMask.value & (1 << collision.collider.gameObject.layer)) != 0)
+                for (int i = 0; i < collision.contactCount; i++)
+                {
+                    var point = collision.GetContact(i);
+                    if (point.normal.y < .45f || point.point.y > capsule.bounds.min.y + .3f) continue;
+                    contactSupport = collision.collider;
+                    contactSupportPoint = point.point;
+                    supportContactAt = Time.fixedTime;
+                    supportedBodyPosition = body.position;
+                    supportedBodyRotation = body.rotation;
+                    supportMatrix = contactSupport.transform.localToWorldMatrix;
+                    break;
+                }
             DraggableBody item = collision.collider.GetComponentInParent<DraggableBody>();
             if (item && item.PlayerInfluenced)
                 NotifyExternal("player-moved object");
             Contact?.Invoke(collision);
+        }
+        private void OnCollisionExit(Collision collision)
+        {
+            if (contactSupport == collision.collider) contactSupport = null;
         }
         private void OnDestroy()
         {
@@ -332,6 +371,7 @@ namespace NeverGiveUp
             SetUpright(true);
             groundIgnoreUntil = Time.time + 0.1f;
             Grounded = false;
+            contactSupport = null;
         }
     }
 }

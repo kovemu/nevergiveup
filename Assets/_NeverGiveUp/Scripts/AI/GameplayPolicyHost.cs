@@ -17,6 +17,14 @@ namespace NeverGiveUp
         ControlMode mode=ControlMode.Legacy;
         [SerializeField] ModelAsset model;
         [SerializeField] StageController stage;
+        [SerializeField] bool useIntermediateTargets;
+        [SerializeField, Min(.05f)] float shortPreparation=.4f,longPreparation=.4f;
+        PolicyRoute route;
+        public float PreparationSeconds(JumpMode jump)=>jump==JumpMode.Short?shortPreparation:longPreparation;
+        // After recoil, a glancing airborne obstacle contact must still allow
+        // policy air steering. Otherwise waiting for Grounded can wedge forever
+        // between two ledges. Grounded sitting and physical knockdown stay locked.
+        public bool LocomotionBlocked=>recovery.ExternalReaction || recovery.ObstacleReacting && motor.Grounded;
         CharacterBrain brain;
         CharacterMotor motor;
         CharacterRecovery recovery;
@@ -26,9 +34,10 @@ namespace NeverGiveUp
         float activatedAt, contactAt=-100, progressAt;
         float bestGoalDistance;
         Vector3 previousGoal;
+        float routeMissingSince=-1;
         public ControlMode Mode=>mode;
         public string LastFallback {get;private set;}="none";
-        public Vector3 Goal=>stage?stage.GoalPosition:motor.Feet;
+        public Vector3 Goal=>useIntermediateTargets && route!=null?route.Target:stage?stage.GoalPosition:motor.Feet;
         public CharacterState? ReactionState=>recovery.Active?(recovery.GettingUp?CharacterState.GettingUp:CharacterState.KnockedDown):
             recovery.ObstacleReacting?recovery.ObstacleState:recovery.Stumbling?CharacterState.Stumbling:
             stage && stage.Completed?CharacterState.GoalReached:(CharacterState?)null;
@@ -54,6 +63,8 @@ namespace NeverGiveUp
             try
             {
                 brain.RestartRoute();brain.enabled=false;
+                route=useIntermediateTargets?new PolicyRoute(stage.Graph,motor):null;
+                if(route!=null){motor.SampleGround();route.Refresh(stage.GoalPosition,true);}
                 var behavior=GetComponent<BehaviorParameters>();
                 if(!behavior)behavior=gameObject.AddComponent<BehaviorParameters>();
                 behavior.BehaviorName="NGUClimb";behavior.BrainParameters.VectorObservationSize=42;
@@ -68,6 +79,7 @@ namespace NeverGiveUp
                 decisions.DecisionPeriod=5;decisions.TakeActionsBetweenDecisions=true;decisions.enabled=true;
                 activatedAt=progressAt=Time.time;previousGoal=Goal;bestGoalDistance=Vector3.Distance(Goal,motor.Feet);
                 LastFallback="none";
+                routeMissingSince=-1;
                 Debug.Log("[M7A] Learned authority active; Legacy movement disabled.",this);
                 return true;
             }
@@ -86,18 +98,26 @@ namespace NeverGiveUp
             if(mode!=ControlMode.Learned)return false;
             if(brain.enabled){UseLegacy("conflicting movement authority");return false;}
             recovery.Tick(Time.fixedDeltaTime);
-            if(recovery.ExternalReaction || recovery.ObstacleReacting) return false;
+            if(route!=null)route.Refresh(stage.GoalPosition);
+            if(LocomotionBlocked) return false;
             if(stage.Completed){motor.Stop();return false;}
             return true;
         }
         void Update()
         {
             if(mode!=ControlMode.Learned || !agent)return;
+            if(route!=null && !route.HasRoute)
+            {
+                if(routeMissingSince<0)routeMissingSince=Time.time;
+                if(Time.time-routeMissingSince>8)UseLegacy("no reachable intermediate target for 8 seconds");
+                return;
+            }
+            routeMissingSince=-1;
             if(Vector3.Distance(previousGoal,Goal)>.1f)
             {previousGoal=Goal;bestGoalDistance=Vector3.Distance(Goal,motor.Feet);progressAt=Time.time;}
             if(Time.time-activatedAt>2 && Time.time-agent.LastActionTime>1)
             {UseLegacy("inference stopped returning actions");return;}
-            if(recovery.Active)
+            if(LocomotionBlocked)
             {progressAt=Time.time;bestGoalDistance=Vector3.Distance(Goal,motor.Feet);return;}
             float distance=Vector3.Distance(Goal,motor.Feet);
             if(motor.Grounded && distance<bestGoalDistance-.3f)

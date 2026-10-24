@@ -1,0 +1,119 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace NeverGiveUp
+{
+    // Supplies a destination only. No movement, takeoff position or timing commands.
+    public sealed class PolicyRoute
+    {
+        readonly PlatformGraph graph;
+        readonly CharacterMotor motor;
+        readonly Dictionary<string,bool> clearance=new Dictionary<string,bool>();
+        float refreshAt;
+        int checkedRevision=-1;
+        Collider support;
+        Vector3 final;
+        public Vector3 Target {get;private set;}
+        public Collider TargetCollider {get;private set;}
+        public bool HasRoute {get;private set;}
+        public int Revision {get;private set;}
+        public string LastBlock {get;private set;}
+        readonly RaycastHit[] sweepHits=new RaycastHit[24];
+        readonly Collider[] startOverlaps=new Collider[24];
+        public PolicyRoute(PlatformGraph graph,CharacterMotor motor){this.graph=graph;this.motor=motor;Target=motor.Feet;}
+        public void Refresh(Vector3 destination,bool force=false)
+        {
+            if(!force && (!motor.Grounded || (Time.time<refreshAt && support==motor.Support && Vector3.Distance(final,destination)<.05f)))return;
+            refreshAt=Time.time+.6f;support=motor.Support;final=destination;
+            graph.Rebuild();
+            if(checkedRevision!=graph.EnvironmentRevision){clearance.Clear();checkedRevision=graph.EnvironmentRevision;}
+            var from=graph.Support(motor.Support)??graph.At(motor.Feet);var goal=graph.At(destination);
+            var next=graph.Next(from,goal,motor.Feet,null,link=>Clear(link)?0:float.PositiveInfinity);
+            Collider selected=next?.To.Collider;
+            Vector3 target=next!=null?next.Landing:from!=null && goal!=null && from.Collider==goal.Collider?destination:motor.Feet;
+            bool reachable=next!=null || from!=null && goal!=null && from.Collider==goal.Collider;
+            if(selected!=TargetCollider || Vector3.Distance(target,Target)>.1f)Revision++;
+            TargetCollider=selected;Target=target;HasRoute=reachable;
+        }
+        public bool Clear(PlatformGraph.Link link)
+        {
+            if(link.Walk)return true;
+            if(clearance.TryGetValue(link.Id,out bool value))return value;
+            value=false;
+            // Graph launch is a Legacy planning sample, not the only legal place
+            // a learned agent can jump. Search the support, without commanding it.
+            foreach(float offset in new[]{0f,.3f,-.3f,.6f,-.6f,.9f,-.9f})
+            {
+                float x=link.Launch.x+offset;
+                if(x<link.From.Bounds.min.x+.12f || x>link.From.Bounds.max.x-.12f)continue;
+                var launch=link.From.Surface(x);
+                if(Arc(launch,link.Landing,link.To.Collider,JumpMode.Short) || Arc(launch,link.Landing,link.To.Collider,JumpMode.Long)){value=true;break;}
+            }
+            clearance[link.Id]=value;return value;
+        }
+        public bool Arc(Vector3 from,Vector3 to,Collider target,JumpMode mode)
+        {
+            if(!motor.CanReach(from,to,mode))return false;
+            var capsule=motor.Capsule;
+            int overlapCount=Physics.OverlapCapsuleNonAlloc(from+Vector3.up*(capsule.radius+.035f),from+Vector3.up*(capsule.height-capsule.radius+.035f),capsule.radius*.94f,startOverlaps,~0,QueryTriggerInteraction.Ignore);
+            if(overlapCount==startOverlaps.Length)return false;
+            for(int i=0;i<overlapCount;i++)if(startOverlaps[i].attachedRigidbody!=motor.Body)return false;
+            float dy=to.y-from.y,dir=Mathf.Sign(to.x-from.x);
+            if((mode==JumpMode.Short?motor.ShortJumpHeight:motor.LongJumpHeight)<dy+.12f)return false;
+            // Enumerate genuine discrete control choices, never the Motor's larger
+            // Legacy launch envelope. Predict the same velocity-change air drive.
+            foreach(int launch in new[]{1,0,-1})
+            foreach(int air in new[]{1,0,-1})
+                if(PolicyArc(from,to,target,mode,dir*launch,dir*air,false) && PolicyArc(from,to,target,mode,dir*launch,dir*air,true))return true;
+            return false;
+        }
+        bool PolicyArc(Vector3 start,Vector3 landing,Collider target,JumpMode mode,float launch,float air,bool sweep)
+        {
+            float dt=Time.fixedDeltaTime,vx=launch*motor.MaxJumpHorizontal*.65f,vy=motor.JumpVelocity(mode);
+            Vector3 feet=start;var capsule=motor.Capsule;
+            for(int n=0;n<150;n++)
+            {
+                if(n>0)vx=Mathf.MoveTowards(vx,air*motor.MoveSpeed,motor.AirAcceleration*dt);
+                vy+=Physics.gravity.y*dt;
+                Vector3 next=feet+new Vector3(vx,vy,0)*dt;
+                bool arrived=vy<0 && next.y<=landing.y;
+                if(arrived)next=Vector3.Lerp(feet,next,Mathf.InverseLerp(feet.y,next.y,landing.y));
+                if(sweep)
+                {
+                    Vector3 delta=next-feet;
+                    int count=Physics.CapsuleCastNonAlloc(feet+Vector3.up*(capsule.radius+.035f),feet+Vector3.up*(capsule.height-capsule.radius+.035f),capsule.radius*.94f,delta.normalized,sweepHits,delta.magnitude,~0,QueryTriggerInteraction.Ignore);
+                    if(count==sweepHits.Length)return false;
+                    for(int h=0;h<count;h++)
+                    {
+                        var hit=sweepHits[h];if(hit.rigidbody==motor.Body)continue;
+                        if(hit.normal.y>.5f && (vy<0 && hit.collider==target || vy>=0 && n<2))continue;
+                        LastBlock=$"{mode} {start}->{landing}: obstruction {hit.collider.name} at {hit.point}";return false;
+                    }
+                }
+                feet=next;
+                if(arrived)return feet.x>=target.bounds.min.x+capsule.radius+.08f && feet.x<=target.bounds.max.x-capsule.radius-.08f;
+            }
+            return false;
+        }
+        public bool ShortSufficient
+        {
+            get
+            {
+                if(!TargetCollider || !motor.Grounded)return false;
+                var current=graph.Support(motor.Support);
+                if(current==null || Target.y-current.Bounds.max.y>motor.ShortJumpHeight-.12f)return false;
+                // Ask whether this obstacle can use SHORT after approaching on the
+                // current support; an unnecessarily early LONG is still optional.
+                float dir=Mathf.Sign(Target.x-current.Bounds.center.x);
+                float edge=dir>0?TargetCollider.bounds.min.x:TargetCollider.bounds.max.x;
+                for(int i=0;i<11;i++)
+                {
+                    float x=edge-dir*(.45f+i*.3f);
+                    if(x<current.Bounds.min.x+.12f || x>current.Bounds.max.x-.12f)continue;
+                    if(Arc(current.Surface(x),Target,TargetCollider,JumpMode.Short))return true;
+                }
+                return false;
+            }
+        }
+    }
+}

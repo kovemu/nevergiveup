@@ -1,0 +1,370 @@
+seconds,mode,x,y,target_x,target_y,grounded,state,short,long,fallback,command_x,velocity_x,blocked,external,obstacle
+0.02,Learned,-3.800,0.008,-0.600,0.450,True,Idle,0,0,none,0.000,0.000,False,False,False
+0.35,Learned,-3.791,0.000,-0.600,0.450,True,Running,0,0,none,2.800,0.289,False,False,False
+0.55,Learned,-3.790,0.000,-0.600,0.450,True,InspectingObstacle,0,0,none,0.000,0.000,False,False,False
+0.76,Learned,-3.790,0.000,-0.600,0.450,True,InspectingObstacle,0,0,none,0.000,0.000,False,False,False
+0.96,Learned,-3.158,0.861,-0.600,0.450,False,Jumping,0,1,none,2.800,3.740,False,False,False
+1.16,Learned,-2.476,1.584,-0.600,0.450,False,Jumping,0,1,none,2.800,3.140,False,False,False
+1.36,Learned,-1.900,1.915,-0.600,0.450,False,Jumping,0,1,none,2.800,2.800,False,False,False
+1.56,Learned,-1.340,1.853,-0.600,0.450,False,Falling,0,1,none,2.800,2.800,False,False,False
+1.76,Learned,-0.780,1.399,-0.600,0.450,False,Falling,0,1,none,2.800,2.800,False,False,False
+1.96,Learned,-0.168,0.446,2.550,1.640,True,Recovering,0,1,none,0.000,2.600,False,False,False
+2.16,Learned,0.030,0.450,2.550,1.640,True,Recovering,0,1,none,0.000,0.018,False,False,False
+2.36,Learned,0.040,0.450,2.550,1.640,True,InspectingObstacle,0,1,none,0.000,0.000,False,False,False
+2.56,Learned,0.040,0.450,2.550,1.640,True,InspectingObstacle,0,1,none,0.000,0.000,False,False,False
+2.76,Learned,0.365,0.912,2.550,1.640,False,Jumping,0,2,none,2.800,3.980,False,False,False
+2.97,Learned,1.095,1.792,2.550,1.640,False,Jumping,0,2,none,2.800,3.380,False,False,False
+3.17,Learned,1.706,2.280,2.550,1.640,False,Jumping,0,2,none,2.800,2.800,False,False,False
+3.37,Learned,2.266,2.375,2.550,1.640,False,Falling,0,2,none,2.800,2.800,False,False,False
+3.57,Learned,2.826,2.078,2.550,1.640,False,Falling,0,2,none,2.800,2.800,False,False,False
+3.77,Learned,3.326,1.640,5.700,2.110,True,Recovering,0,2,none,0.000,1.654,False,False,False
+3.97,Learned,3.439,1.640,5.700,2.110,True,Running,0,2,none,2.800,0.144,False,False,False
+4.17,Learned,3.497,1.640,5.700,2.110,True,InspectingObstacle,0,2,none,0.000,0.000,False,False,False
+4.37,Learned,3.497,1.640,5.700,2.110,True,InspectingObstacle,0,2,none,0.000,0.000,False,False,False
+4.57,Learned,3.823,2.102,5.700,2.110,False,Jumping,0,3,none,2.800,3.980,False,False,False
+4.78,Learned,4.539,2.791,5.700,2.110,False,Falling,0,3,none,2.800,3.143,True,True,True
+4.98,Learned,5.167,2.485,5.700,2.110,False,Falling,0,3,none,2.800,3.143,True,True,True
+5.18,Learned,5.755,2.110,8.850,3.740,True,Stumbling,0,3,none,-2.800,2.673,True,False,True
+5.38,Learned,6.244,2.110,8.850,3.740,True,SittingDown,0,3,none,-2.800,1.602,True,False,True
+5.58,Learned,6.348,2.110,8.850,3.740,True,SittingDown,0,3,none,-2.800,0.102,True,False,True
+5.78,Learned,6.350,2.110,8.850,3.740,True,SittingDown,0,3,none,-2.800,0.000,True,False,True
+5.98,Learned,6.350,2.110,8.850,3.740,True,SittingDown,0,3,none,-2.800,0.000,True,False,True
+6.18,Learned,6.350,2.110,8.850,3.740,True,SittingDown,0,3,none,-2.800,0.000,True,False,True
+6.38,Learned,6.350,2.110,8.850,3.740,True,SittingDown,0,3,none,-2.800,0.000,True,False,True
+6.58,Learned,6.350,2.110,8.850,3.740,True,SittingDown,0,3,none,-2.800,0.000,True,False,True
+6.78,Learned,6.350,2.110,8.850,3.740,True,Resting,0,3,none,-2.800,0.000,True,False,True
+6.98,Learned,6.350,2.110,8.850,3.740,True,Resting,0,3,none,-2.800,0.000,True,False,True
+7.18,Learned,6.350,2.110,8.850,3.740,True,Resting,0,3,none,-2.800,0.000,True,False,True
+7.38,Learned,6.350,2.110,8.850,3.740,True,Resting,0,3,none,-2.800,0.000,True,False,True
+7.59,Learned,6.350,2.110,8.850,3.740,True,GettingUpFromSit,0,3,none,-2.800,0.000,True,False,True
+7.79,Learned,6.350,2.110,8.850,3.740,True,GettingUpFromSit,0,3,none,-2.800,0.000,True,False,True
+7.99,Learned,6.350,2.110,8.850,3.740,True,GettingUpFromSit,0,3,none,-2.800,0.000,True,False,True
+8.19,Learned,6.350,2.110,8.850,3.740,True,GettingUpFromSit,0,3,none,-2.800,0.000,True,False,True
+8.39,Learned,6.350,2.110,8.850,3.740,True,GettingUpFromSit,0,3,none,-2.800,0.000,True,False,True
+8.59,Learned,6.350,2.110,8.850,3.740,True,GettingUpFromSit,0,3,none,-2.800,0.000,True,False,True
+8.79,Learned,6.350,2.110,8.850,3.740,True,GettingUpFromSit,0,3,none,-2.800,0.000,True,False,True
+8.99,Learned,6.350,2.110,8.850,3.740,True,GettingUpFromSit,0,3,none,-2.800,0.000,True,False,True
+9.19,Learned,6.350,2.110,8.850,3.740,True,GettingUpFromSit,0,3,none,-2.800,0.000,True,False,True
+9.39,Learned,6.350,2.110,8.850,3.740,True,Recovering,0,3,none,0.000,0.000,False,False,False
+9.60,Learned,6.350,2.110,8.850,3.740,True,Idle,0,3,none,0.000,0.000,False,False,False
+9.80,Learned,6.372,2.110,8.850,3.740,True,InspectingObstacle,0,3,none,0.000,0.000,False,False,False
+10.00,Learned,6.372,2.110,8.850,3.740,True,InspectingObstacle,0,3,none,0.000,0.000,False,False,False
+10.20,Learned,6.853,2.779,8.850,3.740,False,Jumping,0,4,none,2.800,3.860,False,False,False
+10.40,Learned,7.559,3.581,8.850,3.740,False,Jumping,0,4,none,-2.800,3.260,False,False,False
+10.60,Learned,8.145,3.990,8.850,3.740,False,Jumping,0,4,none,-2.800,2.660,False,False,False
+10.81,Learned,8.611,4.007,8.850,3.740,False,Falling,0,4,none,-2.800,2.060,False,False,False
+11.01,Learned,8.906,3.740,5.700,4.930,True,Recovering,0,4,none,0.000,0.539,False,False,False
+# external palm impulse; track Learned and Legacy separately
+11.21,Learned,7.502,3.724,5.700,4.930,False,KnockedDown,0,4,none,0.000,-6.907,True,True,False
+11.41,Learned,7.168,3.213,5.700,4.930,False,KnockedDown,0,4,none,0.000,-0.930,True,True,False
+11.61,Learned,6.982,2.295,5.700,4.930,False,KnockedDown,0,4,none,0.000,-0.930,True,True,False
+11.81,Learned,6.752,1.571,8.850,3.740,True,KnockedDown,0,4,none,0.000,-1.100,True,True,False
+12.01,Learned,6.735,1.480,8.850,3.740,True,KnockedDown,0,4,none,0.000,0.000,True,True,False
+12.21,Learned,6.735,1.480,8.850,3.740,True,KnockedDown,0,4,none,0.000,0.000,True,True,False
+12.41,Learned,6.735,1.480,8.850,3.740,True,KnockedDown,0,4,none,0.000,0.000,True,True,False
+12.61,Learned,6.735,1.480,8.850,3.740,True,KnockedDown,0,4,none,0.000,0.000,True,True,False
+12.81,Learned,6.719,1.562,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.183,True,True,False
+13.01,Learned,6.669,1.824,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.291,True,True,False
+13.21,Learned,6.606,1.996,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.326,True,True,False
+13.42,Learned,6.537,2.059,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.368,True,True,False
+13.62,Learned,6.461,2.080,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.365,True,True,False
+13.82,Learned,6.395,2.092,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.299,True,True,False
+14.02,Learned,6.342,2.099,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.236,True,True,False
+14.22,Learned,6.297,2.104,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.178,True,True,False
+14.42,Learned,6.266,2.107,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.137,True,True,False
+14.62,Learned,6.243,2.108,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.104,True,True,False
+14.82,Learned,6.225,2.109,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.079,True,True,False
+15.02,Learned,6.211,2.109,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.060,True,True,False
+15.23,Learned,6.201,2.110,8.850,3.740,True,GettingUp,0,4,none,0.000,-0.046,True,True,False
+15.43,Learned,6.200,2.110,8.850,3.740,True,InspectingObstacle,0,4,none,0.000,0.000,False,False,False
+15.63,Learned,6.200,2.110,8.850,3.740,True,InspectingObstacle,0,4,none,0.000,0.000,False,False,False
+15.83,Learned,6.758,2.877,8.850,3.740,False,Jumping,0,5,none,2.800,3.800,False,False,False
+16.03,Learned,7.452,3.639,8.850,3.740,False,Jumping,0,5,none,-2.800,3.200,False,False,False
+16.23,Learned,8.026,4.009,8.850,3.740,False,Jumping,0,5,none,-2.800,2.600,False,False,False
+16.43,Learned,8.480,3.987,8.850,3.740,False,Falling,0,5,none,-2.800,2.000,False,False,False
+16.63,Learned,8.741,3.740,5.700,4.930,True,Recovering,0,5,none,0.000,0.323,False,False,False
+16.84,Learned,8.726,3.740,5.700,4.930,True,Running,0,5,none,-0.616,-0.433,False,False,False
+17.04,Learned,8.704,3.740,5.700,4.930,True,InspectingObstacle,0,5,none,0.000,0.000,False,False,False
+17.24,Learned,8.704,3.740,5.700,4.930,True,InspectingObstacle,0,5,none,0.000,0.000,False,False,False
+17.44,Learned,8.147,4.507,5.700,4.930,False,Jumping,0,6,none,-2.800,-3.800,False,False,False
+17.64,Learned,7.453,5.269,5.700,4.930,False,Jumping,0,6,none,-2.800,-3.200,False,False,False
+17.84,Learned,6.815,5.655,5.700,4.930,False,Jumping,0,6,none,-2.800,-2.800,False,False,False
+18.04,Learned,6.255,5.593,5.700,4.930,False,Falling,0,6,none,-2.800,-2.800,False,False,False
+18.24,Learned,5.695,5.139,5.700,4.930,False,Falling,0,6,none,-2.800,-2.800,False,False,False
+18.44,Learned,5.330,4.930,2.550,5.400,True,Recovering,0,6,none,0.000,-0.791,False,False,False
+18.65,Learned,5.265,4.930,2.550,5.400,True,Running,0,6,none,-2.800,-0.722,False,False,False
+18.85,Learned,5.247,4.930,2.550,5.400,True,InspectingObstacle,0,6,none,0.000,0.000,False,False,False
+19.05,Learned,5.247,4.930,2.550,5.400,True,InspectingObstacle,0,6,none,0.000,0.000,False,False,False
+19.25,Learned,4.615,5.791,2.550,5.400,False,Jumping,0,7,none,-2.800,-3.740,False,False,False
+19.45,Learned,3.954,6.006,2.550,5.400,False,Falling,0,7,none,-2.800,-3.143,True,True,True
+19.65,Learned,3.329,5.544,2.550,5.400,False,Falling,0,7,none,-2.800,-3.023,False,False,True
+19.85,Learned,2.793,5.400,-0.600,7.030,True,Stumbling,0,7,none,-2.800,-2.551,True,False,True
+20.05,Learned,2.450,5.400,-0.600,7.030,True,SittingDown,0,7,none,-2.800,-0.594,True,False,True
+20.25,Learned,2.418,5.400,-0.600,7.030,True,SittingDown,0,7,none,-2.800,0.000,True,False,True
+20.45,Learned,2.418,5.400,-0.600,7.030,True,SittingDown,0,7,none,-2.800,0.000,True,False,True
+20.65,Learned,2.418,5.400,-0.600,7.030,True,SittingDown,0,7,none,-2.800,0.000,True,False,True
+20.86,Learned,2.418,5.400,-0.600,7.030,True,SittingDown,0,7,none,-2.800,0.000,True,False,True
+21.06,Learned,2.418,5.400,-0.600,7.030,True,SittingDown,0,7,none,-2.800,0.000,True,False,True
+21.26,Learned,2.418,5.400,-0.600,7.030,True,SittingDown,0,7,none,-2.800,0.000,True,False,True
+21.46,Learned,2.418,5.400,-0.600,7.030,True,Resting,0,7,none,-2.800,0.000,True,False,True
+21.66,Learned,2.418,5.400,-0.600,7.030,True,Resting,0,7,none,-2.800,0.000,True,False,True
+21.86,Learned,2.418,5.400,-0.600,7.030,True,Resting,0,7,none,-2.800,0.000,True,False,True
+22.06,Learned,2.418,5.400,-0.600,7.030,True,Resting,0,7,none,-2.800,0.000,True,False,True
+22.26,Learned,2.418,5.400,-0.600,7.030,True,GettingUpFromSit,0,7,none,-2.800,0.000,True,False,True
+22.46,Learned,2.418,5.400,-0.600,7.030,True,GettingUpFromSit,0,7,none,-2.800,0.000,True,False,True
+22.66,Learned,2.418,5.400,-0.600,7.030,True,GettingUpFromSit,0,7,none,-2.800,0.000,True,False,True
+22.86,Learned,2.418,5.400,-0.600,7.030,True,GettingUpFromSit,0,7,none,-2.800,0.000,True,False,True
+23.06,Learned,2.418,5.400,-0.600,7.030,True,GettingUpFromSit,0,7,none,-2.800,0.000,True,False,True
+23.27,Learned,2.418,5.400,-0.600,7.030,True,GettingUpFromSit,0,7,none,-2.800,0.000,True,False,True
+23.47,Learned,2.418,5.400,-0.600,7.030,True,GettingUpFromSit,0,7,none,-2.800,0.000,True,False,True
+23.67,Learned,2.418,5.400,-0.600,7.030,True,GettingUpFromSit,0,7,none,-2.800,0.000,True,False,True
+23.87,Learned,2.418,5.400,-0.600,7.030,True,GettingUpFromSit,0,7,none,-2.800,0.000,True,False,True
+24.07,Learned,2.418,5.400,-0.600,7.030,True,Recovering,0,7,none,0.000,0.000,False,False,False
+24.27,Learned,2.382,5.400,-0.600,7.030,True,InspectingObstacle,0,7,none,0.000,-0.362,False,False,False
+24.47,Learned,2.379,5.400,-0.600,7.030,True,InspectingObstacle,0,7,none,0.000,0.000,False,False,False
+24.67,Learned,2.379,5.400,-0.600,7.030,True,InspectingObstacle,0,7,none,0.000,0.000,False,False,False
+24.87,Learned,1.691,6.056,-0.600,7.030,False,Falling,0,8,none,-2.800,-3.443,True,True,True
+25.08,Learned,1.002,5.712,-0.600,7.030,False,Falling,0,8,none,-2.800,-3.443,True,True,True
+25.28,Learned,0.421,5.368,-0.600,7.030,False,Falling,0,8,none,0.000,-0.110,False,False,True
+25.48,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,-2.800,-0.001,False,False,True
+25.68,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+25.88,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+26.08,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+26.28,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+26.48,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+26.68,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+26.88,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+27.08,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+27.29,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+27.49,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+27.69,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+27.89,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+28.09,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+28.29,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+28.49,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+28.69,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+28.89,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+29.10,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+29.30,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+29.50,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+29.70,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+29.90,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+30.10,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+30.30,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+30.50,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+30.70,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+30.91,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+31.11,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+31.31,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+31.51,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+31.71,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+31.91,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+32.11,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+32.31,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+32.51,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+32.72,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+32.92,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+33.12,Learned,0.420,5.303,-0.600,7.030,False,Falling,0,8,none,0.000,0.000,False,False,True
+33.32,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+33.52,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+33.72,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+33.92,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+34.12,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+34.32,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+34.52,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+34.72,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+34.93,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+35.13,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+35.33,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+35.53,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+35.73,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+35.93,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+36.13,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+36.33,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+36.53,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+36.73,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+36.94,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+37.14,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+37.34,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+37.54,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+37.74,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+37.94,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+38.14,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+38.34,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+38.54,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+38.74,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+38.94,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+39.15,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+39.35,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+39.55,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+39.75,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+39.95,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+40.15,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+40.35,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+40.56,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+40.76,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+40.96,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+41.16,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+41.36,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+41.56,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+41.76,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+41.96,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+42.16,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+42.36,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+42.57,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+42.77,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+42.97,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+43.17,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+43.37,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+43.57,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+43.77,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+43.97,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+44.17,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+44.38,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+44.58,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+44.78,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+44.98,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+45.18,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+45.38,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+45.58,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+45.78,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+45.98,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+46.19,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+46.39,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+46.59,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+46.79,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+46.99,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+47.19,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+47.39,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+47.59,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+47.79,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+48.00,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+48.20,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+48.40,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+48.60,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+48.80,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+49.00,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+49.20,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+49.40,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+49.60,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+49.80,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+50.00,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+50.21,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+50.41,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+50.61,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+50.81,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+51.01,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+51.21,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+51.41,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+51.61,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+51.81,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+52.01,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+52.21,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+52.41,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+52.61,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+52.82,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+53.02,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+53.22,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+53.42,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+53.62,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+53.83,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+54.03,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+54.23,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+54.43,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+54.63,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+54.83,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+55.03,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+55.23,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+55.43,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+55.63,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+55.83,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+56.03,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+56.24,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+56.44,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+56.64,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+56.84,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+57.04,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+57.24,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+57.44,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+57.64,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+57.84,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+58.05,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+58.25,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+58.45,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+58.65,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+58.85,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+59.05,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+59.25,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+59.46,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+59.66,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+59.86,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+60.06,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+60.26,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+60.46,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+60.66,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+60.86,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+61.06,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+61.26,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+61.46,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+61.67,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+61.87,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+62.07,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+62.27,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+62.47,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+62.67,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+62.87,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+63.07,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+63.27,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+63.47,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+63.68,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+63.88,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+64.08,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+64.28,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+64.48,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+64.68,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+64.88,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+65.08,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+65.29,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+65.49,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+65.69,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+65.89,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+66.09,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+66.29,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+66.49,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+66.70,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+66.90,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+67.10,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+67.30,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+67.50,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+67.70,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+67.90,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+68.10,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+68.31,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+68.51,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+68.71,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+68.91,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+69.11,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+69.31,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+69.51,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+69.71,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+69.91,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+70.11,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+70.31,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+70.51,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+70.71,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+70.91,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+71.11,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+71.32,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+71.52,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+71.72,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+71.92,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+72.12,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+72.32,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+72.52,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+72.72,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+72.92,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+73.12,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+73.32,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+73.53,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+73.73,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True
+73.93,Legacy,0.420,5.303,-0.600,7.030,False,Falling,0,8,policy made no physical progress for 8 seconds,0.000,0.000,False,False,True

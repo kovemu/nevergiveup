@@ -16,8 +16,10 @@ def main():
     parser.add_argument('--env', required=True)
     parser.add_argument('--model')
     parser.add_argument('--level', type=int, default=1)
+    parser.add_argument('--stage', type=int, choices=range(5))
     parser.add_argument('--seed', type=int, default=900001)
     parser.add_argument('--episodes', type=int, default=128)
+    parser.add_argument('--worker-id', type=int, default=7)
     parser.add_argument('--output', required=True)
     args = parser.parse_args()
     engine = EngineConfigurationChannel()
@@ -25,6 +27,9 @@ def main():
     params = EnvironmentParametersChannel()
     params.set_float_parameter('level', args.level)
     params.set_float_parameter('seed', args.seed)
+    if args.stage is not None:
+        params.set_float_parameter('stage', args.stage)
+        params.set_float_parameter('simple_fraction', 0)
     stats = StatsSideChannel()
     model = None
     if args.model:
@@ -33,7 +38,7 @@ def main():
     random = np.random.default_rng(args.seed)
     metrics = defaultdict(list)
     env = UnityEnvironment(file_name=args.env, seed=args.seed, no_graphics=True,
-                           worker_id=7, side_channels=[engine, params, stats],
+                           worker_id=args.worker_id, side_channels=[engine, params, stats],
                            log_folder=str(Path(args.output).parent / 'unity-eval'))
     try:
         env.reset()
@@ -62,7 +67,7 @@ def main():
             if len(metrics['Climb/Success']) >= args.episodes:
                 break
         result = {'model': args.model or 'uniform random actions (untrained baseline)',
-                  'seed': args.seed, 'level': args.level,
+                  'seed': args.seed, 'level': args.level, 'stage': args.stage,
                   'episodes': len(metrics['Climb/Success']),
                   'means': {k: float(np.mean(v)) for k, v in metrics.items() if v},
                   'samples': dict(metrics)}

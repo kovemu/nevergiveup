@@ -11,9 +11,12 @@ namespace NeverGiveUp.Training
     public sealed class ClimbAgent : Agent, ICharacterActionState
     {
         public TrainingArena arena;
+        public VerticalArena vertical;
         GameplayPolicyHost gameplay;
         public float LastActionTime {get;private set;}
-        public Vector3 ObservedGoal => arena ? arena.Goal : gameplay.Goal;
+        public int ShortJumps {get;private set;}
+        public int LongJumps {get;private set;}
+        public Vector3 ObservedGoal => vertical ? vertical.Target : arena ? arena.Goal : gameplay.Goal;
         public CharacterState DisplayState => gameplay && gameplay.ReactionState.HasValue ? gameplay.ReactionState.Value :
             !Motor.Grounded ? (Motor.Body.linearVelocity.y>.1f?CharacterState.Jumping:CharacterState.Falling) :
             Preparation>0?CharacterState.InspectingObstacle:Settling?CharacterState.Recovering:
@@ -45,7 +48,9 @@ namespace NeverGiveUp.Training
         public override void OnEpisodeBegin()
         {
             if(arena) Motor.Teleport(arena.ResetLayout());
+            if(vertical) Motor.Teleport(vertical.ResetLayout(Motor));
             horizontal=previousJump=pendingJump=ticks=collisions=jumps=unnecessary=reversals=0;
+            ShortJumps=LongJumps=0;
             Preparation=0;wasGrounded=false;stableSupport=null;stableTime=0;goalDwell=0;
             settleUntil=Time.time+.2f;maxStableHeight=0;collisionAt=-100;
             visualYaw=Motor.Facing*90;
@@ -89,14 +94,16 @@ namespace NeverGiveUp.Training
         }
         public override void WriteDiscreteActionMask(IDiscreteActionMask mask)
         {
-            if(!Motor.Grounded || pendingJump!=0 || Settling)
+            if(!Motor.Grounded || pendingJump!=0 || Settling || gameplay && gameplay.ReactionState.HasValue)
             {mask.SetActionEnabled(1,1,false);mask.SetActionEnabled(1,2,false);}
         }
         public override void OnActionReceived(ActionBuffers actions)
         {
             LastActionTime=Time.time;
+            if(gameplay && gameplay.LocomotionBlocked)
+            {horizontal=previousJump=pendingJump=0;Preparation=0;return;}
             int next=actions.DiscreteActions[0]-1, jump=actions.DiscreteActions[1];
-            if(horizontal!=0 && next!=0 && next!=horizontal) {reversals++;Reward(-.005f);}
+            if(horizontal!=0 && next!=0 && next!=horizontal) {reversals++;Reward(-.005f);if(vertical)vertical.Reverse(this);}
             horizontal=next;
             if(jump!=0 && previousJump==0 && Motor.Grounded && !Settling && pendingJump==0)
             {
@@ -106,8 +113,9 @@ namespace NeverGiveUp.Training
         }
         void FixedUpdate()
         {
-            if(!Motor || (!arena && !gameplay)) return;
+            if(!Motor || (!arena && !gameplay && !vertical)) return;
             Motor.SampleGround();if(arena) arena.Tick();ticks++;
+            if(vertical && vertical.Step(this))return;
             if(gameplay && !gameplay.PreparePhysicsStep())
             {pendingJump=0;Preparation=0;return;}
             // The same turn gate runs with and without rendered characters.
@@ -116,7 +124,7 @@ namespace NeverGiveUp.Training
             if(Motor.Grounded && !wasGrounded) settleUntil=Time.time+LandingSeconds;
             wasGrounded=Motor.Grounded;
             float distance=Vector2.Distance(Motor.Feet,ObservedGoal);
-            Reward((previousDistance-distance)*.08f-.0004f);
+            if(!vertical)Reward((previousDistance-distance)*.08f-.0004f);
             previousDistance=distance;
             if(Motor.Grounded && Motor.Support==stableSupport) stableTime+=Time.fixedDeltaTime;
             else {stableSupport=Motor.Support;stableTime=0;}
@@ -138,11 +146,14 @@ namespace NeverGiveUp.Training
                 if(!Motor.Grounded) {pendingJump=0;Preparation=0;}
                 else
                 {
-                    Preparation=Mathf.Clamp01((Time.time-prepareAt)/PreparationSeconds);
+                    float preparation=vertical?(CurrentJump==JumpMode.Short?vertical.shortPreparation:vertical.longPreparation):gameplay?gameplay.PreparationSeconds(CurrentJump):PreparationSeconds;
+                    Preparation=Mathf.Clamp01((Time.time-prepareAt)/preparation);
                     Motor.LookToward(horizontal);Motor.Stop();
                     if(Preparation>=1 && !Settling)
                     {
+                        if(vertical)vertical.Launch(this,CurrentJump);
                         Motor.Jump(horizontal*Motor.MaxJumpHorizontal*.65f,Motor.JumpVelocity(CurrentJump));
+                        if(CurrentJump==JumpMode.Short)ShortJumps++;else LongJumps++;
                         jumps++;Reward(-.025f);
                         if(arena && arena.Level==1) {unnecessary++;AddReward(-.06f);}
                         pendingJump=0;Preparation=0;
@@ -157,7 +168,7 @@ namespace NeverGiveUp.Training
         {
             if(Time.time-collisionAt<.25f)return;
             for(int i=0;i<collision.contactCount;i++) if(collision.GetContact(i).normal.y<.45f)
-            {collisionAt=Time.time;collisions++;Reward(-.025f);break;}
+            {collisionAt=Time.time;collisions++;Reward(-.025f);if(vertical)vertical.Contact(this);break;}
         }
         void Reward(float value) {if(arena)AddReward(value);}
         void Finish(bool success)
