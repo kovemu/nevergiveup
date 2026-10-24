@@ -1,0 +1,7 @@
+PASS ground speed is 70% of original 4
+PASS horizontal jump reach preserved
+PASS SHORT/LONG heights preserved
+PASS small destination correction does not reverse facing
+PASS tempo tuning retains existing learning-map identity
+PASS prepared exploration may test an unreachable target with bounded velocity
+PASS separated opposite pulses do not accumulate facing intent

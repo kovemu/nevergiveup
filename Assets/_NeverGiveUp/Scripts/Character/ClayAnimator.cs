@@ -9,6 +9,12 @@ namespace NeverGiveUp
         [SerializeField] private Transform leftArm, rightArm, leftLeg, rightLeg, head;
         [SerializeField] private float seatedDownSeconds = 1.35f;
         [SerializeField] private float seatedUpSeconds = 1.8f;
+        [Header("Presentation tempo")]
+        [SerializeField, Range(60f, 360f)] private float turnDegreesPerSecond = 150f;
+        [SerializeField, Min(.01f)] private float actionBlendSeconds = .18f;
+        [SerializeField, Min(.01f)] private float physicalBlendSeconds = .1f;
+        [SerializeField, Min(.05f)] private float landingPoseSeconds = .3f;
+        [SerializeField, Range(.3f, 1.5f)] private float runPlaybackMultiplier = .8f;
         private CharacterBrain brain;
         private CharacterMotor motor;
         private CharacterRecovery recovery;
@@ -39,7 +45,7 @@ namespace NeverGiveUp
             if (!Ready || !brain || !motor) return;
             bool physical = recovery && recovery.Active;
             bool airHit = recovery && recovery.ExternalReaction && !recovery.ObstacleReacting && !motor.Grounded;
-            if (motor.Grounded && !wasGrounded && !physical) landUntil = Time.time + 0.18f;
+            if (motor.Grounded && !wasGrounded && !physical) landUntil = Time.time + landingPoseSeconds;
             wasGrounded = motor.Grounded;
             string next = Choose(physical, airHit);
             int hash = Animator.StringToHash("Base Layer." + next);
@@ -51,10 +57,13 @@ namespace NeverGiveUp
             }
             if (next != action)
             {
-                if (animator.HasState(0, hash)) animator.CrossFadeInFixedTime(hash, physical ? 0.10f : 0.12f, 0);
+                if (animator.HasState(0, hash)) animator.CrossFadeInFixedTime(hash, physical ? physicalBlendSeconds : actionBlendSeconds, 0);
                 action = next;
                 if (action == "NGU_GetUpFromKnockDown") recoveryProgress = 0f;
             }
+            // Only locomotion is retimed; authored Sit/GetUp and physics scrubbing retain their contract.
+            animator.speed = next == "NGU_Run" ? runPlaybackMultiplier *
+                Mathf.Clamp(Mathf.Abs(motor.Body.linearVelocity.x) / motor.MoveSpeed, .65f, 1.25f) : 1f;
             if (recovery && recovery.GettingUp)
             {
                 // Scrub recovery by actual upright progress; animation never ends physics recovery.
@@ -65,11 +74,21 @@ namespace NeverGiveUp
             if (!physical)
             {
                 facingRotation = Quaternion.RotateTowards(facingRotation,
-                    Quaternion.Euler(0, motor.Facing > 0 ? 90 : -90, 0), Time.deltaTime * 540f);
+                    Quaternion.Euler(0, motor.Facing > 0 ? 90 : -90, 0), Time.deltaTime * turnDegreesPerSecond);
+                float angle = Quaternion.Angle(facingRotation, Quaternion.Euler(0, motor.Facing > 0 ? 90 : -90, 0));
+                motor.VisualFacingAlignment = Mathf.Clamp01(1f - angle / 90f);
             }
             transform.localRotation = facingRotation;
             transform.localPosition = basePosition;
             if (airHit) Flail();
+            else if (!physical && motor.Grounded && brain.PreparingJump)
+            {
+                // Small additive preparation on the evaluated Inspect pose; no mesh/root translation.
+                float crouch = Mathf.SmoothStep(0f, 1f, brain.PreparationProgress);
+                Rotate(leftLeg, Vector3.right, crouch * 6f);
+                Rotate(rightLeg, Vector3.right, crouch * 6f);
+                Rotate(head, Vector3.right, crouch * 3f);
+            }
         }
         private string Choose(bool physical, bool airHit)
         {

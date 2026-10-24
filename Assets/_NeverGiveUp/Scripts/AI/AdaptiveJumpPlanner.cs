@@ -67,6 +67,19 @@ namespace NeverGiveUp
         // launch X, target X and horizontal control but cannot invent a third height.
         public static bool ComputeVelocity(JumpPlan plan, Vector3 actualFeet, CharacterMotor motor)
         {
+            if (plan.exploratory)
+            {
+                float gravity = -Physics.gravity.y;
+                if (gravity <= 0f) return false;
+                plan.vy = motor.JumpVelocity(plan.mode);
+                plan.flightTime = 2f * plan.vy / gravity;
+                float heading = Mathf.Abs(plan.vx) > .01f ? Mathf.Sign(plan.vx) : motor.Facing;
+                plan.vx = Mathf.Clamp((plan.landing.x - actualFeet.x) / Mathf.Max(.2f, plan.flightTime) *
+                    plan.parameters.horizontalScale, -motor.MaxJumpHorizontal, motor.MaxJumpHorizontal);
+                if (Mathf.Abs(plan.vx) < .6f) plan.vx = heading * Mathf.Min(1f, motor.MaxJumpHorizontal);
+                return motor.ArcClear(actualFeet, new Vector3(plan.vx, plan.vy, 0), plan.flightTime,
+                    plan.link?.To.Collider, out _);
+            }
             // Respect the LEARNED mode. Only switch when the preferred arc is
             // physically infeasible; a failed SHORT can therefore become LONG.
             JumpMode preferred = plan.mode;

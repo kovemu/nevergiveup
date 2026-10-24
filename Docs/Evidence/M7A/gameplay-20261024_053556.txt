@@ -1,0 +1,59 @@
+Actual Unity Play Mode; scene=MainPrototype
+50.41 Learned activated=True
+50.41 mode=Learned feet=(-0.56, 1.10, 0.00) velocity=(0.00, 0.00, 0.00) grounded=True state=Idle age=50.41 fallback=none
+50.91 mode=Learned feet=(-0.55, 1.10, 0.00) velocity=(0.00, 0.00, 0.00) grounded=True state=InspectingObstacle age=0.01 fallback=none
+51.41 mode=Learned feet=(0.57, 2.93, 0.00) velocity=(3.32, 4.73, 0.00) grounded=False state=Jumping age=0.01 fallback=none
+51.91 mode=Learned feet=(2.01, 4.02, 0.00) velocity=(2.80, -0.18, 0.00) grounded=False state=Falling age=0.01 fallback=none
+52.42 mode=Learned feet=(3.41, 2.66, 0.00) velocity=(2.80, -5.08, 0.00) grounded=False state=Falling age=0.02 fallback=none
+52.92 mode=Learned feet=(4.24, 1.20, 0.00) velocity=(0.14, 0.00, 0.00) grounded=True state=Running age=0.02 fallback=none
+53.42 mode=Learned feet=(4.58, 1.77, 0.00) velocity=(3.98, 6.89, 0.00) grounded=False state=Jumping age=0.02 fallback=none
+53.92 mode=Learned feet=(6.20, 3.94, 0.00) velocity=(2.80, 1.98, 0.00) grounded=False state=Jumping age=0.02 fallback=none
+54.42 mode=Learned feet=(7.60, 3.66, 0.00) velocity=(2.80, -2.92, 0.00) grounded=False state=Falling age=0.02 fallback=none
+54.92 mode=Learned feet=(8.68, 0.96, 0.00) velocity=(0.00, -7.49, 0.00) grounded=False state=Falling age=0.02 fallback=none
+55.42 mode=Learned feet=(8.68, -3.22, 0.00) velocity=(0.06, -0.09, 0.00) grounded=True state=KnockedDown age=0.00 fallback=none
+55.92 mode=Learned feet=(8.78, -3.70, 0.00) velocity=(0.28, -2.09, 0.00) grounded=True state=KnockedDown age=0.00 fallback=none
+56.42 mode=Learned feet=(8.79, -3.85, 0.00) velocity=(0.00, 0.00, 0.00) grounded=True state=KnockedDown age=0.00 fallback=none
+56.93 mode=Learned feet=(8.69, -3.40, 0.00) velocity=(-0.31, 0.89, 0.00) grounded=True state=GettingUp age=0.01 fallback=none
+57.43 mode=Learned feet=(8.51, -3.25, 0.00) velocity=(-0.37, 0.08, 0.00) grounded=True state=GettingUp age=0.01 fallback=none
+57.93 mode=Learned feet=(8.37, -3.23, 0.00) velocity=(-0.21, 0.02, 0.00) grounded=True state=GettingUp age=0.01 fallback=none
+58.43 mode=Learned feet=(8.30, -3.22, 0.00) velocity=(-0.11, 0.01, 0.00) grounded=True state=GettingUp age=0.01 fallback=none
+58.93 mode=Learned feet=(8.26, -3.22, 0.00) velocity=(-0.05, 0.00, 0.00) grounded=True state=GettingUp age=0.01 fallback=none
+59.43 mode=Learned feet=(8.31, -3.22, 0.00) velocity=(0.87, 0.00, 0.00) grounded=True state=Running age=0.01 fallback=none
+59.93 mode=Learned feet=(9.47, -3.22, 0.00) velocity=(2.78, 0.00, 0.00) grounded=True state=Running age=0.01 fallback=none
+60.43 mode=Learned feet=(10.86, -3.22, 0.00) velocity=(2.78, 0.00, 0.00) grounded=True state=Running age=0.01 fallback=none
+60.93 mode=Learned feet=(12.25, -3.22, 0.00) velocity=(2.78, 0.00, 0.00) grounded=True state=Running age=0.01 fallback=none
+61.43 mode=Learned feet=(13.65, -3.22, 0.00) velocity=(2.78, 0.00, 0.00) grounded=True state=Running age=0.01 fallback=none
+61.93 mode=Learned feet=(15.04, -3.22, 0.00) velocity=(2.78, 0.00, 0.00) grounded=True state=Running age=0.01 fallback=none
+62.43 mode=Learned feet=(16.43, -3.22, 0.00) velocity=(2.78, 0.00, 0.00) grounded=True state=Running age=0.01 fallback=none
+62.93 mode=Learned feet=(16.70, -3.22, 0.00) velocity=(-0.26, 0.00, 0.00) grounded=True state=Running age=0.01 fallback=none
+63.43 mode=Learned feet=(16.53, -3.22, 0.00) velocity=(-0.77, 0.00, 0.00) grounded=True state=Running age=0.01 fallback=none
+63.94 mode=Learned feet=(16.57, -3.22, 0.00) velocity=(0.26, 0.00, 0.00) grounded=True state=Running age=0.02 fallback=none
+64.44 mode=Learned feet=(16.93, -3.22, 0.00) velocity=(1.61, 0.00, 0.00) grounded=True state=Running age=0.02 fallback=none
+64.94 mode=Learned feet=(16.98, -3.22, 0.00) velocity=(-0.26, 0.00, 0.00) grounded=True state=Running age=0.02 fallback=none
+65.44 mode=Learned feet=(16.81, -3.22, 0.00) velocity=(-0.77, 0.00, 0.00) grounded=True state=Running age=0.02 fallback=none
+65.94 mode=Learned feet=(16.69, -3.22, 0.00) velocity=(0.26, 0.00, 0.00) grounded=True state=Running age=0.02 fallback=none
+66.44 mode=Learned feet=(16.86, -3.22, 0.00) velocity=(0.77, 0.00, 0.00) grounded=True state=Running age=0.02 fallback=none
+66.94 mode=Learned feet=(16.98, -3.22, 0.00) velocity=(-0.26, 0.00, 0.00) grounded=True state=Running age=0.02 fallback=none
+67.44 mode=Learned feet=(16.79, -3.22, 0.00) velocity=(-0.85, 0.00, 0.00) grounded=True state=Running age=0.00 fallback=none
+67.94 mode=Learned feet=(16.69, -3.22, 0.00) velocity=(0.26, 0.00, 0.00) grounded=True state=Running age=0.00 fallback=none
+68.44 mode=Learned feet=(16.87, -3.22, 0.00) velocity=(0.85, 0.00, 0.00) grounded=True state=Running age=0.00 fallback=none
+68.94 mode=Learned feet=(16.97, -3.22, 0.00) velocity=(-0.26, 0.00, 0.00) grounded=True state=Running age=0.00 fallback=none
+69.44 mode=Learned feet=(16.79, -3.22, 0.00) velocity=(-0.85, 0.00, 0.00) grounded=True state=Running age=0.00 fallback=none
+69.94 mode=Legacy feet=(16.68, -3.22, 0.00) velocity=(0.00, 0.00, 0.00) grounded=True state=Recovering age=0.04 fallback=policy made no physical progress for 8 seconds
+70.44 mode=Legacy feet=(16.67, -3.22, 0.00) velocity=(-0.26, 0.00, 0.00) grounded=True state=Retrying age=0.54 fallback=policy made no physical progress for 8 seconds
+70.94 mode=Legacy feet=(16.02, -3.22, 0.00) velocity=(-2.30, 0.00, 0.00) grounded=True state=Retrying age=1.05 fallback=policy made no physical progress for 8 seconds
+71.45 mode=Legacy feet=(14.64, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=1.55 fallback=policy made no physical progress for 8 seconds
+71.95 mode=Legacy feet=(13.25, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=2.05 fallback=policy made no physical progress for 8 seconds
+72.45 mode=Legacy feet=(11.86, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=2.55 fallback=policy made no physical progress for 8 seconds
+72.95 mode=Legacy feet=(10.46, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=3.05 fallback=policy made no physical progress for 8 seconds
+73.46 mode=Legacy feet=(9.07, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=3.56 fallback=policy made no physical progress for 8 seconds
+73.96 mode=Legacy feet=(7.68, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=4.06 fallback=policy made no physical progress for 8 seconds
+74.46 mode=Legacy feet=(6.29, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=4.56 fallback=policy made no physical progress for 8 seconds
+74.96 mode=Legacy feet=(4.90, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=5.06 fallback=policy made no physical progress for 8 seconds
+75.46 mode=Legacy feet=(3.50, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=5.56 fallback=policy made no physical progress for 8 seconds
+75.96 mode=Legacy feet=(2.06, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=6.06 fallback=policy made no physical progress for 8 seconds
+76.46 mode=Legacy feet=(0.66, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=6.56 fallback=policy made no physical progress for 8 seconds
+76.96 mode=Legacy feet=(-0.73, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=7.06 fallback=policy made no physical progress for 8 seconds
+77.46 mode=Legacy feet=(-2.12, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=7.56 fallback=policy made no physical progress for 8 seconds
+77.96 mode=Legacy feet=(-3.51, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=8.06 fallback=policy made no physical progress for 8 seconds
+78.47 mode=Legacy feet=(-4.90, -3.22, 0.00) velocity=(-2.78, 0.00, 0.00) grounded=True state=Retrying age=8.57 fallback=policy made no physical progress for 8 seconds

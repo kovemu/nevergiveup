@@ -1282,6 +1282,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260617142}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1286447914 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6006089969816791668, guid: b20282d922b41134c9e0e08ee145f0f7, type: 3}
+  m_PrefabInstance: {fileID: 2801609955309394914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1355946436
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,14 +2144,17 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 770371137955717371, guid: b20282d922b41134c9e0e08ee145f0f7, type: 3}
       insertIndex: 0
       addedObject: {fileID: 359142008}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6006089969816791668, guid: b20282d922b41134c9e0e08ee145f0f7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2801609955309394922}
   m_SourcePrefab: {fileID: 100100000, guid: b20282d922b41134c9e0e08ee145f0f7, type: 3}
 --- !u!114 &2801609955309394915 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8446848686955805979, guid: b20282d922b41134c9e0e08ee145f0f7, type: 3}
   m_PrefabInstance: {fileID: 2801609955309394914}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1286447914}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 031212f644ab46bbb4b00257eb4d2427, type: 3}
@@ -2157,12 +2165,27 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2742229902341976855, guid: b20282d922b41134c9e0e08ee145f0f7, type: 3}
   m_PrefabInstance: {fileID: 2801609955309394914}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1286447914}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53687d4fb5af4a0bae7e9436dee31eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NeverGiveUp.CharacterMotor
+--- !u!114 &2801609955309394922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286447914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 651d6afbce0a62c468d3c2067801d731, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::NeverGiveUp.GameplayPolicyHost
+  startingMode: 0
+  model: {fileID: 5022602860645237092, guid: 43673555aa17fe2458794d79cf65647e, type: 3}
+  stage: {fileID: 2025147428}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

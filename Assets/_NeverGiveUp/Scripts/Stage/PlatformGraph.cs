@@ -50,7 +50,7 @@ namespace NeverGiveUp
             geometry.Append(gameObject.scene.name).Append('|');
             foreach (Platform p in platforms)
                 if (!p.Movable) geometry.Append(p.Id).Append(Geometry(p.Collider));
-            geometry.Append(motor.MoveSpeed.ToString("R", CultureInfo.InvariantCulture))
+            geometry.Append(motor.JumpReferenceSpeed.ToString("R", CultureInfo.InvariantCulture))
                 .Append('|').Append(motor.JumpSpeed.ToString("R", CultureInfo.InvariantCulture))
                 .Append('|').Append(Physics.gravity.y.ToString("R", CultureInfo.InvariantCulture));
             MapSignature = StableHash(geometry.ToString());

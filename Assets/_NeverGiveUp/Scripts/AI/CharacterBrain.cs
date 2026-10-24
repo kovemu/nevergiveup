@@ -14,6 +14,10 @@ namespace NeverGiveUp
         [SerializeField, Min(0.1f)] private float inspectDuration = 0.3f;
         [SerializeField, Min(0.1f)] private float stuckDuration = 3.5f;
         [SerializeField, Min(0.1f)] private float jumpPreparation = 0.18f;
+        [Header("Deliberate action tempo")]
+        [SerializeField, Min(.1f)] private float familiarPreparation = .4f;
+        [SerializeField, Min(.1f)] private float newPreparation = .65f;
+        [SerializeField, Min(0f)] private float landingRecoverySeconds = .35f;
         [SerializeField] private bool persistLearning = true;
         [SerializeField] private bool showLearningDebug = true;
         private CharacterMotor motor;
@@ -51,11 +55,16 @@ namespace NeverGiveUp
             $"point {obstacles.Last.Point}, bounds {obstacles.Last.Bounds}, approach {obstacles.Last.Approach}, movable {obstacles.Last.Movable}\n" +
             $"state {State}, grounded {motor.Grounded}, support {motor.Support?.name ?? "none"}, target {plan?.link.To.Id ?? attempt?.Plan.link.To.Id ?? "none"}\n" +
             $"backward impulse {recovery.ObstacleImpulse}, repeated {obstacles.Last.Repeats}, moved {obstacles.LastMovement} | replan: {replanReason}";
-        public CharacterState State { get; private set; } = CharacterState.Idle;
+        private CharacterState legacyState = CharacterState.Idle;
+        private ICharacterActionState externalPresentation;
+        public void BindExternalPresentation(ICharacterActionState value) => externalPresentation = value;
+        public CharacterState State { get => externalPresentation?.DisplayState ?? legacyState; private set => legacyState = value; }
         public int FailureCount { get; private set; }
-        public bool PreparingJump => inspecting && plan != null && waitTime > inspectDuration;
+        public bool PreparingJump => externalPresentation != null ? externalPresentation.Preparation > 0 : inspecting && plan != null && waitTime > inspectDuration;
+        public float PreparationSeconds => Mathf.Max(jumpPreparation, plan != null && plan.reusedSuccess ? familiarPreparation : newPreparation);
+        public float PreparationProgress => externalPresentation?.Preparation ?? (PreparingJump ? Mathf.Clamp01((waitTime - inspectDuration) / PreparationSeconds) : 0f);
         public bool SafeForGoal => !recovery.ExternalReaction && !recovery.ObstacleReacting && attempt == null;
-        public JumpMode CurrentJumpMode => attempt?.Plan.mode ?? plan?.mode ?? lastJumpMode;
+        public JumpMode CurrentJumpMode => externalPresentation?.CurrentJump ?? attempt?.Plan.mode ?? plan?.mode ?? lastJumpMode;
         public string DebugSummary
         {
             get
@@ -281,6 +290,7 @@ namespace NeverGiveUp
             if (walkLink != null) { WalkToward(walkLink.Landing.x, support, dt); return; }
             if (plan == null) return;
             float direction = Mathf.Sign(plan.landing.x - plan.launch.x);
+            if (Mathf.Abs(plan.landing.x - plan.launch.x) < .01f) direction = motor.Facing;
             float runupDistance = Mathf.Clamp(plan.parameters.approachSpeed * plan.parameters.approachSpeed / 48f + 0.22f, 0.3f, 0.65f);
             float runupX = Mathf.Clamp(plan.launch.x - direction * runupDistance,
                 support.Bounds.min.x + 0.34f, support.Bounds.max.x - 0.34f);
@@ -289,8 +299,10 @@ namespace NeverGiveUp
             {
                 inspecting = true;
                 State = CharacterState.InspectingObstacle;
+                motor.LookToward(direction);
                 motor.Stop(); waitTime += dt;
-                if (waitTime >= inspectDuration + jumpPreparation + plan.parameters.wait)
+                if (waitTime >= inspectDuration + PreparationSeconds + plan.parameters.wait &&
+                    motor.Facing == direction && motor.VisualFacingAlignment >= .85f)
                 { runup = true; inspecting = false; }
                 return;
             }
@@ -366,12 +378,10 @@ namespace NeverGiveUp
                 noRouteUntil = Time.time + 1.2f;
                 NoteBlocked(); return;
             }
-            plan = null;
-            walkLink = null;
-            attempt = new JumpAttempt(probing, motor);
-            motor.Jump(probing.vx, probing.vy);
+            // Exploratory jumps obey the same inspection/preparation gate as known routes.
+            SetPlan(probing);
             noRouteUntil = Time.time + 1.2f;
-            State = CharacterState.Jumping;
+            State = CharacterState.InspectingObstacle;
         }
         private void SetPlan(JumpPlan next)
         {
@@ -530,7 +540,7 @@ namespace NeverGiveUp
             }
             attempt = null; plan = null; walkLink = null;
             runup = inspecting = false; stalledTime = waitTime = 0f;
-            bestDistance = float.PositiveInfinity; cooldown = 0.35f;
+            bestDistance = float.PositiveInfinity; cooldown = landingRecoverySeconds;
         }
         private void OnGUI()
         {

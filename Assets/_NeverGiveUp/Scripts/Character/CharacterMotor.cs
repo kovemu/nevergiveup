@@ -10,6 +10,20 @@ namespace NeverGiveUp
     {
         [SerializeField, Min(0.1f)] private float moveSpeed = 4f;
         [SerializeField, Min(1f)] private float acceleration = 24f;
+        [Header("Ground tempo (jump reach remains independent)")]
+        [SerializeField, Range(.1f, 1f)] private float groundSpeedMultiplier = .7f;
+        [SerializeField, Range(.1f, 1f)] private float groundAccelerationMultiplier = 1f / 3f;
+        [SerializeField, Min(1f)] private float groundDeceleration = 10f;
+        [SerializeField, Min(.01f)] private float facingDeadband = .25f;
+        [SerializeField, Min(0f)] private float facingIntentSeconds = .25f;
+        private float pendingFacing = 1f, facingSince;
+        private float facingRequestedAt = -100f;
+        private float visualAlignment = 1f, visualReportedAt = -100f;
+        public float VisualFacingAlignment
+        {
+            get => Time.time - visualReportedAt < .2f ? visualAlignment : 1f;
+            set { visualAlignment = Mathf.Clamp01(value); visualReportedAt = Time.time; }
+        }
         [SerializeField, Min(1f)] private float jumpSpeed = 7.8f; // Hard upper bound retained for older scenes.
         [SerializeField, Min(0.2f)] private float shortJumpHeight = 1.55f;
         [SerializeField, Min(0.2f)] private float longJumpHeight = 3.0f;
@@ -42,7 +56,9 @@ namespace NeverGiveUp
 
         public Rigidbody Body => body;
         public CapsuleCollider Capsule => capsule;
-        public float MoveSpeed => moveSpeed;
+        public float MoveSpeed => moveSpeed * groundSpeedMultiplier;
+        // Existing JSON map identity describes reach, not cosmetic/ground tempo tuning.
+        public float JumpReferenceSpeed => moveSpeed;
         public float JumpSpeed => jumpSpeed;
         public float ShortJumpHeight => Mathf.Min(shortJumpHeight, longJumpHeight, MaxJumpHeight);
         public float LongJumpHeight => Mathf.Min(Mathf.Max(longJumpHeight, shortJumpHeight), MaxJumpHeight);
@@ -113,13 +129,35 @@ namespace NeverGiveUp
         public void Drive(float desiredVelocity, float authority = 1f)
         {
             if (ControlSuppressed) return;
+            if (Mathf.Abs(desiredVelocity) >= facingDeadband) LookToward(desiredVelocity);
+            if (Grounded)
+            {
+                desiredVelocity = Mathf.Clamp(desiredVelocity, -MoveSpeed, MoveSpeed);
+                if (Mathf.Abs(desiredVelocity) >= facingDeadband && Mathf.Sign(desiredVelocity) != Facing)
+                    desiredVelocity = 0f;
+                else if (VisualFacingAlignment < .85f)
+                    desiredVelocity *= Mathf.Lerp(.1f, 1f, Mathf.Clamp01(VisualFacingAlignment));
+            }
             DesiredVelocity = desiredVelocity; commandAt = Time.time;
             CommandVelocity = body.linearVelocity;
-            if (Mathf.Abs(desiredVelocity) > 0.05f) Facing = Mathf.Sign(desiredVelocity);
+            float rate = Grounded ? (Mathf.Abs(desiredVelocity) < Mathf.Abs(body.linearVelocity.x) ?
+                groundDeceleration : acceleration * groundAccelerationMultiplier) : airAcceleration;
             float delta = Mathf.Clamp(desiredVelocity - body.linearVelocity.x,
-                -(Grounded ? acceleration : airAcceleration) * authority * Time.fixedDeltaTime,
-                (Grounded ? acceleration : airAcceleration) * authority * Time.fixedDeltaTime);
+                -rate * authority * Time.fixedDeltaTime, rate * authority * Time.fixedDeltaTime);
             body.AddForce(Vector3.right * delta, ForceMode.VelocityChange);
+        }
+
+        public void LookToward(float direction)
+        {
+            if (Mathf.Abs(direction) < facingDeadband) return;
+            float sign = Mathf.Sign(direction);
+            if (Time.time - facingRequestedAt > Mathf.Max(.08f, Time.fixedDeltaTime * 2.5f))
+                facingSince = Time.time;
+            facingRequestedAt = Time.time;
+            if (sign == Facing) { pendingFacing = sign; facingSince = Time.time; return; }
+            if (pendingFacing != sign) { pendingFacing = sign; facingSince = Time.time; }
+            if (Time.time - facingSince >= facingIntentSeconds)
+            { Facing = sign; VisualFacingAlignment = 0f; }
         }
 
         public void Stop() => Drive(0f);
