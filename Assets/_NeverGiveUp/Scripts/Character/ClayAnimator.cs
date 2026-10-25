@@ -71,13 +71,15 @@ namespace NeverGiveUp
                 recoveryProgress = Mathf.Max(recoveryProgress, Mathf.MoveTowards(recoveryProgress, upright, Time.deltaTime * 1.8f));
                 animator.SetFloat("RecoveryProgress", recoveryProgress);
             }
-            if (!physical)
+            bool seated = brain.State == CharacterState.SittingDown || brain.State == CharacterState.Resting ||
+                brain.State == CharacterState.GettingUpFromSit;
+            if (!physical && motor.Grounded && !seated && !(recovery && recovery.ExternalReaction))
             {
                 facingRotation = Quaternion.RotateTowards(facingRotation,
                     Quaternion.Euler(0, motor.Facing > 0 ? 90 : -90, 0), Time.deltaTime * turnDegreesPerSecond);
-                float angle = Quaternion.Angle(facingRotation, Quaternion.Euler(0, motor.Facing > 0 ? 90 : -90, 0));
-                motor.VisualFacingAlignment = Mathf.Clamp01(1f - angle / 90f);
             }
+            float angle = Quaternion.Angle(facingRotation, Quaternion.Euler(0, motor.Facing > 0 ? 90 : -90, 0));
+            motor.VisualFacingAlignment = Mathf.Clamp01(1f - angle / 90f);
             transform.localRotation = facingRotation;
             transform.localPosition = basePosition;
             if (airHit) Flail();

@@ -1,0 +1,13 @@
+PASS center count=1
+PASS late release count=1
+PASS early release count=1
+PASS right to left count=1
+PASS distant miss count=0
+PASS stationary click count=0
+PASS stopped after crossing count=0
+PASS reverse away before release count=0
+PASS same-frame contact does not duplicate reaction
+PASS ordinary contact never seats
+PASS ordinary reaction completes within .6s
+FAIL walking waits for completed body turn
+Failures=1

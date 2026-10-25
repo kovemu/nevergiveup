@@ -13,7 +13,11 @@ namespace NeverGiveUp
         [SerializeField, Min(0f)] private float minimumSlapImpulse = 0.25f;
         [SerializeField, Min(0f)] private float maximumSlapImpulse = 4.5f;
         [SerializeField] private AnimationCurve slapResponse = AnimationCurve.EaseInOut(0, 0, 1, 1);
-        [SerializeField, Min(0.01f)] private float slapRadius = 0.22f;
+        [SerializeField, Min(0.01f)] private float slapRadius = 0.32f;
+        [SerializeField, Range(.1f,.25f)] private float trajectorySeconds = .2f;
+        [SerializeField, Range(0f,.06f)] private float predictionSeconds = .05f;
+        [SerializeField, Range(0f,1f)] private float predictionBodyWidths = .75f;
+        [SerializeField, HideInInspector] private int palmInputVersion;
         [SerializeField, Min(0f)] private float slapCooldown = 0.18f;
         [SerializeField] private bool showSlapDebug;
         private enum Gesture { None, Palm, Box }
@@ -35,7 +39,12 @@ namespace NeverGiveUp
         public void Configure(Camera camera, PhysicsObjectInteraction objects)
         { view = camera; dragging = objects; }
         public void ApplyM3Defaults() { } // Old preserve-layout editor menu compatibility.
-        private void OnEnable() { hand = CreateHand(); AcquireCursor(); }
+        private void OnEnable()
+        {
+            // Migrate only the prior default, preserving deliberate custom radii.
+            if(palmInputVersion<1){if(Mathf.Approximately(slapRadius,.22f))slapRadius=.32f;palmInputVersion=1;}
+            hand = CreateHand(); AcquireCursor();
+        }
         private void AcquireCursor()
         {
             if (ownsCursor) return;
@@ -74,6 +83,7 @@ namespace NeverGiveUp
                 hoveredBox = hover.collider.GetComponentInParent<DraggableBody>();
             }
             float now = Time.unscaledTime;
+            sampler.HistorySeconds=trajectorySeconds;
             if (mouse.leftButton.wasPressedThisFrame)
             {
                 Cancel();
@@ -116,22 +126,43 @@ namespace NeverGiveUp
             lastImpulse = Mathf.Lerp(minimumSlapImpulse, Mathf.Max(minimumSlapImpulse, maximumSlapImpulse), response);
             nextSlap = Time.time + slapCooldown; feedbackUntil = now + 0.18f;
             result = "miss";
-            // Only the recent stroke (100ms) is swept, at release. Earlier crossings never hit.
+            // Only the recent 200ms trajectory is swept, once at release.
             // Reproject all samples through the SAME camera pose: follow motion cannot generate a slap.
             for (int i = sampler.Count - 1; i > 0; i--)
             {
                 Vector3 a = Project(sampler.Point(i - 1)), b = Project(sampler.Point(i));
+                if(TrySlapSegment(a,b,false))return;
+            }
+            // A short release grace, not continued cursor movement or extra force.
+            Vector3 release=Project(sampler.Latest);
+            if(sampler.ContinuesAlong(velocity))
+                TrySlapSegment(release,Project(sampler.Latest+velocity*predictionSeconds),true);
+        }
+        private bool TrySlapSegment(Vector3 a,Vector3 b,bool predicted)
+        {
                 int count = Physics.OverlapCapsuleNonAlloc(a, b, slapRadius, contacts, ~0, QueryTriggerInteraction.Ignore);
                 for (int j = 0; j < count; j++)
                 {
                     CharacterRecovery target = contacts[j].GetComponentInParent<CharacterRecovery>();
                     if (!target) continue;
-                    Vector3 closest = contacts[j].ClosestPoint(b);
+                    Vector3 end=b;
+                    if(predicted)
+                    {
+                        var body=target.GetComponent<CapsuleCollider>();
+                        if(!body)continue;
+                        float reach=body.radius*2*Mathf.Abs(body.transform.lossyScale.x)*predictionBodyWidths;
+                        end=a+Vector3.ClampMagnitude(b-a,reach);
+                        Vector3 segment=end-a;
+                        float t=segment.sqrMagnitude>.000001f?Mathf.Clamp01(Vector3.Dot(contacts[j].bounds.center-a,segment)/segment.sqrMagnitude):0;
+                        Vector3 nearest=a+segment*t;
+                        if(Vector3.Distance(contacts[j].ClosestPoint(nearest),nearest)>slapRadius)continue;
+                    }
+                    Vector3 closest = contacts[j].ClosestPoint(end);
                     target.PalmSlap((Vector3)direction * lastImpulse, closest);
                     lastTarget = target; SlapCount++; hit = true; result = "hit";
-                    return; // Exactly one impulse per release, even with compound colliders.
+                    return true; // Exactly one impulse per release, including forward grace.
                 }
-            }
+                return false;
         }
         private void OnGUI()
         {
@@ -148,7 +179,7 @@ namespace NeverGiveUp
                 DrawLine(point, point + new Vector2(v.x, -v.y).normalized * Mathf.Min(55, v.magnitude * 30), Color.yellow);
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
             if (showSlapDebug)
-                GUI.Box(new Rect(12, 108, 520, 100), $"Palm: {gesture}, speed {lastSpeed:F2}, direction {direction}, impulse {lastImpulse:F2}: {result}\n" +
+                GUI.Box(new Rect(12, 108, 520, 100), $"Palm: {gesture}, hits {SlapCount}, speed {lastSpeed:F2}, direction {direction}, impulse {lastImpulse:F2}: {result}\n" +
                     (lastTarget ? lastTarget.SlapDebug : "No target hit"));
 #endif
         }

@@ -30,6 +30,18 @@ namespace NeverGiveUp.Editor
             {
                 switch(command)
                 {
+                    case "m7c-checks":M7CChecks.Run();break;
+                    case "m7c-no-legacy":M7CChecks.CheckNoLegacy();break;
+                    case "m7c-monitor":M7CPlaybackMonitor.StartReview();break;
+                    case "m7c-wall":M62Review.ArmCollisionFixture(false);break;
+                    case "m7c-ceiling":M62Review.ArmCollisionFixture(true);break;
+                    case "m7c-strong":M6PlayReview.Hit(4.5f,false);break;
+                    case "m7c-background":Application.runInBackground=true;break;
+                    case "m7c-build":
+                        if(EditorApplication.isPlaying)throw new Exception("Stop Play Mode first.");
+                        Directory.CreateDirectory("Builds/M7C");
+                        var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{ClimbPlaytestBuilder.Path},locationPathName="Builds/M7C/NeverGiveUp.exe",target=BuildTarget.StandaloneWindows64,options=BuildOptions.Development});
+                        Directory.CreateDirectory("Logs/M7C");File.WriteAllText("Logs/M7C/build.txt",report.summary.result+" errors="+report.summary.totalErrors);break;
                     case "create":VerticalBuilder.Create();break;
                     case "create-playtest":ClimbPlaytestBuilder.Create();break;
                     case "reset-test-box":

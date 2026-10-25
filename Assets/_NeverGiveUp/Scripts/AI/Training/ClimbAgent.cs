@@ -14,6 +14,11 @@ namespace NeverGiveUp.Training
         public VerticalArena vertical;
         GameplayPolicyHost gameplay;
         public float LastActionTime {get;private set;}
+        public int HorizontalDecision => horizontal;
+        public int JumpDecision => previousJump;
+        public int PendingJump => pendingJump;
+        public void CancelPendingActions()
+        {horizontal=previousJump=pendingJump=0;Preparation=0;}
         public int ShortJumps {get;private set;}
         public int LongJumps {get;private set;}
         public Vector3 ObservedGoal => vertical ? vertical.Target : arena ? arena.Goal : gameplay.Goal;
@@ -119,8 +124,13 @@ namespace NeverGiveUp.Training
             if(gameplay && !gameplay.PreparePhysicsStep())
             {pendingJump=0;Preparation=0;return;}
             // The same turn gate runs with and without rendered characters.
-            visualYaw=Mathf.MoveTowardsAngle(visualYaw,Motor.Facing*90,150*Time.fixedDeltaTime);
-            Motor.VisualFacingAlignment=Mathf.Clamp01(1-Mathf.Abs(Mathf.DeltaAngle(visualYaw,Motor.Facing*90))/90);
+            var presentation=GetComponentInChildren<ClayAnimator>();
+            var trainingPresentation=GetComponentInChildren<TrainingPresentation>();
+            if((!presentation || !presentation.Ready) && (!trainingPresentation || !trainingPresentation.Ready))
+            {
+                if(Motor.Grounded)visualYaw=Mathf.MoveTowardsAngle(visualYaw,Motor.Facing*90,150*Time.fixedDeltaTime);
+                Motor.VisualFacingAlignment=Mathf.Clamp01(1-Mathf.Abs(Mathf.DeltaAngle(visualYaw,Motor.Facing*90))/90);
+            }
             if(Motor.Grounded && !wasGrounded) settleUntil=Time.time+LandingSeconds;
             wasGrounded=Motor.Grounded;
             float distance=Vector2.Distance(Motor.Feet,ObservedGoal);
@@ -147,8 +157,10 @@ namespace NeverGiveUp.Training
                 else
                 {
                     float preparation=vertical?(CurrentJump==JumpMode.Short?vertical.shortPreparation:vertical.longPreparation):gameplay?gameplay.PreparationSeconds(CurrentJump):PreparationSeconds;
-                    Preparation=Mathf.Clamp01((Time.time-prepareAt)/preparation);
                     Motor.LookToward(horizontal);Motor.Stop();
+                    if(!Motor.FacingReady(horizontal))
+                    {prepareAt=Time.time;Preparation=0;return;}
+                    Preparation=Mathf.Clamp01((Time.time-prepareAt)/preparation);
                     if(Preparation>=1 && !Settling)
                     {
                         if(vertical)vertical.Launch(this,CurrentJump);

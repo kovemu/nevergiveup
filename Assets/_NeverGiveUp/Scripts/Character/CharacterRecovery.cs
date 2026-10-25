@@ -17,11 +17,10 @@ namespace NeverGiveUp
         private float immunityUntil;
         private float stumbleUntil;
         [Header("Obstacle reaction (M6.2)")]
-        [SerializeField, Range(0.5f, 1.2f)] private float obstacleRestSeconds = 0.8f;
         [SerializeField, Range(0.1f, 1.5f)] private float obstacleRecoilSpeed = 0.85f;
         [SerializeField, Range(0.1f, 0.8f)] private float obstacleRecoilSeconds = 0.28f;
         [SerializeField, Min(0.5f)] private float strongObstacleSpeed = 7f;
-        private float obstaclePhaseAt, obstacleSitSeconds, obstacleStandSeconds;
+        private float obstaclePhaseAt;
         private int obstaclePhase;
         public bool ObstacleReacting => obstaclePhase != 0;
         public Vector3 ObstacleImpulse { get; private set; }
@@ -47,8 +46,9 @@ namespace NeverGiveUp
                 LoseBalance(-contact.Approach);
                 return;
             }
-            obstacleSitSeconds = sitSeconds; obstacleStandSeconds = standSeconds;
-            obstaclePhase = contact.Speed > 0f && contact.Speed < 0.75f ? 5 : 1;
+            // The two clip-duration arguments remain for existing callers. Ordinary
+            // contacts no longer enter the voluntary sit/rest/stand sequence.
+            obstaclePhase = 1;
             obstaclePhaseAt = Time.time;
             ObstacleState = CharacterState.Stumbling;
         }
@@ -57,37 +57,11 @@ namespace NeverGiveUp
             if (!ObstacleReacting) return;
             if (Active || palmFlight) { obstaclePhase = 0; return; }
             float elapsed = Time.time - obstaclePhaseAt;
-            if (obstaclePhase == 5)
-            {
-                motor.GroundDrag(4); ObstacleState = CharacterState.Stumbling;
-                if (elapsed > 0.45f) obstaclePhase = 0;
-                return;
-            }
+            if (elapsed >= obstacleRecoilSeconds) { obstaclePhase = 0; return; }
             if (!motor.Grounded)
-            { ObstacleState = CharacterState.Falling; obstaclePhaseAt = Time.time; return; }
-            if (obstaclePhase == 1)
-            {
-                ObstacleState = CharacterState.Stumbling;
-                if (elapsed < obstacleRecoilSeconds) return;
-                obstaclePhase = 2; obstaclePhaseAt = Time.time;
-            }
-            motor.GroundDrag(10f);
-            elapsed = Time.time - obstaclePhaseAt;
-            if (obstaclePhase == 2)
-            {
-                ObstacleState = CharacterState.SittingDown;
-                if (elapsed >= obstacleSitSeconds) { obstaclePhase = 3; obstaclePhaseAt = Time.time; }
-            }
-            else if (obstaclePhase == 3)
-            {
-                ObstacleState = CharacterState.Resting;
-                if (elapsed >= obstacleRestSeconds) { obstaclePhase = 4; obstaclePhaseAt = Time.time; }
-            }
-            else if (obstaclePhase == 4)
-            {
-                ObstacleState = CharacterState.GettingUpFromSit;
-                if (elapsed >= obstacleStandSeconds) obstaclePhase = 0;
-            }
+            { ObstacleState = CharacterState.Falling; return; }
+            ObstacleState = CharacterState.Stumbling;
+            motor.GroundDrag(4f);
         }
         public bool Active { get; private set; }
         public bool GettingUp { get; private set; }
@@ -201,7 +175,7 @@ namespace NeverGiveUp
                 {
                     Vector3 probe = candidate + Vector3.right * side * 0.55f;
                     if (!motor.IsClear(probe) || !motor.GroundAhead(side)) continue;
-                    motor.Drive(side * 0.35f, 0.15f);
+                    motor.RecoveryCrawl(side * 0.35f, 0.15f);
                     motor.Body.AddTorque(Vector3.forward * -side * 1.2f, ForceMode.Acceleration);
                     break;
                 }

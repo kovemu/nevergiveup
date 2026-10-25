@@ -18,11 +18,12 @@ namespace NeverGiveUp
         [SerializeField, Min(0f)] private float facingIntentSeconds = .25f;
         private float pendingFacing = 1f, facingSince;
         private float facingRequestedAt = -100f;
-        private float visualAlignment = 1f, visualReportedAt = -100f;
+        private float visualAlignment = 1f;
+        private bool hasFacingReporter;
         public float VisualFacingAlignment
         {
-            get => Time.time - visualReportedAt < .2f ? visualAlignment : 1f;
-            set { visualAlignment = Mathf.Clamp01(value); visualReportedAt = Time.time; }
+            get => visualAlignment;
+            set { visualAlignment = Mathf.Clamp01(value); hasFacingReporter = true; }
         }
         [SerializeField, Min(1f)] private float jumpSpeed = 7.8f; // Hard upper bound retained for older scenes.
         [SerializeField, Min(0.2f)] private float shortJumpHeight = 1.55f;
@@ -149,16 +150,21 @@ namespace NeverGiveUp
         }
 
         public void Drive(float desiredVelocity, float authority = 1f)
+            => DriveInternal(desiredVelocity, authority, true);
+
+        // Fallen recovery may crawl without turning the standing visual.
+        public void RecoveryCrawl(float desiredVelocity, float authority)
+            => DriveInternal(desiredVelocity, authority, false);
+
+        private void DriveInternal(float desiredVelocity, float authority, bool turnBeforeMoving)
         {
             if (ControlSuppressed) return;
-            if (Mathf.Abs(desiredVelocity) >= facingDeadband) LookToward(desiredVelocity);
+            if (turnBeforeMoving && Grounded && Mathf.Abs(desiredVelocity) >= facingDeadband) LookToward(desiredVelocity);
             if (Grounded)
             {
                 desiredVelocity = Mathf.Clamp(desiredVelocity, -MoveSpeed, MoveSpeed);
-                if (Mathf.Abs(desiredVelocity) >= facingDeadband && Mathf.Sign(desiredVelocity) != Facing)
+                if (turnBeforeMoving && !FacingReady(desiredVelocity))
                     desiredVelocity = 0f;
-                else if (VisualFacingAlignment < .85f)
-                    desiredVelocity *= Mathf.Lerp(.1f, 1f, Mathf.Clamp01(VisualFacingAlignment));
             }
             DesiredVelocity = desiredVelocity; commandAt = Time.time;
             CommandVelocity = body.linearVelocity;
@@ -168,6 +174,10 @@ namespace NeverGiveUp
                 -rate * authority * Time.fixedDeltaTime, rate * authority * Time.fixedDeltaTime);
             body.AddForce(Vector3.right * delta, ForceMode.VelocityChange);
         }
+
+        public bool FacingReady(float direction) =>
+            (Mathf.Abs(direction) < facingDeadband || Mathf.Sign(direction) == Facing) &&
+            VisualFacingAlignment >= .995f;
 
         public void LookToward(float direction)
         {
@@ -179,7 +189,7 @@ namespace NeverGiveUp
             if (sign == Facing) { pendingFacing = sign; facingSince = Time.time; return; }
             if (pendingFacing != sign) { pendingFacing = sign; facingSince = Time.time; }
             if (Time.time - facingSince >= facingIntentSeconds)
-            { Facing = sign; VisualFacingAlignment = 0f; }
+            { Facing = sign; visualAlignment = hasFacingReporter ? 0f : 1f; }
         }
 
         public void Stop() => Drive(0f);

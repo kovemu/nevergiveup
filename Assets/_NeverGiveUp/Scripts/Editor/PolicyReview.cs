@@ -98,10 +98,8 @@ namespace NeverGiveUp.Editor
         }
         [MenuItem("NeverGiveUp/AI Gameplay/Palm recovery test")]
         static void Palm(){if(!EditorApplication.isPlaying || !host)return;var m=host.GetComponent<CharacterMotor>();host.GetComponent<CharacterRecovery>().PalmSlap(new Vector3(-2,1,0),m.Body.worldCenterOfMass+Vector3.up*.5f);Log("Applied existing PalmSlap; observe physics recovery without teleport");}
-        [MenuItem("NeverGiveUp/AI Gameplay/Restore Legacy")]
-        static void Legacy(){if(host)host.UseLegacy();}
-        [MenuItem("NeverGiveUp/AI Gameplay/Check missing model fallback")]
-        static void Missing(){if(!host)return;bool result=host.UseLearned(UnityEngine.Object.FindAnyObjectByType<StageController>(),null);Log((!result && host.Mode==GameplayPolicyHost.ControlMode.Legacy && host.GetComponent<CharacterBrain>().enabled && !host.GetComponent<ClimbAgent>().enabled?"PASS ":"FAIL ")+"missing model returns exclusive Legacy");}
+        [MenuItem("NeverGiveUp/AI Gameplay/Check missing model stops control")]
+        static void Missing(){if(!host)return;bool result=host.UseLearned(UnityEngine.Object.FindAnyObjectByType<StageController>(),null);Log((!result && host.Mode==GameplayPolicyHost.ControlMode.Stopped && !host.GetComponent<CharacterBrain>().enabled && !host.GetComponent<ClimbAgent>().enabled?"PASS ":"FAIL ")+"missing model stops control without Legacy");}
         [MenuItem("NeverGiveUp/AI Gameplay/Run sensor and recovery checks %#F1")]
         static void Checks()
         {

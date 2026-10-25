@@ -7,6 +7,7 @@ namespace NeverGiveUp.Training
     {
         public ClimbAgent agent;
         public Animator animator;
+        public bool Ready => isActiveAndEnabled && animator && animator.runtimeAnimatorController;
         string current;
         void LateUpdate()
         {
@@ -19,8 +20,9 @@ namespace NeverGiveUp.Training
             if(state!=current)
             {animator.CrossFadeInFixedTime("Base Layer."+state,.15f);current=state;}
             animator.applyRootMotion=false;
-            transform.localRotation=Quaternion.RotateTowards(transform.localRotation,
-                Quaternion.Euler(0,motor.Facing>0?90:-90,0),150*Time.deltaTime);
+            var target=Quaternion.Euler(0,motor.Facing>0?90:-90,0);
+            if(motor.Grounded)transform.localRotation=Quaternion.RotateTowards(transform.localRotation,target,150*Time.deltaTime);
+            motor.VisualFacingAlignment=Mathf.Clamp01(1-Quaternion.Angle(transform.localRotation,target)/90);
         }
     }
 }

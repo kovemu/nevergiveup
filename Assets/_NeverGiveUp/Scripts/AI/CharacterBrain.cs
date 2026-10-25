@@ -300,9 +300,11 @@ namespace NeverGiveUp
                 inspecting = true;
                 State = CharacterState.InspectingObstacle;
                 motor.LookToward(direction);
-                motor.Stop(); waitTime += dt;
+                motor.Stop();
+                if (!motor.FacingReady(direction)) { waitTime = 0f; return; }
+                waitTime += dt;
                 if (waitTime >= inspectDuration + PreparationSeconds + plan.parameters.wait &&
-                    motor.Facing == direction && motor.VisualFacingAlignment >= .85f)
+                    motor.FacingReady(direction))
                 { runup = true; inspecting = false; }
                 return;
             }
@@ -318,6 +320,8 @@ namespace NeverGiveUp
             }
             if (runup && delta * direction <= 0.07f)
             {
+                motor.LookToward(direction);
+                if (!motor.FacingReady(direction)) { motor.Stop(); return; }
                 if (!AdaptiveJumpPlanner.ComputeVelocity(plan, motor.Feet, motor))
                 {
                     rejectedRoutes[plan.link.Id] = Time.time + 6f;

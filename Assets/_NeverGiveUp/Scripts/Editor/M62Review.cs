@@ -43,6 +43,12 @@ namespace NeverGiveUp.Editor
             path = "Logs/M62/play-" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
             File.WriteAllText(path, "M6.2 real Play Mode trace\n");
         }
+        public static void ArmCollisionFixture(bool ceiling)
+        {
+            if (!EditorApplication.isPlaying) throw new InvalidOperationException("Play Mode required");
+            if (!recording) Record();
+            fixture = ceiling ? 2 : 1;
+        }
         static void Write(string text) { if (recording) File.AppendAllText(path, Time.time.ToString("F3") + " " + text + "\n"); }
         static void Observe()
         {
