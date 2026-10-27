@@ -17,6 +17,24 @@ namespace NeverGiveUp.Training
         public int HorizontalDecision => horizontal;
         public int JumpDecision => previousJump;
         public int PendingJump => pendingJump;
+        PolicyActionCorrection correction;
+        public PolicyActionCorrection Correction => correction;
+        public bool CorrectionEnabled => gameplay ? gameplay.CorrectPolicyActions : vertical && Academy.Instance.EnvironmentParameters.GetWithDefault("action_correction",0)>.5f;
+        PolicyRoute CurrentRoute => vertical ? vertical.Route : gameplay ? gameplay.Route : null;
+        bool pendingDowngrade;
+        public float WalkSeconds {get;private set;}
+        public float WalkDistance {get;private set;}
+        public float RunSeconds {get;private set;}
+        public float PrepareSeconds {get;private set;}
+        public float LandingWalkDelay {get;private set;}
+        public int LandingWalkSamples {get;private set;}
+        Vector3 metricPosition;
+        bool metricGrounded;
+        float landedAt=-1;
+        float leftWalkBlockedUntil,rightWalkBlockedUntil;
+        ClayAnimator clay;
+        TrainingPresentation trainingView;
+        public bool HasAnimationMetrics => clay && clay.Ready || trainingView && trainingView.Ready;
         public void CancelPendingActions()
         {horizontal=previousJump=pendingJump=0;Preparation=0;}
         public int ShortJumps {get;private set;}
@@ -40,6 +58,8 @@ namespace NeverGiveUp.Training
         public override void Initialize()
         {
             Motor=GetComponent<CharacterMotor>();
+            correction=new PolicyActionCorrection(Motor);
+            clay=GetComponentInChildren<ClayAnimator>();trainingView=GetComponentInChildren<TrainingPresentation>();
             gameplay=GetComponent<GameplayPolicyHost>();
             var brain=GetComponent<CharacterBrain>();
             if(brain && brain.enabled) throw new InvalidOperationException("Two movement authorities are forbidden.");
@@ -57,6 +77,9 @@ namespace NeverGiveUp.Training
             horizontal=previousJump=pendingJump=ticks=collisions=jumps=unnecessary=reversals=0;
             ShortJumps=LongJumps=0;
             Preparation=0;wasGrounded=false;stableSupport=null;stableTime=0;goalDwell=0;
+            correction.Reset();WalkSeconds=WalkDistance=RunSeconds=PrepareSeconds=LandingWalkDelay=0;LandingWalkSamples=0;
+            metricPosition=Motor.Feet;metricGrounded=false;landedAt=-1;
+            leftWalkBlockedUntil=rightWalkBlockedUntil=0;
             settleUntil=Time.time+.2f;maxStableHeight=0;collisionAt=-100;
             visualYaw=Motor.Facing*90;
             previousDistance=Vector2.Distance(Motor.Feet,ObservedGoal);
@@ -99,6 +122,18 @@ namespace NeverGiveUp.Training
         }
         public override void WriteDiscreteActionMask(IDiscreteActionMask mask)
         {
+            // An input blocked for both walking and current-pose jumping cannot
+            // execute. Let PPO choose among the remaining actions instead of
+            // silently rejecting the same input forever at the platform edge.
+            if(CorrectionEnabled && Motor.Grounded && pendingJump==0 && CurrentRoute!=null)
+            {
+                // Hysteresis prevents alternating turns exactly at the probe
+                // boundary. Stopping remains available; no direction is forced.
+                if(correction.BlocksGroundInput(CurrentRoute,-1))leftWalkBlockedUntil=Time.time+.25f;
+                if(correction.BlocksGroundInput(CurrentRoute,1))rightWalkBlockedUntil=Time.time+.25f;
+                if(Time.time<leftWalkBlockedUntil)mask.SetActionEnabled(0,0,false);
+                if(Time.time<rightWalkBlockedUntil)mask.SetActionEnabled(0,2,false);
+            }
             if(!Motor.Grounded || pendingJump!=0 || Settling || gameplay && gameplay.ReactionState.HasValue)
             {mask.SetActionEnabled(1,1,false);mask.SetActionEnabled(1,2,false);}
         }
@@ -108,11 +143,22 @@ namespace NeverGiveUp.Training
             if(gameplay && gameplay.LocomotionBlocked)
             {horizontal=previousJump=pendingJump=0;Preparation=0;return;}
             int next=actions.DiscreteActions[0]-1, jump=actions.DiscreteActions[1];
+            // A validated jump is a committed action through its brief wind-up.
+            // Changing launch direction mid-preparation invalidated the approach
+            // and caused repeated turns without ever taking off.
+            if(CorrectionEnabled && pendingJump!=0)next=horizontal;
+            if(CorrectionEnabled && pendingJump==0 && !Settling)
+                next=correction.StabilizeApproach(CurrentRoute,next,jump!=0);
             if(horizontal!=0 && next!=0 && next!=horizontal) {reversals++;Reward(-.005f);if(vertical)vertical.Reverse(this);}
             horizontal=next;
-            if(jump!=0 && previousJump==0 && Motor.Grounded && !Settling && pendingJump==0)
+            if(jump!=0 && (previousJump==0 || CorrectionEnabled) && Motor.Grounded && !Settling && pendingJump==0)
             {
-                pendingJump=jump;prepareAt=Time.time;CurrentJump=jump==1?JumpMode.Short:JumpMode.Long;
+                var selected=jump==1?JumpMode.Short:JumpMode.Long;
+                if(!CorrectionEnabled || correction.Request(CurrentRoute,horizontal,selected,out selected))
+                {
+                    pendingDowngrade=jump==2 && selected==JumpMode.Short;
+                    pendingJump=(int)selected+1;prepareAt=Time.time;CurrentJump=selected;
+                }
             }
             previousJump=jump;
         }
@@ -120,13 +166,12 @@ namespace NeverGiveUp.Training
         {
             if(!Motor || (!arena && !gameplay && !vertical)) return;
             Motor.SampleGround();if(arena) arena.Tick();ticks++;
+            MeasureLocomotion();correction.Observe();
             if(vertical && vertical.Step(this))return;
             if(gameplay && !gameplay.PreparePhysicsStep())
             {pendingJump=0;Preparation=0;return;}
             // The same turn gate runs with and without rendered characters.
-            var presentation=GetComponentInChildren<ClayAnimator>();
-            var trainingPresentation=GetComponentInChildren<TrainingPresentation>();
-            if((!presentation || !presentation.Ready) && (!trainingPresentation || !trainingPresentation.Ready))
+            if((!clay || !clay.Ready) && (!trainingView || !trainingView.Ready))
             {
                 if(Motor.Grounded)visualYaw=Mathf.MoveTowardsAngle(visualYaw,Motor.Facing*90,150*Time.fixedDeltaTime);
                 Motor.VisualFacingAlignment=Mathf.Clamp01(1-Mathf.Abs(Mathf.DeltaAngle(visualYaw,Motor.Facing*90))/90);
@@ -163,6 +208,9 @@ namespace NeverGiveUp.Training
                     Preparation=Mathf.Clamp01((Time.time-prepareAt)/preparation);
                     if(Preparation>=1 && !Settling)
                     {
+                        if(CorrectionEnabled && (!correction.Request(CurrentRoute,horizontal,CurrentJump,out var selected) || selected!=CurrentJump))
+                        {pendingJump=0;Preparation=0;return;}
+                        if(CorrectionEnabled)correction.Launched(CurrentRoute,CurrentJump,pendingDowngrade);
                         if(vertical)vertical.Launch(this,CurrentJump);
                         Motor.Jump(horizontal*Motor.MaxJumpHorizontal*.65f,Motor.JumpVelocity(CurrentJump));
                         if(CurrentJump==JumpMode.Short)ShortJumps++;else LongJumps++;
@@ -174,13 +222,27 @@ namespace NeverGiveUp.Training
                 }
             }
             if(Settling && Motor.Grounded) Motor.Stop();
-            else Motor.Drive(horizontal*Motor.MoveSpeed);
+            else Motor.Drive(CorrectionEnabled && Motor.Grounded ? correction.GroundSpeed(CurrentRoute,horizontal) : horizontal*Motor.MoveSpeed);
+        }
+        void MeasureLocomotion()
+        {
+            float dt=Time.fixedDeltaTime;
+            if(Motor.Grounded && !metricGrounded && ticks>2)landedAt=Time.time;
+            bool external=gameplay && gameplay.LocomotionBlocked;
+            if(Motor.Grounded && metricGrounded && !external && Preparation<=0 && Mathf.Abs(Motor.DesiredVelocity)>.1f && Mathf.Abs(Motor.Body.linearVelocity.x)>.1f)
+            {
+                WalkSeconds+=dt;WalkDistance+=Mathf.Abs(Motor.Feet.x-metricPosition.x);
+                if(landedAt>=0){LandingWalkDelay+=Time.time-landedAt;LandingWalkSamples++;landedAt=-1;}
+            }
+            if((clay && clay.CurrentAction=="NGU_Run") || (trainingView && trainingView.CurrentAction=="NGU_Run"))RunSeconds+=dt;
+            if(Preparation>0)PrepareSeconds+=dt;
+            metricPosition=Motor.Feet;metricGrounded=Motor.Grounded;
         }
         void OnContact(Collision collision)
         {
             if(Time.time-collisionAt<.25f)return;
             for(int i=0;i<collision.contactCount;i++) if(collision.GetContact(i).normal.y<.45f)
-            {collisionAt=Time.time;collisions++;Reward(-.025f);if(vertical)vertical.Contact(this);break;}
+            {collisionAt=Time.time;collisions++;correction.Contact();Reward(-.025f);if(vertical)vertical.Contact(this);break;}
         }
         void Reward(float value) {if(arena)AddReward(value);}
         void Finish(bool success)

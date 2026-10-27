@@ -18,13 +18,22 @@ namespace NeverGiveUp
         [SerializeField] ModelAsset model;
         [SerializeField] StageController stage;
         [SerializeField] bool useIntermediateTargets;
+        [SerializeField] bool correctPolicyActions=true;
+        public bool CorrectPolicyActions=>correctPolicyActions;
+        public PolicyRoute Route=>route;
         [SerializeField, Min(.05f)] float shortPreparation=.4f,longPreparation=.4f;
         PolicyRoute route;
         public float PreparationSeconds(JumpMode jump)=>jump==JumpMode.Short?shortPreparation:longPreparation;
         // After recoil, a glancing airborne obstacle contact must still allow
         // policy air steering. Otherwise waiting for Grounded can wedge forever
         // between two ledges. Grounded sitting and physical knockdown stay locked.
-        public bool LocomotionBlocked=>recovery.ExternalReaction || recovery.ObstacleReacting && motor.Grounded;
+        public bool VoluntaryResting=>Time.time<standUntil;
+        public int VoluntaryRestCount {get;private set;}
+        float sitAt,restUntil,standUntil;
+        int failureBaseline;
+        int restExternalVersion;
+        int lastGroundIntent,stalledReversals;
+        public bool LocomotionBlocked=>recovery.ExternalReaction || recovery.ObstacleReacting && motor.Grounded || VoluntaryResting;
         CharacterBrain brain;
         CharacterMotor motor;
         CharacterRecovery recovery;
@@ -40,6 +49,7 @@ namespace NeverGiveUp
         public Vector3 Goal=>useIntermediateTargets && route!=null?route.Target:stage?stage.GoalPosition:motor.Feet;
         public CharacterState? ReactionState=>recovery.Active?(recovery.GettingUp?CharacterState.GettingUp:CharacterState.KnockedDown):
             recovery.ObstacleReacting?recovery.ObstacleState:recovery.Stumbling?CharacterState.Stumbling:
+            VoluntaryResting?(Time.time<sitAt+(presentation?presentation.SitSeconds:.35f)?CharacterState.SittingDown:Time.time<restUntil?CharacterState.Resting:CharacterState.GettingUpFromSit):
             stage && stage.Completed?CharacterState.GoalReached:
             mode==ControlMode.Stopped?(motor.Grounded?CharacterState.Idle:CharacterState.Falling):(CharacterState?)null;
         void Awake()
@@ -63,7 +73,9 @@ namespace NeverGiveUp
             try
             {
                 brain.RestartRoute();brain.enabled=false;
-                route=useIntermediateTargets?new PolicyRoute(stage.Graph,motor):null;
+                // Correction geometry is independent of the observation target mode.
+                route=new PolicyRoute(stage.Graph,motor);
+                route.KeepApproachingBlockedRoute=correctPolicyActions;
                 if(route!=null){motor.SampleGround();route.Refresh(stage.GoalPosition,true);}
                 var behavior=GetComponent<BehaviorParameters>();
                 if(!behavior)behavior=gameObject.AddComponent<BehaviorParameters>();
@@ -80,6 +92,7 @@ namespace NeverGiveUp
                 activatedAt=progressAt=Time.time;previousGoal=Goal;bestGoalDistance=Vector3.Distance(Goal,motor.Feet);
                 LastFallback="none";
                 routeMissingSince=-1;
+                standUntil=restUntil=0;failureBaseline=agent.Correction?.FailedAttempts??0;restExternalVersion=motor.ExternalVersion;stalledReversals=lastGroundIntent=0;
                 Debug.Log("[M7A] Learned authority active; Legacy movement disabled.",this);
                 return true;
             }
@@ -99,9 +112,23 @@ namespace NeverGiveUp
             if(mode!=ControlMode.Learned)return false;
             if(brain.enabled){StopLearned("conflicting movement authority");return false;}
             recovery.Tick(Time.fixedDeltaTime);
-            if(route!=null)route.Refresh(stage.GoalPosition);
+            if(route!=null){route.KeepApproachingBlockedRoute=correctPolicyActions;route.Refresh(stage.GoalPosition);}
+            if(recovery.ExternalReaction || VoluntaryResting && !motor.Grounded)standUntil=restUntil=0;
+            // Ordinary recoil also suppresses control, but is not player help.
+            // Only a genuine external event resets accumulated failed attempts.
+            if(restExternalVersion!=motor.ExternalVersion)
+            {restExternalVersion=motor.ExternalVersion;failureBaseline=agent.Correction.FailedAttempts;stalledReversals=0;agent.Correction.RenewLocalAttempts();}
+            if(VoluntaryResting){motor.Stop();return false;}
             if(LocomotionBlocked) return false;
             if(stage.Completed){motor.Stop();return false;}
+            if(correctPolicyActions && motor.Grounded && Time.time-progressAt>6 &&
+                (agent.Correction.FailedAttempts-failureBaseline>=3 || stalledReversals>=4) && Mathf.Abs(motor.Body.linearVelocity.y)<.2f)
+            {
+                sitAt=Time.time;restUntil=sitAt+(presentation?presentation.SitSeconds:.35f)+2.5f;
+                standUntil=restUntil+(presentation?presentation.StandSeconds:.5f);VoluntaryRestCount++;
+                failureBaseline=agent.Correction.FailedAttempts;stalledReversals=0;agent.Correction.RenewLocalAttempts();
+                agent.CancelPendingActions();motor.Stop();return false;
+            }
             return true;
         }
         void Update()
@@ -117,12 +144,18 @@ namespace NeverGiveUp
             }
             routeMissingSince=-1;
             if(Vector3.Distance(previousGoal,Goal)>.1f)
-            {previousGoal=Goal;bestGoalDistance=Vector3.Distance(Goal,motor.Feet);progressAt=Time.time;}
+            {previousGoal=Goal;bestGoalDistance=Vector3.Distance(Goal,motor.Feet);progressAt=Time.time;failureBaseline=agent.Correction.FailedAttempts;stalledReversals=0;agent.Correction.RenewLocalAttempts();}
             if(LocomotionBlocked)
             {progressAt=Time.time;bestGoalDistance=Vector3.Distance(Goal,motor.Feet);return;}
             float distance=Vector3.Distance(Goal,motor.Feet);
+            int intent=agent.HorizontalDecision;
+            if(motor.Grounded && intent!=0)
+            {
+                if(lastGroundIntent!=0 && lastGroundIntent!=intent && Time.time-progressAt>3)stalledReversals++;
+                lastGroundIntent=intent;
+            }
             if(motor.Grounded && distance<bestGoalDistance-.3f)
-            {bestGoalDistance=distance;progressAt=Time.time;}
+            {bestGoalDistance=distance;progressAt=Time.time;failureBaseline=agent.Correction.FailedAttempts;stalledReversals=0;agent.Correction.RenewLocalAttempts();}
             if(!stage.Completed && Time.time-progressAt>8)
                 LastFallback="no physical progress for 8 seconds; remaining Learned";
         }

@@ -30,6 +30,17 @@ namespace NeverGiveUp.Editor
             {
                 switch(command)
                 {
+                    case "m7d-on":M7DReview.Play(true);break;
+                    case "m7d-on-retry":M7DReview.Play(true,true);break;
+                    case "m7d-on-cube":M7DReview.Play(true,false,true);break;
+                    case "m7d-clear-cube":M7DReview.RouteCube(true);break;
+                    case "m7d-retry-fixture":M7DReview.RetryFixture(false);break;
+                    case "m7d-clear-retry":M7DReview.RetryFixture(true);break;
+                    case "m7d-off":M7DReview.Play(false);break;
+                    case "m7d-checks":M7DReview.Checks();break;
+                    case "m7d-diagnose":M7DReview.Diagnose();break;
+                    case "m7d-build-eval":M7DReview.Build(true);break;
+                    case "m7d-build":M7DReview.Build(false);break;
                     case "m7c-checks":M7CChecks.Run();break;
                     case "m7c-no-legacy":M7CChecks.CheckNoLegacy();break;
                     case "m7c-monitor":M7CPlaybackMonitor.StartReview();break;

@@ -1,0 +1,19 @@
+PASS center count=1
+PASS late release count=1
+PASS early release count=1
+PASS right to left count=1
+PASS distant miss count=0
+PASS stationary click count=0
+PASS stopped after crossing count=0
+PASS reverse away before release count=0
+PASS same-frame contact does not duplicate reaction
+PASS ordinary contact never seats
+PASS ordinary reaction completes within .6s
+PASS walking waits for completed body turn
+PASS jump readiness rejects incomplete visual turn
+PASS delayed renderer report cannot bypass turn gate
+PASS physical recovery crawl does not deadlock on turn gate
+PASS jump readiness rejects opposite intent before facing changes
+PASS walking resumes after turn completes
+PASS air steering preserves takeoff facing
+Failures=0

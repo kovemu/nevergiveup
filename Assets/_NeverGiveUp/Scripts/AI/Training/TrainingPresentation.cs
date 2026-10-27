@@ -9,6 +9,7 @@ namespace NeverGiveUp.Training
         public Animator animator;
         public bool Ready => isActiveAndEnabled && animator && animator.runtimeAnimatorController;
         string current;
+        public string CurrentAction=>current;
         void LateUpdate()
         {
             if(!agent || !agent.Motor || !animator)return;

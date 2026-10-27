@@ -358,7 +358,20 @@ namespace NeverGiveUp
                 }
             DraggableBody item = collision.collider.GetComponentInParent<DraggableBody>();
             if (item && item.PlayerInfluenced)
-                NotifyExternal("player-moved object");
+                for (int i = 0; i < collision.contactCount; i++)
+                {
+                    var point = collision.GetContact(i);
+                    // Holding a stationary obstacle does not turn the actor's
+                    // own failed jump into player assistance. Orient the contact
+                    // toward this actor independently of collider pair ordering.
+                    Vector3 normal = point.normal;
+                    if (Vector3.Dot(normal, body.worldCenterOfMass - point.point) < 0f) normal = -normal;
+                    Vector3 velocity = item.Body.GetPointVelocity(point.point);
+                    bool movingSupport = collision.collider == Support && velocity.sqrMagnitude > .25f;
+                    if (!movingSupport && Vector3.Dot(velocity, normal) <= .5f) continue;
+                    NotifyExternal("player-moved object");
+                    break;
+                }
             Contact?.Invoke(collision);
         }
         private void OnCollisionExit(Collision collision)

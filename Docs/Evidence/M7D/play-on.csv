@@ -1,0 +1,1143 @@
+time,mode,x,y,grounded,state,action,horizontal,jump,pending,shorts,longs,walkSeconds,walkDistance,runSeconds,prepareSeconds,blockedChecks,downgraded,repeated,reason,alignment,unnecessaryChecks,completed,support,targetX,targetY,failedAttempts,probeAttempts,rests,blockedRouteIntent
+0.353,Learned,-3.791,0.000,True,Running,NGU_Run,1,2,0,0,0,0.020,0.003,0.000,0.000,1,0,0,approach safe Short launch,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.404,Learned,-3.757,0.000,True,Running,NGU_Run,1,2,0,0,0,0.080,0.029,0.060,0.000,4,0,0,approach safe Short launch,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.455,Learned,-3.719,0.000,True,Running,NGU_Run,1,2,0,0,0,0.120,0.061,0.100,0.000,6,0,0,approach safe Short launch,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.506,Learned,-3.641,0.000,True,Running,NGU_Run,1,2,0,0,0,0.180,0.130,0.160,0.000,9,0,0,approach safe Short launch,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.556,Learned,-3.575,0.000,True,Running,NGU_Run,1,2,0,0,0,0.220,0.190,0.200,0.000,11,0,0,approach safe Short launch,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.607,Learned,-3.454,0.000,True,Running,NGU_Run,1,2,0,0,0,0.280,0.303,0.260,0.000,14,0,0,approach safe Short launch,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.657,Learned,-3.358,0.000,True,Running,NGU_Run,1,2,0,0,0,0.320,0.393,0.300,0.000,16,0,0,approach safe Short launch,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.708,Learned,-3.221,0.000,True,Running,NGU_Run,1,2,0,0,0,0.380,0.538,0.360,0.000,19,0,0,approach safe Short launch,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.759,Learned,-3.151,0.000,True,Running,NGU_Run,1,2,0,0,0,0.420,0.616,0.400,0.000,21,0,0,approach safe Short launch,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.809,Learned,-3.061,0.000,True,Running,NGU_Run,1,2,0,0,0,0.480,0.711,0.460,0.000,24,0,0,approach safe Short launch,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.861,Learned,-3.000,0.000,True,Running,NGU_Run,1,2,0,0,0,0.540,0.782,0.520,0.000,27,0,0,approach safe Short launch,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.912,Learned,-2.970,0.000,True,Running,NGU_Run,1,2,1,0,0,0.580,0.816,0.560,0.000,28,0,0,current pose permits Short,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+0.963,Learned,-2.953,0.000,True,InspectingObstacle,NGU_Inspect,1,0,1,0,0,0.600,0.830,0.580,0.040,28,0,0,current pose permits Short,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+1.014,Learned,-2.953,0.000,True,InspectingObstacle,NGU_Inspect,1,0,1,0,0,0.600,0.830,0.580,0.080,28,0,0,current pose permits Short,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+1.064,Learned,-2.953,0.000,True,InspectingObstacle,NGU_Inspect,1,0,1,0,0,0.600,0.830,0.580,0.140,28,0,0,current pose permits Short,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+1.115,Learned,-2.953,0.000,True,InspectingObstacle,NGU_Inspect,1,0,1,0,0,0.600,0.830,0.580,0.180,28,0,0,current pose permits Short,1.0000,0,False,NGU Safety Floor,-0.600,0.450,0,0,0,False
+1.167,Learned,-2.788,0.147,False,Jumping,NGU_JumpShort,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.218,Learned,-2.627,0.278,False,Jumping,NGU_JumpShort,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.270,Learned,-2.396,0.445,False,Jumping,NGU_JumpShort,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.320,Learned,-2.247,0.537,False,Jumping,NGU_JumpShort,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.371,Learned,-2.034,0.645,False,Jumping,NGU_JumpShort,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.422,Learned,-1.831,0.718,False,Jumping,NGU_JumpShort,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.474,Learned,-1.702,0.747,False,Jumping,NGU_JumpShort,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.524,Learned,-1.517,0.761,False,Falling,NGU_Fall,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.574,Learned,-1.400,0.750,False,Falling,NGU_Fall,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.626,Learned,-1.231,0.706,False,Falling,NGU_Fall,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.676,Learned,-1.119,0.656,False,Falling,NGU_Fall,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.727,Learned,-0.951,0.552,False,Falling,NGU_Fall,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,,-0.600,0.450,0,0,0,False
+1.778,Learned,-0.851,0.464,True,Recovering,NGU_Land,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+1.829,Learned,-0.743,0.450,True,Recovering,NGU_Land,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+1.880,Learned,-0.674,0.450,True,Recovering,NGU_Land,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+1.931,Learned,-0.651,0.450,True,Recovering,NGU_Land,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+1.983,Learned,-0.644,0.450,True,Recovering,NGU_Land,1,0,0,1,0,0.600,0.830,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+2.033,Learned,-0.635,0.450,True,Running,NGU_Land,1,0,0,1,0,0.620,0.833,0.580,0.220,28,1,0,current pose permits Short,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+2.084,Learned,-0.622,0.450,True,InspectingObstacle,NGU_Inspect,1,2,2,1,0,0.660,0.847,0.600,0.240,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+2.135,Learned,-0.622,0.450,True,InspectingObstacle,NGU_Inspect,1,2,2,1,0,0.660,0.847,0.600,0.280,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+2.186,Learned,-0.622,0.450,True,InspectingObstacle,NGU_Inspect,1,0,2,1,0,0.660,0.847,0.600,0.340,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+2.237,Learned,-0.622,0.450,True,InspectingObstacle,NGU_Inspect,1,0,2,1,0,0.660,0.847,0.600,0.380,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+2.288,Learned,-0.622,0.450,True,InspectingObstacle,NGU_Inspect,1,0,2,1,0,0.660,0.847,0.600,0.440,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+2.340,Learned,-0.622,0.450,True,InspectingObstacle,NGU_Inspect,1,0,2,1,0,0.660,0.847,0.600,0.480,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+2.390,Learned,-0.622,0.450,True,InspectingObstacle,NGU_Inspect,1,0,2,1,0,0.660,0.847,0.600,0.540,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+2.440,Learned,-0.622,0.450,True,InspectingObstacle,NGU_Inspect,1,0,2,1,0,0.660,0.847,0.600,0.600,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+2.492,Learned,-0.622,0.450,True,InspectingObstacle,NGU_Inspect,1,0,2,1,0,0.660,0.847,0.600,0.640,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 1,2.550,1.640,0,0,0,False
+2.544,Learned,-0.376,0.802,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+2.595,Learned,-0.218,1.018,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+2.646,Learned,0.010,1.311,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+2.696,Learned,0.156,1.487,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+2.747,Learned,0.366,1.722,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+2.798,Learned,0.500,1.858,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+2.849,Learned,0.692,2.034,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+2.900,Learned,0.873,2.175,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+2.951,Learned,0.988,2.249,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+3.002,Learned,1.156,2.330,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+3.052,Learned,1.268,2.365,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+3.104,Learned,1.436,2.387,False,Jumping,NGU_JumpLong,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+3.154,Learned,1.548,2.383,False,Falling,NGU_Fall,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+3.205,Learned,1.716,2.347,False,Falling,NGU_Fall,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+3.256,Learned,1.828,2.303,False,Falling,NGU_Fall,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+3.307,Learned,1.996,2.208,False,Falling,NGU_Fall,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+3.359,Learned,2.108,2.125,False,Falling,NGU_Fall,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+3.409,Learned,2.276,1.971,False,Falling,NGU_Fall,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+3.461,Learned,2.444,1.782,False,Falling,NGU_Fall,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,,2.550,1.640,0,0,0,False
+3.512,Learned,2.552,1.636,True,Recovering,NGU_Land,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+3.564,Learned,2.664,1.640,True,Recovering,NGU_Land,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+3.615,Learned,2.717,1.640,True,Recovering,NGU_Land,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+3.666,Learned,2.764,1.640,True,Recovering,NGU_Land,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+3.717,Learned,2.774,1.640,True,Recovering,NGU_Land,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+3.769,Learned,2.777,1.640,True,Running,NGU_Land,1,0,0,1,1,0.660,0.847,0.600,0.660,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+3.821,Learned,2.803,1.640,True,Running,NGU_Run,1,0,0,1,1,0.720,0.865,0.620,0.660,28,1,0,current pose permits Long,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+3.871,Learned,2.835,1.640,True,Running,NGU_Run,1,2,0,1,1,0.760,0.891,0.660,0.660,30,1,0,approach safe Short launch,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+3.922,Learned,2.904,1.640,True,Running,NGU_Run,1,2,0,1,1,0.820,0.951,0.720,0.660,33,1,0,approach safe Short launch,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+3.974,Learned,2.965,1.640,True,Running,NGU_Run,1,2,0,1,1,0.860,1.006,0.760,0.660,35,1,0,approach safe Short launch,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+4.024,Learned,3.077,1.640,True,Running,NGU_Run,1,2,0,1,1,0.920,1.110,0.820,0.660,38,1,0,approach safe Short launch,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+4.075,Learned,3.148,1.640,True,Running,NGU_Run,1,2,0,1,1,0.960,1.188,0.860,0.660,40,1,0,approach safe Short launch,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+4.125,Learned,3.241,1.640,True,Running,NGU_Run,1,2,0,1,1,1.020,1.285,0.920,0.660,43,1,0,approach safe Short launch,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+4.176,Learned,3.286,1.640,True,Running,NGU_Run,1,2,0,1,1,1.060,1.339,0.960,0.660,45,1,0,approach safe Short launch,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+4.227,Learned,3.334,1.640,True,Running,NGU_Run,1,2,1,1,1,1.120,1.392,1.020,0.660,47,1,0,current pose permits Short,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+4.277,Learned,3.349,1.640,True,InspectingObstacle,NGU_Inspect,1,0,1,1,1,1.140,1.407,1.040,0.680,47,1,0,current pose permits Short,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+4.329,Learned,3.351,1.640,True,InspectingObstacle,NGU_Inspect,1,0,1,1,1,1.140,1.407,1.040,0.740,47,1,0,current pose permits Short,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+4.380,Learned,3.351,1.640,True,InspectingObstacle,NGU_Inspect,1,0,1,1,1,1.140,1.407,1.040,0.780,47,1,0,current pose permits Short,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+4.431,Learned,3.351,1.640,True,InspectingObstacle,NGU_Inspect,1,0,1,1,1,1.140,1.407,1.040,0.840,47,1,0,current pose permits Short,1.0000,0,False,Climb ledge 2,5.700,2.110,0,0,0,False
+4.482,Learned,3.597,1.854,False,Jumping,NGU_JumpShort,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,,5.700,2.110,0,0,0,False
+4.534,Learned,3.755,1.977,False,Jumping,NGU_JumpShort,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,,5.700,2.110,0,0,0,False
+4.585,Learned,3.983,2.133,False,Jumping,NGU_JumpShort,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,,5.700,2.110,0,0,0,False
+4.635,Learned,4.129,2.217,False,Jumping,NGU_JumpShort,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,,5.700,2.110,0,0,0,False
+4.685,Learned,4.339,2.313,False,Jumping,NGU_JumpShort,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,,5.700,2.110,0,0,0,False
+4.736,Learned,4.473,2.358,False,Jumping,NGU_JumpShort,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,,5.700,2.110,0,0,0,False
+4.786,Learned,4.665,2.395,False,Jumping,NGU_JumpShort,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,,5.700,2.110,0,0,0,False
+4.837,Learned,4.787,2.401,False,Falling,NGU_Fall,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,,5.700,2.110,0,0,0,False
+4.888,Learned,4.961,2.379,False,Falling,NGU_Fall,-1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,,5.700,2.110,0,0,0,False
+4.939,Learned,5.071,2.346,False,Falling,NGU_Fall,-1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,,5.700,2.110,0,0,0,False
+4.990,Learned,5.227,2.265,False,Falling,NGU_Fall,-1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,,5.700,2.110,0,0,0,False
+5.041,Learned,5.364,2.150,True,Recovering,NGU_Land,0,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.092,Learned,5.430,2.109,True,Recovering,NGU_Land,0,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.143,Learned,5.493,2.110,True,Recovering,NGU_Land,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.193,Learned,5.513,2.110,True,Recovering,NGU_Land,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.244,Learned,5.517,2.110,True,Recovering,NGU_Land,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.294,Learned,5.520,2.110,True,Running,NGU_Land,1,0,0,2,1,1.140,1.407,1.040,0.860,47,2,0,current pose permits Short,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.345,Learned,5.546,2.110,True,Running,NGU_Run,1,2,0,2,1,1.200,1.424,1.060,0.860,48,2,0,approach safe Long launch,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.396,Learned,5.578,2.110,True,Running,NGU_Run,1,2,0,2,1,1.240,1.450,1.100,0.860,50,2,0,approach safe Long launch,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.448,Learned,5.647,2.110,True,Running,NGU_Run,1,2,0,2,1,1.300,1.511,1.160,0.860,53,2,0,approach safe Long launch,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.498,Learned,5.708,2.110,True,Running,NGU_Run,1,2,0,2,1,1.340,1.565,1.200,0.860,55,2,0,approach safe Long launch,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.549,Learned,5.811,2.110,True,Running,NGU_Run,1,2,0,2,1,1.400,1.668,1.260,0.860,58,2,0,approach safe Long launch,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.599,Learned,5.867,2.110,True,Running,NGU_Run,1,2,0,2,1,1.440,1.730,1.300,0.860,60,2,0,approach safe Long launch,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.651,Learned,5.931,2.110,True,Running,NGU_Run,1,2,0,2,1,1.500,1.802,1.360,0.860,63,2,0,approach safe Long launch,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.703,Learned,5.978,2.110,True,Running,NGU_Run,1,2,0,2,1,1.560,1.854,1.420,0.860,66,2,0,approach safe Long launch,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.753,Learned,6.012,2.110,True,Running,NGU_Run,1,2,0,2,1,1.600,1.885,1.460,0.860,68,2,0,approach safe Long launch,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.805,Learned,6.056,2.110,True,Running,NGU_Run,1,2,0,2,1,1.660,1.930,1.520,0.860,71,2,0,approach safe Long launch,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.855,Learned,6.093,2.110,True,Running,NGU_Run,1,2,0,2,1,1.700,1.965,1.560,0.860,73,2,0,approach safe Long launch,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.905,Learned,6.134,2.110,True,InspectingObstacle,NGU_Inspect,1,2,2,2,1,1.760,2.013,1.620,0.860,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+5.956,Learned,6.141,2.110,True,InspectingObstacle,NGU_Inspect,1,0,2,2,1,1.760,2.013,1.620,0.900,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+6.006,Learned,6.141,2.110,True,InspectingObstacle,NGU_Inspect,1,0,2,2,1,1.760,2.013,1.620,0.960,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+6.056,Learned,6.141,2.110,True,InspectingObstacle,NGU_Inspect,1,0,2,2,1,1.760,2.013,1.620,1.000,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+6.107,Learned,6.141,2.110,True,InspectingObstacle,NGU_Inspect,1,0,2,2,1,1.760,2.013,1.620,1.060,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+6.158,Learned,6.141,2.110,True,InspectingObstacle,NGU_Inspect,1,0,2,2,1,1.760,2.013,1.620,1.100,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+6.209,Learned,6.141,2.110,True,InspectingObstacle,NGU_Inspect,1,0,2,2,1,1.760,2.013,1.620,1.160,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+6.260,Learned,6.141,2.110,True,InspectingObstacle,NGU_Inspect,1,0,2,2,1,1.760,2.013,1.620,1.220,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+6.311,Learned,6.141,2.110,True,InspectingObstacle,NGU_Inspect,1,0,2,2,1,1.760,2.013,1.620,1.260,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 3,8.850,3.740,0,0,0,False
+6.362,Learned,6.306,2.349,False,Jumping,NGU_JumpLong,1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.413,Learned,6.467,2.572,False,Jumping,NGU_JumpLong,1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.464,Learned,6.698,2.877,False,Jumping,NGU_JumpLong,1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.514,Learned,6.847,3.061,False,Jumping,NGU_JumpLong,1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.565,Learned,7.060,3.307,False,Jumping,NGU_JumpLong,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.616,Learned,7.197,3.452,False,Jumping,NGU_JumpLong,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.666,Learned,7.392,3.639,False,Jumping,NGU_JumpLong,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.718,Learned,7.517,3.745,False,Jumping,NGU_JumpLong,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.769,Learned,7.694,3.873,False,Jumping,NGU_JumpLong,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.819,Learned,7.807,3.940,False,Jumping,NGU_JumpLong,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.870,Learned,7.966,4.009,False,Jumping,NGU_JumpLong,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.920,Learned,8.115,4.044,False,Jumping,NGU_JumpLong,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+6.970,Learned,8.208,4.047,False,Falling,NGU_Fall,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+7.021,Learned,8.339,4.023,False,Falling,NGU_Fall,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+7.072,Learned,8.420,3.987,False,Falling,NGU_Fall,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+7.122,Learned,8.533,3.904,False,Falling,NGU_Fall,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,,8.850,3.740,0,0,0,False
+7.172,Learned,8.599,3.829,True,Recovering,NGU_Land,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.222,Learned,8.665,3.740,True,Recovering,NGU_Land,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.274,Learned,8.682,3.740,True,Recovering,NGU_Land,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.324,Learned,8.684,3.740,True,Recovering,NGU_Land,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.375,Learned,8.684,3.740,True,Recovering,NGU_Land,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.426,Learned,8.684,3.740,True,Idle,NGU_Land,-1,0,0,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.476,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,2,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.527,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,2,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.578,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.630,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.680,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.731,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.782,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.832,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.884,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.934,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+7.986,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.036,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.086,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.138,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.189,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.240,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.291,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.341,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.0376,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.392,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.1219,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.449,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.2175,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.501,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.3036,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.551,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.3873,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.602,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.4723,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.653,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.5566,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.704,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.6415,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.754,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.7244,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.805,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.8085,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.856,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.8926,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.907,Learned,8.684,3.740,True,Idle,NGU_Idle,-1,0,2,2,2,1.760,2.013,1.620,1.300,74,2,0,current pose permits Long,0.9775,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+8.958,Learned,8.684,3.740,True,InspectingObstacle,NGU_Inspect,-1,0,2,2,2,1.760,2.013,1.620,1.320,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+9.009,Learned,8.684,3.740,True,InspectingObstacle,NGU_Inspect,-1,0,2,2,2,1.760,2.013,1.620,1.380,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+9.060,Learned,8.684,3.740,True,InspectingObstacle,NGU_Inspect,-1,0,2,2,2,1.760,2.013,1.620,1.420,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+9.110,Learned,8.684,3.740,True,InspectingObstacle,NGU_Inspect,-1,0,2,2,2,1.760,2.013,1.620,1.480,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+9.161,Learned,8.684,3.740,True,InspectingObstacle,NGU_Inspect,-1,0,2,2,2,1.760,2.013,1.620,1.540,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+9.212,Learned,8.684,3.740,True,InspectingObstacle,NGU_Inspect,-1,0,2,2,2,1.760,2.013,1.620,1.580,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+9.264,Learned,8.684,3.740,True,InspectingObstacle,NGU_Inspect,-1,0,2,2,2,1.760,2.013,1.620,1.640,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+9.315,Learned,8.684,3.740,True,InspectingObstacle,NGU_Inspect,-1,0,2,2,2,1.760,2.013,1.620,1.680,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+9.367,Learned,8.601,3.861,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 4,5.700,4.930,0,0,0,False
+9.418,Learned,8.438,4.092,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+9.468,Learned,8.203,4.409,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+9.519,Learned,8.052,4.601,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+9.570,Learned,7.835,4.859,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+9.622,Learned,7.628,5.082,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+9.672,Learned,7.497,5.211,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+9.723,Learned,7.308,5.375,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+9.774,Learned,7.189,5.465,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+9.825,Learned,7.018,5.570,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+9.875,Learned,6.906,5.620,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+9.926,Learned,6.738,5.666,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+9.977,Learned,6.626,5.677,False,Jumping,NGU_JumpLong,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+10.028,Learned,6.458,5.665,False,Falling,NGU_Fall,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+10.079,Learned,6.346,5.637,False,Falling,NGU_Fall,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+10.129,Learned,6.178,5.565,False,Falling,NGU_Fall,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+10.180,Learned,6.066,5.498,False,Falling,NGU_Fall,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+10.235,Learned,5.898,5.368,False,Falling,NGU_Fall,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+10.286,Learned,5.730,5.202,False,Falling,NGU_Fall,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+10.337,Learned,5.618,5.072,False,Falling,NGU_Fall,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,,5.700,4.930,0,0,0,False
+10.387,Learned,5.469,4.929,True,Recovering,NGU_Land,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.438,Learned,5.398,4.930,True,Recovering,NGU_Land,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.489,Learned,5.325,4.930,True,Recovering,NGU_Land,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.540,Learned,5.298,4.930,True,Recovering,NGU_Land,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.591,Learned,5.288,4.930,True,Recovering,NGU_Land,-1,0,0,2,3,1.760,2.013,1.620,1.740,74,2,0,current pose permits Long,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.643,Learned,5.279,4.930,True,Running,NGU_Land,-1,2,0,2,3,1.780,2.016,1.620,1.740,75,2,0,approach safe Short launch,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.693,Learned,5.259,4.930,True,Running,NGU_Run,-1,2,0,2,3,1.820,2.031,1.640,1.740,77,2,0,approach safe Short launch,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.744,Learned,5.207,4.930,True,Running,NGU_Run,-1,2,0,2,3,1.880,2.074,1.700,1.740,80,2,0,approach safe Short launch,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.795,Learned,5.158,4.930,True,Running,NGU_Run,-1,2,0,2,3,1.920,2.117,1.740,1.740,82,2,0,approach safe Short launch,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.846,Learned,5.066,4.930,True,Running,NGU_Run,-1,2,0,2,3,1.980,2.204,1.800,1.740,85,2,0,approach safe Short launch,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.897,Learned,5.013,4.930,True,Running,NGU_Run,-1,2,0,2,3,2.020,2.263,1.840,1.740,87,2,0,approach safe Short launch,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.947,Learned,4.952,4.930,True,Running,NGU_Run,-1,2,0,2,3,2.080,2.331,1.900,1.740,90,2,0,approach safe Short launch,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+10.998,Learned,4.920,4.930,True,Running,NGU_Run,-1,2,1,2,3,2.120,2.366,1.940,1.740,91,2,0,current pose permits Short,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+11.048,Learned,4.902,4.930,True,InspectingObstacle,NGU_Inspect,-1,0,1,2,3,2.140,2.381,1.960,1.780,91,2,0,current pose permits Short,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+11.100,Learned,4.902,4.930,True,InspectingObstacle,NGU_Inspect,-1,0,1,2,3,2.140,2.381,1.960,1.820,91,2,0,current pose permits Short,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+11.151,Learned,4.902,4.930,True,InspectingObstacle,NGU_Inspect,-1,0,1,2,3,2.140,2.381,1.960,1.880,91,2,0,current pose permits Short,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+11.203,Learned,4.818,5.005,False,Jumping,NGU_JumpShort,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,Climb ledge 5,2.550,5.400,0,0,0,False
+11.254,Learned,4.656,5.144,False,Jumping,NGU_JumpShort,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,,2.550,5.400,0,0,0,False
+11.305,Learned,4.420,5.323,False,Jumping,NGU_JumpShort,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,,2.550,5.400,0,0,0,False
+11.356,Learned,4.270,5.423,False,Jumping,NGU_JumpShort,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,,2.550,5.400,0,0,0,False
+11.408,Learned,4.052,5.543,False,Jumping,NGU_JumpShort,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,,2.550,5.400,0,0,0,False
+11.458,Learned,3.914,5.603,False,Jumping,NGU_JumpShort,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,,2.550,5.400,0,0,0,False
+11.509,Learned,3.714,5.664,False,Jumping,NGU_JumpShort,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,,2.550,5.400,0,0,0,False
+11.559,Learned,3.588,5.685,False,Jumping,NGU_JumpShort,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,,2.550,5.400,0,0,0,False
+11.611,Learned,3.406,5.688,False,Falling,NGU_Fall,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,,2.550,5.400,0,0,0,False
+11.661,Learned,3.236,5.654,False,Falling,NGU_Fall,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,,2.550,5.400,0,0,0,False
+11.712,Learned,3.124,5.613,False,Falling,NGU_Fall,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,,2.550,5.400,0,0,0,False
+11.763,Learned,2.956,5.521,False,Falling,NGU_Fall,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,,2.550,5.400,0,0,0,False
+11.815,Learned,2.856,5.440,True,Recovering,NGU_Land,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+11.865,Learned,2.745,5.400,True,Recovering,NGU_Land,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+11.916,Learned,2.694,5.400,True,Recovering,NGU_Land,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+11.967,Learned,2.651,5.400,True,Recovering,NGU_Land,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.019,Learned,2.644,5.400,True,Recovering,NGU_Land,-1,0,0,3,3,2.140,2.381,1.960,1.940,91,3,0,current pose permits Short,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.069,Learned,2.635,5.400,True,Running,NGU_Land,-1,2,0,3,3,2.160,2.383,1.960,1.940,93,3,0,approach safe Long launch,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.120,Learned,2.615,5.400,True,Running,NGU_Run,-1,2,0,3,3,2.200,2.398,1.980,1.940,95,3,0,approach safe Long launch,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.171,Learned,2.563,5.400,True,Running,NGU_Run,-1,2,0,3,3,2.260,2.441,2.040,1.940,98,3,0,approach safe Long launch,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.222,Learned,2.485,5.400,True,Running,NGU_Run,-1,2,0,3,3,2.320,2.510,2.100,1.940,101,3,0,approach safe Long launch,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.272,Learned,2.420,5.400,True,Running,NGU_Run,-1,2,0,3,3,2.360,2.571,2.140,1.940,103,3,0,approach safe Long launch,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.323,Learned,2.338,5.400,True,Running,NGU_Run,-1,2,0,3,3,2.420,2.662,2.200,1.940,106,3,0,approach safe Long launch,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.374,Learned,2.296,5.400,True,Running,NGU_Run,-1,2,0,3,3,2.460,2.709,2.240,1.940,108,3,0,approach safe Long launch,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.424,Learned,2.247,5.400,True,Running,NGU_Run,-1,2,0,3,3,2.520,2.763,2.300,1.940,111,3,0,approach safe Long launch,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.475,Learned,2.213,5.400,True,Running,NGU_Run,-1,2,0,3,3,2.560,2.794,2.340,1.940,113,3,0,approach safe Long launch,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.526,Learned,2.169,5.400,True,Running,NGU_Run,-1,2,0,3,3,2.620,2.839,2.400,1.940,116,3,0,approach safe Long launch,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.578,Learned,2.135,5.400,True,InspectingObstacle,NGU_Inspect,-1,2,2,3,3,2.660,2.874,2.440,1.940,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.629,Learned,2.116,5.400,True,InspectingObstacle,NGU_Inspect,-1,2,2,3,3,2.660,2.874,2.440,2.000,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.679,Learned,2.116,5.400,True,InspectingObstacle,NGU_Inspect,-1,0,2,3,3,2.660,2.874,2.440,2.040,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.729,Learned,2.116,5.400,True,InspectingObstacle,NGU_Inspect,-1,0,2,3,3,2.660,2.874,2.440,2.100,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.781,Learned,2.116,5.400,True,InspectingObstacle,NGU_Inspect,-1,0,2,3,3,2.660,2.874,2.440,2.160,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.832,Learned,2.116,5.400,True,InspectingObstacle,NGU_Inspect,-1,0,2,3,3,2.660,2.874,2.440,2.200,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.883,Learned,2.116,5.400,True,InspectingObstacle,NGU_Inspect,-1,0,2,3,3,2.660,2.874,2.440,2.260,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.934,Learned,2.116,5.400,True,InspectingObstacle,NGU_Inspect,-1,0,2,3,3,2.660,2.874,2.440,2.300,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+12.985,Learned,2.116,5.400,True,InspectingObstacle,NGU_Inspect,-1,0,2,3,3,2.660,2.874,2.440,2.360,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 6,-0.600,7.030,0,0,0,False
+13.035,Learned,1.951,5.639,False,Jumping,NGU_JumpLong,-1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.086,Learned,1.712,5.968,False,Jumping,NGU_JumpLong,-1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.137,Learned,1.559,6.167,False,Jumping,NGU_JumpLong,-1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.187,Learned,1.338,6.437,False,Jumping,NGU_JumpLong,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.238,Learned,1.197,6.597,False,Jumping,NGU_JumpLong,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.289,Learned,0.994,6.808,False,Jumping,NGU_JumpLong,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.340,Learned,0.802,6.984,False,Jumping,NGU_JumpLong,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.391,Learned,0.680,7.082,False,Jumping,NGU_JumpLong,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.443,Learned,0.506,7.199,False,Jumping,NGU_JumpLong,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.494,Learned,0.396,7.257,False,Jumping,NGU_JumpLong,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.544,Learned,0.240,7.315,False,Jumping,NGU_JumpLong,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.595,Learned,0.142,7.334,False,Jumping,NGU_JumpLong,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.645,Learned,0.004,7.333,False,Falling,NGU_Fall,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.696,Learned,-0.082,7.313,False,Falling,NGU_Fall,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.747,Learned,-0.202,7.253,False,Falling,NGU_Fall,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.798,Learned,-0.276,7.194,False,Falling,NGU_Fall,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,,-0.600,7.030,0,0,0,False
+13.848,Learned,-0.369,7.075,True,Recovering,NGU_Land,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+13.899,Learned,-0.407,7.030,True,Recovering,NGU_Land,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+13.949,Learned,-0.427,7.030,True,Recovering,NGU_Land,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.000,Learned,-0.427,7.030,True,Recovering,NGU_Land,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.052,Learned,-0.427,7.030,True,Recovering,NGU_Land,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.103,Learned,-0.427,7.030,True,Idle,NGU_Land,1,0,0,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.153,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,2,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.203,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,2,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.254,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.305,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.356,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.406,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.458,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.509,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.560,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.611,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.661,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.713,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.763,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.813,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.864,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.916,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+14.966,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.017,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.067,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.0807,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.118,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.1650,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.169,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.2506,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.219,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.3340,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.275,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.4262,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.326,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.5119,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.378,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.5977,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.429,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.6818,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.479,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.7650,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.530,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.8492,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.580,Learned,-0.427,7.030,True,Idle,NGU_Idle,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,0.9336,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.631,Learned,-0.427,7.030,True,InspectingObstacle,NGU_Inspect,1,0,2,3,4,2.660,2.874,2.440,2.380,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.682,Learned,-0.427,7.030,True,InspectingObstacle,NGU_Inspect,1,0,2,3,4,2.660,2.874,2.440,2.440,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.733,Learned,-0.427,7.030,True,InspectingObstacle,NGU_Inspect,1,0,2,3,4,2.660,2.874,2.440,2.480,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.784,Learned,-0.427,7.030,True,InspectingObstacle,NGU_Inspect,1,0,2,3,4,2.660,2.874,2.440,2.540,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.835,Learned,-0.427,7.030,True,InspectingObstacle,NGU_Inspect,1,0,2,3,4,2.660,2.874,2.440,2.580,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.887,Learned,-0.427,7.030,True,InspectingObstacle,NGU_Inspect,1,0,2,3,4,2.660,2.874,2.440,2.640,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.938,Learned,-0.427,7.030,True,InspectingObstacle,NGU_Inspect,1,0,2,3,4,2.660,2.874,2.440,2.680,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+15.989,Learned,-0.427,7.030,True,InspectingObstacle,NGU_Inspect,1,0,2,3,4,2.660,2.874,2.440,2.740,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+16.040,Learned,-0.427,7.030,True,InspectingObstacle,NGU_Inspect,1,0,2,3,4,2.660,2.874,2.440,2.800,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 7,2.550,8.220,0,0,0,False
+16.090,Learned,-0.262,7.269,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.141,Learned,-0.023,7.598,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.191,Learned,0.130,7.797,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.243,Learned,0.351,8.067,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.294,Learned,0.492,8.227,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.345,Learned,0.695,8.438,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.396,Learned,0.824,8.559,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.447,Learned,1.009,8.712,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.498,Learned,1.126,8.793,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.549,Learned,1.295,8.887,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.600,Learned,1.407,8.929,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.651,Learned,1.575,8.964,False,Jumping,NGU_JumpLong,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.701,Learned,1.743,8.963,False,Falling,NGU_Fall,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.752,Learned,1.855,8.943,False,Falling,NGU_Fall,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.802,Learned,2.023,8.883,False,Falling,NGU_Fall,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.853,Learned,2.135,8.824,False,Falling,NGU_Fall,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.904,Learned,2.303,8.705,False,Falling,NGU_Fall,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+16.955,Learned,2.415,8.606,False,Falling,NGU_Fall,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+17.006,Learned,2.583,8.429,False,Falling,NGU_Fall,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+17.057,Learned,2.695,8.291,False,Falling,NGU_Fall,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,,2.550,8.220,0,0,0,False
+17.108,Learned,2.826,8.220,True,Recovering,NGU_Land,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.159,Learned,2.888,8.220,True,Recovering,NGU_Land,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.210,Learned,2.948,8.220,True,Recovering,NGU_Land,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.261,Learned,2.970,8.220,True,Recovering,NGU_Land,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.312,Learned,2.970,8.220,True,Idle,NGU_Land,1,0,0,3,5,2.660,2.874,2.440,2.820,116,3,0,current pose permits Long,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.362,Learned,2.987,8.220,True,Running,NGU_Run,1,2,0,3,5,2.700,2.883,2.440,2.820,118,3,0,approach safe Short launch,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.414,Learned,3.013,8.220,True,Running,NGU_Run,1,2,0,3,5,2.740,2.903,2.480,2.820,120,3,0,approach safe Short launch,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.465,Learned,3.074,8.220,True,Running,NGU_Run,1,2,0,3,5,2.800,2.955,2.540,2.820,123,3,0,approach safe Short launch,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.516,Learned,3.128,8.220,True,Running,NGU_Run,1,2,0,3,5,2.840,3.004,2.580,2.820,125,3,0,approach safe Short launch,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.568,Learned,3.219,8.220,True,Running,NGU_Run,1,2,0,3,5,2.900,3.096,2.640,2.820,128,3,0,approach safe Short launch,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.619,Learned,3.267,8.220,True,Running,NGU_Run,1,2,0,3,5,2.940,3.149,2.680,2.820,130,3,0,approach safe Short launch,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.670,Learned,3.322,8.220,True,Running,NGU_Run,1,2,0,3,5,3.000,3.210,2.740,2.820,133,3,0,approach safe Short launch,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.722,Learned,3.354,8.220,True,InspectingObstacle,NGU_Inspect,1,2,1,3,5,3.040,3.242,2.780,2.840,133,3,0,current pose permits Short,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.774,Learned,3.356,8.220,True,InspectingObstacle,NGU_Inspect,1,0,1,3,5,3.040,3.242,2.780,2.880,133,3,0,current pose permits Short,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.825,Learned,3.356,8.220,True,InspectingObstacle,NGU_Inspect,1,0,1,3,5,3.040,3.242,2.780,2.940,133,3,0,current pose permits Short,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.876,Learned,3.356,8.220,True,InspectingObstacle,NGU_Inspect,1,0,1,3,5,3.040,3.242,2.780,2.980,133,3,0,current pose permits Short,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.928,Learned,3.439,8.295,False,Jumping,NGU_JumpShort,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,Climb ledge 8,5.700,8.690,0,0,0,False
+17.978,Learned,3.602,8.434,False,Jumping,NGU_JumpShort,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,,5.700,8.690,0,0,0,False
+18.029,Learned,3.837,8.613,False,Jumping,NGU_JumpShort,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,,5.700,8.690,0,0,0,False
+18.079,Learned,3.988,8.713,False,Jumping,NGU_JumpShort,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,,5.700,8.690,0,0,0,False
+18.130,Learned,4.205,8.833,False,Jumping,NGU_JumpShort,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,,5.700,8.690,0,0,0,False
+18.180,Learned,4.411,8.917,False,Jumping,NGU_JumpShort,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,,5.700,8.690,0,0,0,False
+18.231,Learned,4.543,8.954,False,Jumping,NGU_JumpShort,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,,5.700,8.690,0,0,0,False
+18.282,Learned,4.731,8.980,False,Jumping,NGU_JumpShort,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,,5.700,8.690,0,0,0,False
+18.333,Learned,4.851,8.978,False,Falling,NGU_Fall,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,,5.700,8.690,0,0,0,False
+18.384,Learned,5.021,8.944,False,Falling,NGU_Fall,0,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,,5.700,8.690,0,0,0,False
+18.435,Learned,5.129,8.903,False,Falling,NGU_Fall,0,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,,5.700,8.690,0,0,0,False
+18.487,Learned,5.281,8.811,False,Falling,NGU_Fall,-1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,,5.700,8.690,0,0,0,False
+18.539,Learned,5.368,8.730,True,Recovering,NGU_Land,-1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+18.590,Learned,5.460,8.690,True,Recovering,NGU_Land,0,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+18.640,Learned,5.510,8.690,True,Recovering,NGU_Land,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+18.691,Learned,5.522,8.690,True,Recovering,NGU_Land,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+18.743,Learned,5.522,8.690,True,Recovering,NGU_Land,1,0,0,4,5,3.040,3.242,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+18.795,Learned,5.531,8.690,True,Running,NGU_Land,1,0,0,4,5,3.060,3.245,2.780,3.040,133,4,0,current pose permits Short,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+18.845,Learned,5.565,8.690,True,Running,NGU_Run,1,2,0,4,5,3.120,3.271,2.820,3.040,134,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+18.895,Learned,5.603,8.690,True,Running,NGU_Run,1,2,0,4,5,3.160,3.302,2.860,3.040,136,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+18.946,Learned,5.681,8.690,True,Running,NGU_Run,1,2,0,4,5,3.220,3.372,2.920,3.040,139,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+18.997,Learned,5.747,8.690,True,Running,NGU_Run,1,2,0,4,5,3.260,3.432,2.960,3.040,141,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.049,Learned,5.845,8.690,True,Running,NGU_Run,1,2,0,4,5,3.320,3.536,3.020,3.040,144,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.100,Learned,5.917,8.690,True,Running,NGU_Run,1,2,0,4,5,3.380,3.615,3.080,3.040,147,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.152,Learned,5.953,8.690,True,Running,NGU_Run,1,2,0,4,5,3.420,3.656,3.120,3.040,149,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.203,Learned,6.000,8.690,True,Running,NGU_Run,1,2,0,4,5,3.480,3.703,3.180,3.040,152,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.255,Learned,6.031,8.690,True,Running,NGU_Run,1,2,0,4,5,3.520,3.736,3.220,3.040,154,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.306,Learned,6.080,8.690,True,Running,NGU_Run,-1,2,0,4,5,3.580,3.781,3.280,3.040,157,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.357,Learned,6.106,8.690,True,Running,NGU_Run,-1,2,0,4,5,3.600,3.800,3.320,3.040,159,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.408,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,162,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.458,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,164,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.510,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,167,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.561,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,170,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.612,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,172,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.663,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,175,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.714,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,177,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.766,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,180,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.817,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,182,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.867,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,185,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.918,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,187,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+19.969,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,190,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.021,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,193,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.071,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,195,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.121,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,198,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.173,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,200,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.224,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,203,4,0,no safe launch for current input,0.0763,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.276,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,205,4,0,no safe launch for current input,0.1622,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.327,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,208,4,0,no safe launch for current input,0.2475,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.378,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,210,4,0,no safe launch for current input,0.3316,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.429,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,213,4,0,no safe launch for current input,0.4172,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.480,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,215,4,0,no safe launch for current input,0.5022,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.531,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,218,4,0,no safe launch for current input,0.5875,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.581,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,221,4,0,no safe launch for current input,0.6705,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.633,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,223,4,0,no safe launch for current input,0.7553,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.684,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,226,4,0,no safe launch for current input,0.8399,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.734,Learned,6.114,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,3.600,3.800,3.360,3.040,228,4,0,no safe launch for current input,0.9236,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.784,Learned,6.111,8.690,True,Running,NGU_Run,-1,2,0,4,5,3.600,3.800,3.360,3.040,231,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.835,Learned,6.097,8.690,True,Running,NGU_Run,-1,2,0,4,5,3.640,3.809,3.400,3.040,233,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.886,Learned,6.054,8.690,True,Running,NGU_Run,-1,2,0,4,5,3.700,3.843,3.460,3.040,236,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.936,Learned,6.010,8.690,True,Running,NGU_Run,-1,2,0,4,5,3.740,3.881,3.500,3.040,238,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+20.988,Learned,5.924,8.690,True,Running,NGU_Run,-1,2,0,4,5,3.800,3.959,3.560,3.040,241,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.038,Learned,5.851,8.690,True,Running,NGU_Run,-1,2,0,4,5,3.840,4.025,3.600,3.040,243,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.090,Learned,5.722,8.690,True,Running,NGU_Run,-1,2,0,4,5,3.900,4.146,3.660,3.040,246,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.141,Learned,5.573,8.690,True,Running,NGU_Run,0,2,0,4,5,3.960,4.294,3.720,3.040,249,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.192,Learned,5.491,8.690,True,Running,NGU_Run,0,2,0,4,5,3.960,4.294,3.760,3.040,251,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.244,Learned,5.399,8.690,True,Running,NGU_Run,1,2,0,4,5,3.960,4.294,3.820,3.040,254,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.294,Learned,5.360,8.690,True,Running,NGU_Run,1,2,0,4,5,3.960,4.294,3.860,3.040,256,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.345,Learned,5.334,8.690,True,Running,NGU_Run,1,2,0,4,5,3.960,4.294,3.920,3.040,259,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.395,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,261,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.446,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,264,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.496,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,266,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.547,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,269,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.599,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,271,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.650,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,274,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.702,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,277,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.753,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,279,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.803,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,282,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.854,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,284,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.904,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,287,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+21.955,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,289,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.005,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,292,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.055,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,294,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.105,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,297,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.156,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,299,4,0,approach safe Long launch,0.0614,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.206,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,302,4,0,approach safe Long launch,0.1457,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.258,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,304,4,0,approach safe Long launch,0.2314,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.308,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,307,4,0,approach safe Long launch,0.3159,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.359,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,309,4,0,approach safe Long launch,0.4000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.410,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,312,4,0,approach safe Long launch,0.4858,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.461,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,315,4,0,approach safe Long launch,0.5700,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.512,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,317,4,0,approach safe Long launch,0.6550,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.562,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,320,4,0,approach safe Long launch,0.7378,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.613,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,322,4,0,approach safe Long launch,0.8215,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.664,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,325,4,0,approach safe Long launch,0.9069,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.715,Learned,5.334,8.690,True,Idle,NGU_Idle,1,2,0,4,5,3.960,4.294,3.940,3.040,327,4,0,approach safe Long launch,0.9918,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.765,Learned,5.351,8.690,True,Running,NGU_Run,1,2,0,4,5,4.000,4.302,3.980,3.040,330,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.817,Learned,5.377,8.690,True,Running,NGU_Run,1,2,0,4,5,4.040,4.323,4.020,3.040,332,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.868,Learned,5.438,8.690,True,Running,NGU_Run,1,2,0,4,5,4.100,4.374,4.080,3.040,335,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.919,Learned,5.493,8.690,True,Running,NGU_Run,1,2,0,4,5,4.140,4.424,4.120,3.040,337,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+22.971,Learned,5.596,8.690,True,Running,NGU_Run,1,2,0,4,5,4.200,4.519,4.180,3.040,340,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.021,Learned,5.721,8.690,True,Running,NGU_Run,1,2,0,4,5,4.260,4.640,4.240,3.040,343,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.072,Learned,5.791,8.690,True,Running,NGU_Run,1,2,0,4,5,4.300,4.718,4.280,3.040,345,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.123,Learned,5.872,8.690,True,Running,NGU_Run,1,2,0,4,5,4.360,4.808,4.340,3.040,348,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.174,Learned,5.911,8.690,True,Running,NGU_Run,1,2,0,4,5,4.400,4.854,4.380,3.040,350,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.225,Learned,5.954,8.690,True,Running,NGU_Run,1,2,0,4,5,4.460,4.901,4.440,3.040,353,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.275,Learned,5.981,8.690,True,Running,NGU_Run,-1,2,0,4,5,4.500,4.929,4.480,3.040,355,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.326,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,358,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.376,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,360,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.427,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,363,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.479,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,365,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.529,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,368,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.579,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,370,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.630,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,373,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.681,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,376,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.733,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,378,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.784,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,381,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.835,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,383,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.886,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,386,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.936,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,388,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+23.987,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,391,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.037,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,393,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.089,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,396,4,0,no safe launch for current input,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.141,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,399,4,0,no safe launch for current input,0.0357,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.192,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,401,4,0,no safe launch for current input,0.1213,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.244,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,404,4,0,no safe launch for current input,0.2067,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.295,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,406,4,0,no safe launch for current input,0.2926,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.347,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,409,4,0,no safe launch for current input,0.3784,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.398,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,411,4,0,no safe launch for current input,0.4634,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.448,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,414,4,0,no safe launch for current input,0.5470,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.498,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,416,4,0,no safe launch for current input,0.6309,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.550,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,419,4,0,no safe launch for current input,0.7155,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.601,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,422,4,0,no safe launch for current input,0.8009,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.652,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,424,4,0,no safe launch for current input,0.8850,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.704,Learned,5.991,8.690,True,Idle,NGU_Idle,-1,2,0,4,5,4.500,4.929,4.540,3.040,427,4,0,no safe launch for current input,0.9714,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.755,Learned,5.982,8.690,True,Running,NGU_Run,-1,2,0,4,5,4.520,4.932,4.560,3.040,429,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.805,Learned,5.947,8.690,True,Running,NGU_Run,-1,2,0,4,5,4.580,4.958,4.620,3.040,432,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.856,Learned,5.910,8.690,True,Running,NGU_Run,-1,2,0,4,5,4.620,4.990,4.660,3.040,434,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.907,Learned,5.832,8.690,True,Running,NGU_Run,-1,2,0,4,5,4.680,5.059,4.720,3.040,437,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+24.959,Learned,5.766,8.690,True,Running,NGU_Run,-1,2,0,4,5,4.720,5.120,4.760,3.040,439,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.009,Learned,5.644,8.690,True,Running,NGU_Run,-1,2,0,4,5,4.780,5.232,4.820,3.040,442,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.060,Learned,5.540,8.690,True,Running,NGU_Run,0,2,0,4,5,4.800,5.276,4.880,3.040,445,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.111,Learned,5.493,8.690,True,Running,NGU_Run,0,2,0,4,5,4.800,5.276,4.920,3.040,447,4,0,no safe launch for current input,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.162,Learned,5.453,8.690,True,Running,NGU_Run,1,2,0,4,5,4.800,5.276,4.980,3.040,450,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.214,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,452,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.265,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,455,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.317,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,457,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.368,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,460,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.420,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,462,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.472,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,465,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.523,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,468,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.574,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,470,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.625,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,473,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.676,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,475,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.727,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,478,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.777,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,480,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.828,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,483,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.879,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,485,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.931,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,488,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+25.982,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,491,4,0,approach safe Long launch,0.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.032,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,493,4,0,approach safe Long launch,0.0211,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.083,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,496,4,0,approach safe Long launch,0.1054,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.134,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,498,4,0,approach safe Long launch,0.1902,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.184,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,501,4,0,approach safe Long launch,0.2738,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.235,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,503,4,0,approach safe Long launch,0.3588,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.287,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,506,4,0,approach safe Long launch,0.4448,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.337,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,508,4,0,approach safe Long launch,0.5287,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.387,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,511,4,0,approach safe Long launch,0.6125,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.438,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,513,4,0,approach safe Long launch,0.6962,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.489,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,516,4,0,approach safe Long launch,0.7797,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.539,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,518,4,0,approach safe Long launch,0.8637,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.590,Learned,5.449,8.690,True,Idle,NGU_Idle,1,2,0,4,5,4.800,5.276,5.020,3.040,521,4,0,approach safe Long launch,0.9477,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.641,Learned,5.457,8.690,True,Running,NGU_Run,1,2,0,4,5,4.820,5.279,5.040,3.040,524,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.692,Learned,5.478,8.690,True,Running,NGU_Run,1,2,0,4,5,4.860,5.293,5.080,3.040,526,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.743,Learned,5.530,8.690,True,Running,NGU_Run,1,2,0,4,5,4.920,5.336,5.140,3.040,529,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.795,Learned,5.579,8.690,True,Running,NGU_Run,1,2,0,4,5,4.960,5.380,5.180,3.040,531,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.846,Learned,5.674,8.690,True,Running,NGU_Run,1,2,0,4,5,5.020,5.466,5.240,3.040,534,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.898,Learned,5.752,8.690,True,Running,NGU_Run,1,2,0,4,5,5.060,5.538,5.280,3.040,536,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.948,Learned,5.879,8.690,True,Running,NGU_Run,1,2,0,4,5,5.120,5.666,5.340,3.040,539,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+26.999,Learned,5.947,8.690,True,Running,NGU_Run,1,2,0,4,5,5.160,5.742,5.380,3.040,541,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.050,Learned,6.025,8.690,True,Running,NGU_Run,1,2,0,4,5,5.220,5.829,5.440,3.040,544,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.101,Learned,6.080,8.690,True,Running,NGU_Run,1,2,0,4,5,5.280,5.891,5.500,3.040,547,4,0,approach safe Long launch,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.152,Learned,6.104,8.690,True,InspectingObstacle,NGU_Inspect,1,0,2,4,5,5.320,5.921,5.540,3.040,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.203,Learned,6.111,8.690,True,InspectingObstacle,NGU_Inspect,1,0,2,4,5,5.320,5.921,5.540,3.100,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.254,Learned,6.111,8.690,True,InspectingObstacle,NGU_Inspect,1,0,2,4,5,5.320,5.921,5.540,3.140,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.305,Learned,6.111,8.690,True,InspectingObstacle,NGU_Inspect,1,0,2,4,5,5.320,5.921,5.540,3.200,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.355,Learned,6.111,8.690,True,InspectingObstacle,NGU_Inspect,1,0,2,4,5,5.320,5.921,5.540,3.240,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.406,Learned,6.111,8.690,True,InspectingObstacle,NGU_Inspect,1,0,2,4,5,5.320,5.921,5.540,3.300,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.458,Learned,6.111,8.690,True,InspectingObstacle,NGU_Inspect,1,0,2,4,5,5.320,5.921,5.540,3.340,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.509,Learned,6.111,8.690,True,InspectingObstacle,NGU_Inspect,1,0,2,4,5,5.320,5.921,5.540,3.400,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.559,Learned,6.111,8.690,True,InspectingObstacle,NGU_Inspect,1,0,2,4,5,5.320,5.921,5.540,3.440,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 9,8.850,10.320,0,0,0,False
+27.611,Learned,6.276,8.929,False,Jumping,NGU_JumpLong,1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+27.661,Learned,6.515,9.258,False,Jumping,NGU_JumpLong,1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+27.711,Learned,6.668,9.457,False,Jumping,NGU_JumpLong,1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+27.763,Learned,6.889,9.727,False,Jumping,NGU_JumpLong,1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+27.814,Learned,7.030,9.887,False,Jumping,NGU_JumpLong,1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+27.865,Learned,7.233,10.098,False,Jumping,NGU_JumpLong,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+27.917,Learned,7.362,10.219,False,Jumping,NGU_JumpLong,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+27.968,Learned,7.547,10.372,False,Jumping,NGU_JumpLong,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+28.019,Learned,7.664,10.453,False,Jumping,NGU_JumpLong,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+28.070,Learned,7.831,10.547,False,Jumping,NGU_JumpLong,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+28.120,Learned,7.987,10.605,False,Jumping,NGU_JumpLong,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+28.171,Learned,8.085,10.624,False,Jumping,NGU_JumpLong,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+28.222,Learned,8.223,10.623,False,Falling,NGU_Fall,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+28.273,Learned,8.309,10.603,False,Falling,NGU_Fall,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+28.324,Learned,8.429,10.543,False,Falling,NGU_Fall,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+28.376,Learned,8.503,10.484,False,Falling,NGU_Fall,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,,8.850,10.320,0,0,0,False
+28.427,Learned,8.596,10.365,True,Recovering,NGU_Land,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+28.479,Learned,8.635,10.320,True,Recovering,NGU_Land,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+28.530,Learned,8.654,10.320,True,Recovering,NGU_Land,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+28.581,Learned,8.654,10.320,True,Recovering,NGU_Land,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+28.632,Learned,8.654,10.320,True,Recovering,NGU_Land,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+28.682,Learned,8.654,10.320,True,Idle,NGU_Land,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+28.733,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,0,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+28.783,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,2,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+28.834,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,2,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+28.885,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+28.936,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+28.988,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.038,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.089,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.140,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.190,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.240,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.290,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.341,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.392,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.442,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.493,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.544,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.595,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.647,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.0458,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.699,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.1317,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.750,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.2168,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.801,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.3016,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.851,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.3859,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.902,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.4699,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+29.953,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.5559,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.005,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.6409,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.056,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.7250,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.106,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.8081,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.157,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.8941,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.208,Learned,8.654,10.320,True,Idle,NGU_Idle,-1,0,2,4,6,5.320,5.921,5.540,3.480,547,4,0,current pose permits Long,0.9780,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.259,Learned,8.654,10.320,True,InspectingObstacle,NGU_Inspect,-1,0,2,4,6,5.320,5.921,5.540,3.500,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.309,Learned,8.654,10.320,True,InspectingObstacle,NGU_Inspect,-1,0,2,4,6,5.320,5.921,5.540,3.560,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.361,Learned,8.654,10.320,True,InspectingObstacle,NGU_Inspect,-1,0,2,4,6,5.320,5.921,5.540,3.620,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.411,Learned,8.654,10.320,True,InspectingObstacle,NGU_Inspect,-1,0,2,4,6,5.320,5.921,5.540,3.660,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.462,Learned,8.654,10.320,True,InspectingObstacle,NGU_Inspect,-1,0,2,4,6,5.320,5.921,5.540,3.720,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.513,Learned,8.654,10.320,True,InspectingObstacle,NGU_Inspect,-1,0,2,4,6,5.320,5.921,5.540,3.760,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.564,Learned,8.654,10.320,True,InspectingObstacle,NGU_Inspect,-1,0,2,4,6,5.320,5.921,5.540,3.820,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.614,Learned,8.654,10.320,True,InspectingObstacle,NGU_Inspect,-1,0,2,4,6,5.320,5.921,5.540,3.860,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.665,Learned,8.571,10.441,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 10,5.700,11.510,0,0,0,False
+30.717,Learned,8.408,10.672,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+30.769,Learned,8.173,10.989,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+30.820,Learned,8.022,11.181,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+30.872,Learned,7.805,11.439,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+30.923,Learned,7.598,11.662,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+30.975,Learned,7.467,11.791,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.026,Learned,7.278,11.955,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.078,Learned,7.159,12.045,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.129,Learned,6.988,12.150,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.179,Learned,6.876,12.200,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.230,Learned,6.708,12.246,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.280,Learned,6.596,12.257,False,Jumping,NGU_JumpLong,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.330,Learned,6.428,12.245,False,Falling,NGU_Fall,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.381,Learned,6.260,12.197,False,Falling,NGU_Fall,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.432,Learned,6.148,12.145,False,Falling,NGU_Fall,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.484,Learned,5.980,12.039,False,Falling,NGU_Fall,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.534,Learned,5.868,11.948,False,Falling,NGU_Fall,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.585,Learned,5.700,11.782,False,Falling,NGU_Fall,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.636,Learned,5.588,11.652,False,Falling,NGU_Fall,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,,5.700,11.510,0,0,0,False
+31.687,Learned,5.438,11.509,True,Recovering,NGU_Land,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+31.738,Learned,5.368,11.510,True,Recovering,NGU_Land,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+31.789,Learned,5.295,11.510,True,Recovering,NGU_Land,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+31.839,Learned,5.267,11.510,True,Recovering,NGU_Land,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+31.891,Learned,5.257,11.510,True,Recovering,NGU_Land,-1,0,0,4,7,5.320,5.921,5.540,3.920,547,4,0,current pose permits Long,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+31.943,Learned,5.249,11.510,True,Running,NGU_Land,-1,2,0,4,7,5.340,5.924,5.540,3.920,548,4,0,approach safe Short launch,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+31.993,Learned,5.229,11.510,True,Running,NGU_Run,-1,2,0,4,7,5.380,5.938,5.560,3.920,550,4,0,approach safe Short launch,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.044,Learned,5.177,11.510,True,Running,NGU_Run,-1,2,0,4,7,5.440,5.981,5.620,3.920,553,4,0,approach safe Short launch,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.094,Learned,5.128,11.510,True,Running,NGU_Run,-1,2,0,4,7,5.480,6.025,5.660,3.920,555,4,0,approach safe Short launch,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.147,Learned,5.075,11.510,True,Running,NGU_Run,-1,2,0,4,7,5.540,6.090,5.720,3.920,558,4,0,approach safe Short launch,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.197,Learned,5.042,11.510,True,Running,NGU_Run,-1,2,0,4,7,5.580,6.119,5.760,3.920,560,4,0,approach safe Short launch,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.248,Learned,4.997,11.510,True,Running,NGU_Run,-1,2,0,4,7,5.640,6.164,5.820,3.920,563,4,0,approach safe Short launch,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.298,Learned,4.966,11.510,True,Running,NGU_Run,-1,2,0,4,7,5.680,6.198,5.860,3.920,565,4,0,approach safe Short launch,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.350,Learned,4.919,11.510,True,Running,NGU_Run,-1,2,0,4,7,5.740,6.243,5.920,3.920,568,4,0,approach safe Short launch,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.401,Learned,4.887,11.510,True,InspectingObstacle,NGU_Inspect,-1,2,1,4,7,5.780,6.274,5.960,3.940,568,4,0,current pose permits Short,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.452,Learned,4.885,11.510,True,InspectingObstacle,NGU_Inspect,-1,0,1,4,7,5.780,6.274,5.960,3.980,568,4,0,current pose permits Short,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.503,Learned,4.885,11.510,True,InspectingObstacle,NGU_Inspect,-1,0,1,4,7,5.780,6.274,5.960,4.040,568,4,0,current pose permits Short,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.554,Learned,4.885,11.510,True,InspectingObstacle,NGU_Inspect,-1,0,1,4,7,5.780,6.274,5.960,4.080,568,4,0,current pose permits Short,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.605,Learned,4.802,11.585,False,Jumping,NGU_JumpShort,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,Climb ledge 11,2.550,11.980,0,0,0,False
+32.657,Learned,4.639,11.724,False,Jumping,NGU_JumpShort,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,,2.550,11.980,0,0,0,False
+32.707,Learned,4.404,11.903,False,Jumping,NGU_JumpShort,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,,2.550,11.980,0,0,0,False
+32.759,Learned,4.253,12.003,False,Jumping,NGU_JumpShort,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,,2.550,11.980,0,0,0,False
+32.809,Learned,4.036,12.123,False,Jumping,NGU_JumpShort,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,,2.550,11.980,0,0,0,False
+32.860,Learned,3.897,12.183,False,Jumping,NGU_JumpShort,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,,2.550,11.980,0,0,0,False
+32.910,Learned,3.698,12.244,False,Jumping,NGU_JumpShort,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,,2.550,11.980,0,0,0,False
+32.962,Learned,3.509,12.270,False,Jumping,NGU_JumpShort,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,,2.550,11.980,0,0,0,False
+33.014,Learned,3.390,12.268,False,Falling,NGU_Fall,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,,2.550,11.980,0,0,0,False
+33.065,Learned,3.219,12.234,False,Falling,NGU_Fall,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,,2.550,11.980,0,0,0,False
+33.116,Learned,3.107,12.193,False,Falling,NGU_Fall,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,,2.550,11.980,0,0,0,False
+33.166,Learned,2.939,12.101,False,Falling,NGU_Fall,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,,2.550,11.980,0,0,0,False
+33.217,Learned,2.839,12.020,True,Recovering,NGU_Land,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.267,Learned,2.728,11.980,True,Recovering,NGU_Land,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.318,Learned,2.677,11.980,True,Recovering,NGU_Land,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.369,Learned,2.634,11.980,True,Recovering,NGU_Land,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.421,Learned,2.627,11.980,True,Recovering,NGU_Land,-1,0,0,5,7,5.780,6.274,5.960,4.140,568,5,0,current pose permits Short,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.471,Learned,2.618,11.980,True,Running,NGU_Land,-1,2,0,5,7,5.800,6.277,5.960,4.140,570,5,0,approach safe Long launch,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.523,Learned,2.584,11.980,True,Running,NGU_Run,-1,2,0,5,7,5.860,6.303,6.000,4.140,573,5,0,approach safe Long launch,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.574,Learned,2.546,11.980,True,Running,NGU_Run,-1,2,0,5,7,5.900,6.335,6.040,4.140,575,5,0,approach safe Long launch,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.625,Learned,2.468,11.980,True,Running,NGU_Run,-1,2,0,5,7,5.960,6.404,6.100,4.140,578,5,0,approach safe Long launch,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.676,Learned,2.403,11.980,True,Running,NGU_Run,-1,2,0,5,7,6.000,6.465,6.140,4.140,580,5,0,approach safe Long launch,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.727,Learned,2.321,11.980,True,Running,NGU_Run,-1,2,0,5,7,6.060,6.556,6.200,4.140,583,5,0,approach safe Long launch,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.778,Learned,2.279,11.980,True,Running,NGU_Run,-1,2,0,5,7,6.100,6.602,6.240,4.140,585,5,0,approach safe Long launch,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.830,Learned,2.230,11.980,True,Running,NGU_Run,-1,2,0,5,7,6.160,6.656,6.300,4.140,588,5,0,approach safe Long launch,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.881,Learned,2.182,11.980,True,Running,NGU_Run,-1,2,0,5,7,6.220,6.705,6.360,4.140,591,5,0,approach safe Long launch,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.932,Learned,2.152,11.980,True,Running,NGU_Run,-1,2,0,5,7,6.260,6.733,6.400,4.140,593,5,0,approach safe Long launch,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+33.983,Learned,2.108,11.980,True,InspectingObstacle,NGU_Inspect,-1,2,2,5,7,6.300,6.768,6.440,4.160,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+34.033,Learned,2.099,11.980,True,InspectingObstacle,NGU_Inspect,-1,2,2,5,7,6.300,6.768,6.440,4.200,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+34.084,Learned,2.099,11.980,True,InspectingObstacle,NGU_Inspect,-1,0,2,5,7,6.300,6.768,6.440,4.260,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+34.135,Learned,2.099,11.980,True,InspectingObstacle,NGU_Inspect,-1,0,2,5,7,6.300,6.768,6.440,4.300,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+34.186,Learned,2.099,11.980,True,InspectingObstacle,NGU_Inspect,-1,0,2,5,7,6.300,6.768,6.440,4.360,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+34.236,Learned,2.099,11.980,True,InspectingObstacle,NGU_Inspect,-1,0,2,5,7,6.300,6.768,6.440,4.400,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+34.288,Learned,2.099,11.980,True,InspectingObstacle,NGU_Inspect,-1,0,2,5,7,6.300,6.768,6.440,4.460,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+34.338,Learned,2.099,11.980,True,InspectingObstacle,NGU_Inspect,-1,0,2,5,7,6.300,6.768,6.440,4.500,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+34.389,Learned,2.099,11.980,True,InspectingObstacle,NGU_Inspect,-1,0,2,5,7,6.300,6.768,6.440,4.560,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 12,-0.600,13.610,0,0,0,False
+34.439,Learned,1.934,12.219,False,Jumping,NGU_JumpLong,-1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+34.490,Learned,1.695,12.548,False,Jumping,NGU_JumpLong,-1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+34.540,Learned,1.467,12.841,False,Jumping,NGU_JumpLong,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+34.591,Learned,1.321,13.017,False,Jumping,NGU_JumpLong,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+34.643,Learned,1.111,13.252,False,Jumping,NGU_JumpLong,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+34.694,Learned,0.977,13.388,False,Jumping,NGU_JumpLong,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+34.745,Learned,0.785,13.564,False,Jumping,NGU_JumpLong,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+34.795,Learned,0.663,13.662,False,Jumping,NGU_JumpLong,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+34.846,Learned,0.489,13.779,False,Jumping,NGU_JumpLong,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+34.897,Learned,0.379,13.837,False,Jumping,NGU_JumpLong,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+34.948,Learned,0.223,13.895,False,Jumping,NGU_JumpLong,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+34.998,Learned,0.125,13.914,False,Jumping,NGU_JumpLong,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+35.048,Learned,-0.013,13.913,False,Falling,NGU_Fall,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+35.099,Learned,-0.099,13.893,False,Falling,NGU_Fall,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+35.149,Learned,-0.219,13.833,False,Falling,NGU_Fall,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+35.202,Learned,-0.328,13.738,False,Falling,NGU_Fall,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,,-0.600,13.610,0,0,0,False
+35.253,Learned,-0.386,13.655,True,Recovering,NGU_Land,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.304,Learned,-0.435,13.610,True,Recovering,NGU_Land,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.354,Learned,-0.444,13.610,True,Recovering,NGU_Land,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.405,Learned,-0.444,13.610,True,Recovering,NGU_Land,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.456,Learned,-0.444,13.610,True,Recovering,NGU_Land,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.507,Learned,-0.444,13.610,True,Idle,NGU_Land,1,0,0,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.558,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,2,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.609,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,2,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.660,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.711,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.762,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.813,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.863,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.914,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+35.966,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.016,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.068,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.118,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.169,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.219,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.271,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.323,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.374,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.424,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0077,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.475,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.0927,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.528,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.1804,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.579,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.2658,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.629,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.3496,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.680,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.4338,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.731,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.5189,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.783,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.6046,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.833,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.6870,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.884,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.7719,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.934,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.8549,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+36.985,Learned,-0.444,13.610,True,Idle,NGU_Idle,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,0.9396,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+37.036,Learned,-0.444,13.610,True,InspectingObstacle,NGU_Inspect,1,0,2,5,8,6.300,6.768,6.440,4.580,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+37.087,Learned,-0.444,13.610,True,InspectingObstacle,NGU_Inspect,1,0,2,5,8,6.300,6.768,6.440,4.640,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+37.137,Learned,-0.444,13.610,True,InspectingObstacle,NGU_Inspect,1,0,2,5,8,6.300,6.768,6.440,4.680,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+37.188,Learned,-0.444,13.610,True,InspectingObstacle,NGU_Inspect,1,0,2,5,8,6.300,6.768,6.440,4.740,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+37.239,Learned,-0.444,13.610,True,InspectingObstacle,NGU_Inspect,1,0,2,5,8,6.300,6.768,6.440,4.780,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+37.289,Learned,-0.444,13.610,True,InspectingObstacle,NGU_Inspect,1,0,2,5,8,6.300,6.768,6.440,4.840,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+37.339,Learned,-0.444,13.610,True,InspectingObstacle,NGU_Inspect,1,0,2,5,8,6.300,6.768,6.440,4.880,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+37.390,Learned,-0.444,13.610,True,InspectingObstacle,NGU_Inspect,1,0,2,5,8,6.300,6.768,6.440,4.940,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+37.440,Learned,-0.444,13.610,True,InspectingObstacle,NGU_Inspect,1,0,2,5,8,6.300,6.768,6.440,5.000,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 13,2.550,14.800,0,0,0,False
+37.492,Learned,-0.278,13.849,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+37.543,Learned,-0.040,14.178,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+37.594,Learned,0.114,14.377,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+37.645,Learned,0.334,14.647,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+37.695,Learned,0.476,14.807,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+37.746,Learned,0.678,15.018,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+37.797,Learned,0.808,15.139,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+37.848,Learned,0.992,15.292,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+37.899,Learned,1.110,15.373,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+37.950,Learned,1.278,15.467,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+38.001,Learned,1.446,15.525,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+38.052,Learned,1.558,15.544,False,Jumping,NGU_JumpLong,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+38.104,Learned,1.726,15.543,False,Falling,NGU_Fall,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+38.155,Learned,1.838,15.523,False,Falling,NGU_Fall,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+38.205,Learned,2.006,15.463,False,Falling,NGU_Fall,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+38.255,Learned,2.118,15.404,False,Falling,NGU_Fall,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+38.306,Learned,2.286,15.285,False,Falling,NGU_Fall,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+38.358,Learned,2.398,15.186,False,Falling,NGU_Fall,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+38.408,Learned,2.566,15.009,False,Falling,NGU_Fall,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+38.459,Learned,2.678,14.871,False,Falling,NGU_Fall,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,,2.550,14.800,0,0,0,False
+38.511,Learned,2.809,14.800,True,Recovering,NGU_Land,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+38.563,Learned,2.895,14.800,True,Recovering,NGU_Land,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+38.614,Learned,2.931,14.800,True,Recovering,NGU_Land,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+38.665,Learned,2.953,14.800,True,Recovering,NGU_Land,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+38.716,Learned,2.953,14.800,True,Idle,NGU_Land,1,0,0,5,9,6.300,6.768,6.440,5.020,593,5,0,current pose permits Long,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+38.767,Learned,2.970,14.800,True,Running,NGU_Run,1,2,0,5,9,6.340,6.777,6.440,5.020,595,5,0,approach safe Short launch,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+38.818,Learned,2.996,14.800,True,Running,NGU_Run,1,2,0,5,9,6.380,6.797,6.480,5.020,597,5,0,approach safe Short launch,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+38.870,Learned,3.057,14.800,True,Running,NGU_Run,1,2,0,5,9,6.440,6.849,6.540,5.020,600,5,0,approach safe Short launch,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+38.920,Learned,3.112,14.800,True,Running,NGU_Run,1,2,0,5,9,6.480,6.898,6.580,5.020,602,5,0,approach safe Short launch,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+38.971,Learned,3.202,14.800,True,Running,NGU_Run,1,2,0,5,9,6.540,6.990,6.640,5.020,605,5,0,approach safe Short launch,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+39.022,Learned,3.270,14.800,True,Running,NGU_Run,1,2,0,5,9,6.600,7.065,6.700,5.020,608,5,0,approach safe Short launch,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+39.073,Learned,3.305,14.800,True,Running,NGU_Run,1,2,0,5,9,6.640,7.104,6.740,5.020,610,5,0,approach safe Short launch,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+39.125,Learned,3.337,14.800,True,InspectingObstacle,NGU_Inspect,1,2,1,5,9,6.680,7.135,6.780,5.040,610,5,0,current pose permits Short,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+39.176,Learned,3.339,14.800,True,InspectingObstacle,NGU_Inspect,1,0,1,5,9,6.680,7.135,6.780,5.080,610,5,0,current pose permits Short,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+39.226,Learned,3.339,14.800,True,InspectingObstacle,NGU_Inspect,1,0,1,5,9,6.680,7.135,6.780,5.140,610,5,0,current pose permits Short,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+39.276,Learned,3.339,14.800,True,InspectingObstacle,NGU_Inspect,1,0,1,5,9,6.680,7.135,6.780,5.180,610,5,0,current pose permits Short,1.0000,0,False,Climb ledge 14,5.700,15.270,0,0,0,False
+39.326,Learned,3.504,14.947,False,Jumping,NGU_JumpShort,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,,5.700,15.270,0,0,0,False
+39.377,Learned,3.664,15.078,False,Jumping,NGU_JumpShort,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,,5.700,15.270,0,0,0,False
+39.427,Learned,3.896,15.245,False,Jumping,NGU_JumpShort,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,,5.700,15.270,0,0,0,False
+39.478,Learned,4.044,15.337,False,Jumping,NGU_JumpShort,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,,5.700,15.270,0,0,0,False
+39.529,Learned,4.258,15.445,False,Jumping,NGU_JumpShort,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,,5.700,15.270,0,0,0,False
+39.579,Learned,4.394,15.497,False,Jumping,NGU_JumpShort,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,,5.700,15.270,0,0,0,False
+39.629,Learned,4.590,15.547,False,Jumping,NGU_JumpShort,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,,5.700,15.270,0,0,0,False
+39.681,Learned,4.775,15.561,False,Falling,NGU_Fall,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,,5.700,15.270,0,0,0,False
+39.731,Learned,4.892,15.550,False,Falling,NGU_Fall,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,,5.700,15.270,0,0,0,False
+39.782,Learned,5.061,15.506,False,Falling,NGU_Fall,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,,5.700,15.270,0,0,0,False
+39.834,Learned,5.173,15.456,False,Falling,NGU_Fall,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,,5.700,15.270,0,0,0,False
+39.884,Learned,5.337,15.352,True,Recovering,NGU_Land,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+39.935,Learned,5.429,15.264,True,Recovering,NGU_Land,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+39.986,Learned,5.523,15.270,True,Recovering,NGU_Land,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.037,Learned,5.565,15.270,True,Recovering,NGU_Land,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.088,Learned,5.595,15.270,True,Recovering,NGU_Land,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.138,Learned,5.597,15.270,True,Idle,NGU_Land,1,0,0,6,9,6.680,7.135,6.780,5.220,610,6,0,current pose permits Short,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.189,Learned,5.614,15.270,True,Running,NGU_Run,1,2,0,6,9,6.720,7.144,6.780,5.220,613,6,0,approach safe Long launch,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.240,Learned,5.655,15.270,True,Running,NGU_Run,1,2,0,6,9,6.780,7.179,6.840,5.220,616,6,0,approach safe Long launch,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.291,Learned,5.686,15.270,True,Running,NGU_Run,1,2,0,6,9,6.820,7.208,6.880,5.220,618,6,0,approach safe Long launch,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.341,Learned,5.735,15.270,True,Running,NGU_Run,1,2,0,6,9,6.880,7.256,6.940,5.220,621,6,0,approach safe Long launch,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.393,Learned,5.769,15.270,True,Running,NGU_Run,1,2,0,6,9,6.920,7.292,6.980,5.220,623,6,0,approach safe Long launch,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.444,Learned,5.800,15.270,True,InspectingObstacle,NGU_Inspect,1,0,2,6,9,6.960,7.323,7.020,5.240,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.495,Learned,5.802,15.270,True,InspectingObstacle,NGU_Inspect,1,0,2,6,9,6.960,7.323,7.020,5.280,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.546,Learned,5.802,15.270,True,InspectingObstacle,NGU_Inspect,1,0,2,6,9,6.960,7.323,7.020,5.340,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.598,Learned,5.802,15.270,True,InspectingObstacle,NGU_Inspect,1,0,2,6,9,6.960,7.323,7.020,5.380,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.649,Learned,5.802,15.270,True,InspectingObstacle,NGU_Inspect,1,0,2,6,9,6.960,7.323,7.020,5.440,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.700,Learned,5.802,15.270,True,InspectingObstacle,NGU_Inspect,1,0,2,6,9,6.960,7.323,7.020,5.480,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.751,Learned,5.802,15.270,True,InspectingObstacle,NGU_Inspect,1,0,2,6,9,6.960,7.323,7.020,5.540,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.802,Learned,5.802,15.270,True,InspectingObstacle,NGU_Inspect,1,0,2,6,9,6.960,7.323,7.020,5.600,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.852,Learned,5.802,15.270,True,InspectingObstacle,NGU_Inspect,1,0,2,6,9,6.960,7.323,7.020,5.640,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 15,8.850,16.900,0,0,0,False
+40.902,Learned,6.048,15.622,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+40.954,Learned,6.206,15.838,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.004,Learned,6.434,16.131,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.055,Learned,6.580,16.307,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.107,Learned,6.790,16.542,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.158,Learned,6.924,16.678,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.209,Learned,7.116,16.854,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.260,Learned,7.297,16.995,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.311,Learned,7.412,17.069,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.361,Learned,7.580,17.150,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.412,Learned,7.692,17.185,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.463,Learned,7.860,17.207,False,Jumping,NGU_JumpLong,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.514,Learned,7.972,17.203,False,Falling,NGU_Fall,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.565,Learned,8.138,17.167,False,Falling,NGU_Fall,-1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.616,Learned,8.244,17.123,False,Falling,NGU_Fall,-1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.667,Learned,8.394,17.028,False,Falling,NGU_Fall,-1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,,8.850,16.900,0,0,0,False
+41.717,Learned,8.480,16.945,True,Recovering,NGU_Land,-1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 16,9.450,16.900,0,0,0,False
+41.767,Learned,8.570,16.900,True,Recovering,NGU_Land,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 16,9.450,16.900,0,0,0,False
+41.817,Learned,8.605,16.900,True,Recovering,NGU_Land,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 16,9.450,16.900,0,0,0,False
+41.868,Learned,8.627,16.900,True,Recovering,NGU_Land,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 16,9.450,16.900,0,0,0,False
+41.919,Learned,8.627,16.900,True,Recovering,NGU_Land,1,0,0,6,10,6.960,7.323,7.020,5.660,623,6,0,current pose permits Long,1.0000,0,False,Climb ledge 16,9.450,16.900,0,0,0,False
+41.970,Learned,8.635,16.900,True,Running,NGU_Land,1,2,0,6,10,6.980,7.325,7.020,5.660,625,6,0,walkable target,1.0000,2,False,Climb ledge 16,9.450,16.900,0,0,0,False
+42.020,Learned,8.670,16.900,True,Running,NGU_Run,1,2,0,6,10,7.040,7.351,7.060,5.660,628,6,0,walkable target,1.0000,5,False,Climb ledge 16,9.450,16.900,0,0,0,False
+42.071,Learned,8.708,16.900,True,Running,NGU_Run,1,2,0,6,10,7.080,7.383,7.100,5.660,630,6,0,walkable target,1.0000,7,False,Climb ledge 16,9.450,16.900,0,0,0,False
+42.121,Learned,8.786,16.900,True,Running,NGU_Run,1,2,0,6,10,7.140,7.452,7.160,5.660,633,6,0,walkable target,1.0000,10,False,Climb ledge 16,9.450,16.900,0,0,0,False
+42.172,Learned,8.852,16.900,True,Running,NGU_Run,1,2,0,6,10,7.180,7.513,7.200,5.660,635,6,0,walkable target,1.0000,12,False,Climb ledge 16,9.450,16.900,0,0,0,False
+42.223,Learned,8.973,16.900,True,Running,NGU_Run,1,2,0,6,10,7.240,7.626,7.260,5.660,638,6,0,walkable target,1.0000,15,False,Climb ledge 16,9.450,16.900,0,0,0,False
+42.274,Learned,9.062,16.900,True,Running,NGU_Run,1,2,0,6,10,7.280,7.715,7.300,5.660,640,6,0,walkable target,1.0000,17,False,Climb ledge 16,9.450,16.900,0,0,0,False
+42.325,Learned,9.165,16.900,True,GoalReached,NGU_Idle,1,2,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.376,Learned,9.211,16.900,True,GoalReached,NGU_Idle,1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.427,Learned,9.249,16.900,True,GoalReached,NGU_Idle,1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.479,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.530,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.581,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.632,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.684,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.735,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.786,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.837,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.889,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.939,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+42.993,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.044,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.095,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.145,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.195,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.246,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.297,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.347,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.397,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.448,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.499,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.550,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.602,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.653,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.704,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.755,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.806,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.857,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.908,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+43.958,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.009,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.060,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.111,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.162,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.214,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.264,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.314,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.366,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.417,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.467,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.518,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.568,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.618,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.669,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.719,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.771,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.822,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.873,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.924,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+44.975,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.025,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.076,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.128,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.180,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.230,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.281,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.332,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.383,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.434,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.484,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.535,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.586,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.637,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.688,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.740,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.791,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.842,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.894,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.945,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+45.995,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.046,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.096,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.147,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.198,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.249,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.300,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.351,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.402,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.452,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.503,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.554,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.605,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.656,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.707,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.757,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.809,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.862,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.913,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+46.963,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.014,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.064,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.116,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.167,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.219,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.269,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.320,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.371,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.422,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.472,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.524,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.578,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.629,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.679,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.731,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.782,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.832,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.884,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.938,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+47.989,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.040,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.092,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.144,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.196,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.247,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.298,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.349,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.401,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.452,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.506,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.558,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.610,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.660,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.711,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.761,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.813,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.864,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.915,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+48.966,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.016,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.068,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.119,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.170,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.220,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.271,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.323,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.375,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.426,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.477,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.528,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.579,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.629,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.680,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.732,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.784,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.835,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.887,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.938,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+49.990,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.042,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.093,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.144,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.195,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.248,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.298,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.350,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.400,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.452,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.503,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.554,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.605,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.656,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.707,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.757,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.808,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.860,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.910,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+50.961,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.012,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.065,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.118,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.169,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.219,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.269,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.321,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.372,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.424,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.474,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.526,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.576,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.627,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.679,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.729,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.780,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.830,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.882,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.933,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+51.985,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.039,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.090,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.141,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.192,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.243,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.294,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.345,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.396,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.448,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.499,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.551,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.601,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.653,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.704,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.756,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.808,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.859,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.910,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+52.960,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.012,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.062,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.113,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.165,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.219,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.269,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.320,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.371,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.423,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.474,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.525,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.575,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.627,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.677,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.729,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.780,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.831,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.883,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.936,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+53.986,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.038,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.089,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.141,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.192,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.244,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.295,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.346,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.398,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.451,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.501,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.553,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.605,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.656,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.706,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.756,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.810,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.862,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.913,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+54.964,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.017,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.067,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.119,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.170,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.222,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.273,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.325,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.377,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.429,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.482,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.550,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.602,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.654,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.704,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.756,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.807,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.859,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.910,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+55.962,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.015,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.067,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.118,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.168,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.220,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.272,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.322,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.375,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.427,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.478,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.529,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.581,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.633,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.684,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.736,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.787,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.838,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.890,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.940,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+56.991,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.044,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.095,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.145,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.196,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.248,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.300,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.350,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.402,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.454,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.504,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.555,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.607,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.658,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.710,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.762,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.813,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.864,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.915,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+57.966,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.018,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.069,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.119,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.169,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.222,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.273,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.325,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.377,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.428,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.480,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.531,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False
+58.583,Learned,9.253,16.900,True,GoalReached,NGU_Idle,-1,0,0,6,10,7.320,7.796,7.320,5.660,643,6,0,walkable target,1.0000,20,True,Climb ledge 16,9.450,16.900,0,0,0,False

@@ -92,7 +92,7 @@ namespace NeverGiveUp.Training
         public bool Step(ClimbAgent agent)
         {
             if(Route==null)return true; // Academy has not started the first episode yet.
-            ticks++;Route.Refresh(Final);
+            ticks++;Route.KeepApproachingBlockedRoute=agent.CorrectionEnabled;Route.Refresh(Final);
             agent.AddReward(-.00025f);
             if(motor.Grounded && stableSupport==motor.Support){}
             else {stableSupport=motor.Support;stableAt=Time.time;}
@@ -143,10 +143,20 @@ namespace NeverGiveUp.Training
         void Record(bool success)
         {
             var s=Academy.Instance.StatsRecorder;
+            var agent=motor.GetComponent<ClimbAgent>();
+            s.Add("Behavior/WalkSeconds",agent.WalkSeconds);s.Add("Behavior/WalkDistance",agent.WalkDistance);
+            s.Add("Behavior/AnimationMetricsAvailable",agent.HasAnimationMetrics?1:0);
+            if(agent.HasAnimationMetrics)s.Add("Behavior/RunAnimationSeconds",agent.RunSeconds);
+            s.Add("Behavior/PreparationSeconds",agent.PrepareSeconds);
+            if(agent.LandingWalkSamples>0)s.Add("Behavior/LandingWalkDelay",agent.LandingWalkDelay/agent.LandingWalkSamples);
+            s.Add("Behavior/LandingWalkSamples",agent.LandingWalkSamples);
+            s.Add("Behavior/BlockedJumpChecks",agent.Correction.Blocked);s.Add("Behavior/UnnecessaryJumpChecks",agent.Correction.UnnecessaryBlocked);s.Add("Behavior/LongToShort",agent.Correction.Downgraded);
+            s.Add("Behavior/RepeatedAttempts",agent.Correction.Repeated);
             s.Add("Climb/Success",success?1:0);s.Add("Climb/Collisions",collisions);s.Add("Climb/Jumps",shorts+longs);
             s.Add("Climb/Short",shorts);s.Add("Climb/Long",longs);s.Add("Climb/UnnecessaryJumps",unneeded);s.Add("Climb/ExcessLong",excessLong);
             s.Add("Climb/ShortLandings",shortLand);s.Add("Climb/LongLandings",longLand);s.Add("Climb/JumpFalls",jumpFalls);s.Add("Climb/JumpCollisions",jumpCollisions);
             s.Add("Climb/MaxHeight",maxHeight);s.Add("Climb/Layers",Mathf.Max(0,visited.Count-1));s.Add("Climb/Reascents",reascents);s.Add("Climb/Reversals",reversals);
+            s.Add("Climb/FinalHorizontalError",Mathf.Abs(motor.Feet.x-Final.x));
             s.Add("Climb/EpisodeSeconds",ticks*Time.fixedDeltaTime);s.Add("Climb/Level",Stage);s.Add("Climb/MapHeight",Height);
         }
     }

@@ -1,0 +1,41 @@
+PASS same floor recognized as walkable
+PASS flat LONG request rejected
+PASS flat physical walking distance=2.831848
+PASS SHORT elsewhere requires approach before launch
+PASS rise=0.5 selected=Short launched=True x=-502.9512
+PASS rise=0.5 actual target landing
+PASS rise=1.4 selected=Long launched=True x=-503.8892
+PASS rise=1.4 actual target landing
+PASS edge position is not a walking approach candidate
+PASS supported edge current-pose LONG remains permitted
+PASS two same-place failed launches temporarily exclude that launch
+PASS failed launch is eligible again after bounded wait
+PASS external intervention does not count as an autonomous failed attempt
+PASS local obstacle hop before distant next ledge; launch=-503.3959 mode=Long landed=(-499.63, 0.10, 0.00) support=Cube
+PASS too-close blocker input is masked while safe retreat remains selectable
+PASS unreachable target does not schedule jump
+PASS distant blocked route retains walking intent without a premature jump
+PASS capsule overlap blocks takeoff
+PASS self-contact with stationary held box preserves autonomous retry history
+BOX CONTACT velocity=(-1.48, 0.00, 0.00) relative=(-3.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.48, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.47, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.46, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.45, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.45, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.44, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.43, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.42, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.41, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.41, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.40, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.39, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.38, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.37, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.37, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.36, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.35, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.34, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+BOX CONTACT velocity=(-1.34, 0.00, 0.00) relative=(0.00, 0.00, 0.00) normal=(1.00, 0.00, 0.00)
+FAIL moving held box still registers genuine external intervention
+Failures=1
