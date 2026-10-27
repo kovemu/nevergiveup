@@ -30,6 +30,16 @@ namespace NeverGiveUp.Editor
             {
                 switch(command)
                 {
+                    case "m8-create":LevelAuthoring.CreateSample();break;
+                    case "m8-dock":foreach(var w in Resources.FindObjectsOfTypeAll<LevelEditorWindow>())w.Close();LevelEditorWindow.Open();break;
+                    case "m8-window":LevelEditorWindow.Open();break;
+                    case "m8-inspect":M8Review.Inspect();break;
+                    case "m8-checks":M8Review.Checks();break;
+                    case "m8-route":M8Review.Route();break;
+                    case "m8-save-reopen":M8Review.SaveReopen();break;
+                    case "m8-cleanup-ui":M8Review.CleanupUIFixture();break;
+                    case "m8-dirty-check":M8Review.DirtySceneCheck();break;
+                    case "m8-build":M8Review.Build();break;
                     case "m7d-on":M7DReview.Play(true);break;
                     case "m7d-on-retry":M7DReview.Play(true,true);break;
                     case "m7d-on-cube":M7DReview.Play(true,false,true);break;

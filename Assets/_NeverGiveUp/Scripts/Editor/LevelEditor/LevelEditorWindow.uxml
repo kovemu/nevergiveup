@@ -1,0 +1,44 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+  <ui:Style src="LevelEditorWindow.uss" />
+  <ui:ScrollView class="panel">
+    <ui:Label text="NEVER GIVE UP · 레벨 제작" class="heading" />
+    <ui:Label name="mapName" text="OnlyUpMain을 만들거나 열어 주세요." class="hint" />
+    <ui:VisualElement class="row">
+      <ui:Button name="create" text="샘플 맵 만들기" />
+      <ui:Button name="open" text="OnlyUpMain 열기" />
+      <ui:Button name="save" text="씬 저장" />
+    </ui:VisualElement>
+    <ui:VisualElement name="editing">
+      <ui:Label text="1 · 배치" class="heading" />
+      <ui:DropdownField name="palette" label="팔레트" />
+      <ui:VisualElement class="row"><ui:Button name="place" text="마우스 배치 켜기" /><ui:Button name="select" text="선택 모드 (Esc)" /><ui:Button name="front" text="Scene 정면" /></ui:VisualElement>
+      <ui:FloatField name="snap" label="격자 간격 (0 = 끄기)" value="0.25" />
+      <ui:Label text="Scene 왼쪽 클릭 = 배치 · Alt = 뷰 조작 · Esc = 선택" class="hint" />
+      <ui:Label text="2 · 구역" class="heading" />
+      <ui:DropdownField name="section" label="현재 구역" />
+      <ui:TextField name="sectionName" label="새 구역 이름" value="새 구역" />
+      <ui:VisualElement class="row"><ui:Button name="addSection" text="구역 추가" /><ui:Button name="focusSection" text="구역 보기" /></ui:VisualElement>
+      <ui:Toggle name="requiresBox" label="플레이어 상자 도움이 필요한 구역" />
+      <ui:TextField name="note" label="설계 의도" multiline="true" />
+      <ui:Label text="구역은 제작 범위입니다. 플레이 중에는 모두 연결됩니다." class="hint" />
+      <ui:Label text="3 · 선택 물체" class="heading" />
+      <ui:Label name="selectionName" text="Scene에서 물체를 선택하세요." />
+      <ui:Vector2Field name="position" label="위치 X / Y" />
+      <ui:Vector2Field name="size" label="크기 X / Y" />
+      <ui:VisualElement class="row"><ui:Button name="duplicate" text="복제" /><ui:Button name="delete" text="삭제" /><ui:Button name="undo" text="Undo" /><ui:Button name="redo" text="Redo" /></ui:VisualElement>
+      <ui:Label text="게임플레이 물체는 Z=0, 회전=0을 유지합니다." class="hint" />
+      <ui:Label text="4 · 시작과 목표 (발 위치)" class="heading" />
+      <ui:Vector2Field name="start" label="시작 X / Y" />
+      <ui:Vector2Field name="goal" label="목표 X / Y" />
+      <ui:Button name="actor" text="캐릭터 Inspector · Learned 교정 확인" />
+      <ui:Label text="5 · 경로 확인" class="heading" />
+      <ui:VisualElement class="row"><ui:Button name="analyze" text="전체 검사" /><ui:Button name="analyzeSection" text="현재 구역 검사" /></ui:VisualElement>
+      <ui:Toggle name="showLinks" label="Scene 경로 표시" value="true" />
+      <ui:Label text="초록 걷기 · 청록 SHORT · 주황 LONG · 빨강 불가/표본 없음 · 회색 미검증" class="hint" />
+      <ui:Label name="analysis" class="status" />
+      <ui:Label name="warnings" class="hint" />
+      <ui:Label text="물리 경로 후보 ≠ AI 완주. Play로 실제 동작을 확인하세요." class="notice" />
+    </ui:VisualElement>
+    <ui:Label name="status" class="status" />
+  </ui:ScrollView>
+</ui:UXML>

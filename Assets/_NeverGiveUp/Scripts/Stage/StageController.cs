@@ -54,6 +54,8 @@ namespace NeverGiveUp
 
         public void EnsureM3Geometry()
         {
+            // Authored maps own their geometry; retain migration only for older scenes.
+            if (GetComponent<LevelMap>()) return;
             Transform terrain = transform.Find("Terrain");
             if (!terrain) { Debug.LogError("Stage/Terrain is missing.", this); return; }
             if (terrain.Find("NGU Safety Floor")) return;

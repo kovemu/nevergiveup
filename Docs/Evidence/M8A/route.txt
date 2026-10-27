@@ -1,0 +1,66 @@
+전체 검사: 걷기 0 / SHORT 12 / LONG 9 / 불가·표본 없음 42
+시작→목표 물리 경로 후보 있음. AI 완주 보장 아님.
+
+발판 01 -> 발판 02: Long
+발판 01 -> 발판 03: Blocked
+발판 02 -> 발판 01: Short
+발판 02 -> 발판 03: Short
+발판 03 -> 발판 01: Blocked
+발판 03 -> 발판 02: Blocked
+발판 03 -> 발판 04: Long
+발판 04 -> 발판 01: Blocked
+발판 04 -> 발판 02: Blocked
+발판 04 -> 발판 03: Short
+발판 04 -> 발판 05: Long
+발판 04 -> NGU Safety Floor: Long
+발판 05 -> 발판 01: Blocked
+발판 05 -> 발판 02: Blocked
+발판 05 -> 발판 03: Blocked
+발판 05 -> 발판 04: Short
+발판 05 -> 발판 06: Short
+발판 06 -> PhysicsBox: Blocked
+발판 06 -> 발판 01: Blocked
+발판 06 -> 발판 02: Blocked
+발판 06 -> 발판 03: Blocked
+발판 06 -> 발판 04: Blocked
+발판 06 -> 발판 05: Blocked
+발판 06 -> 발판 07: Long
+발판 07 -> PhysicsBox: Blocked
+발판 07 -> 발판 01: Blocked
+발판 07 -> 발판 02: Blocked
+발판 07 -> 발판 03: Blocked
+발판 07 -> 발판 04: Blocked
+발판 07 -> 발판 05: Blocked
+발판 07 -> 발판 06: Short
+발판 07 -> 발판 08: Long
+발판 08 -> PhysicsBox: Blocked
+발판 08 -> 발판 01: Blocked
+발판 08 -> 발판 02: Blocked
+발판 08 -> 발판 03: Blocked
+발판 08 -> 발판 04: Blocked
+발판 08 -> 발판 05: Blocked
+발판 08 -> 발판 06: Blocked
+발판 08 -> 발판 07: Short
+발판 08 -> 발판 09: Short
+발판 09 -> 발판 01: Blocked
+발판 09 -> 발판 02: Blocked
+발판 09 -> 발판 03: Blocked
+발판 09 -> 발판 04: Blocked
+발판 09 -> 발판 05: Blocked
+발판 09 -> 발판 06: Blocked
+발판 09 -> 발판 07: Blocked
+발판 09 -> 발판 08: Short
+발판 09 -> 발판 10: Long
+발판 10 -> 발판 01: Blocked
+발판 10 -> 발판 02: Blocked
+발판 10 -> 발판 03: Blocked
+발판 10 -> 발판 04: Blocked
+발판 10 -> 발판 05: Blocked
+발판 10 -> 발판 06: Blocked
+발판 10 -> 발판 07: Blocked
+발판 10 -> 발판 08: Long
+발판 10 -> 발판 09: Short
+발판 10 -> NGU Safety Floor: Short
+NGU Safety Floor -> PhysicsBox: Long
+NGU Safety Floor -> 발판 01: Short
+NGU Safety Floor -> 발판 02: Blocked

@@ -37,6 +37,7 @@ namespace NeverGiveUp
         private CharacterMotor motor;
         private Transform terrain;
         public IReadOnlyList<Platform> Platforms => platforms;
+        public IReadOnlyList<Link> Links => links;
         public string MapSignature { get; private set; }
         public int EnvironmentRevision { get; private set; }
         readonly Dictionary<Collider, Bounds> observedBounds = new Dictionary<Collider, Bounds>();

@@ -1,0 +1,16 @@
+PASS sample has ten climb platforms
+PASS authored maps do not regenerate legacy floor or boundaries
+PASS M7-D action correction enabled
+PASS adjacent clear surfaces classified WALK
+PASS SHORT and LONG categories both evaluated
+PASS starting capsule overlap rejects WALK
+PASS placement snaps XY and locks Z
+PASS position and size edit
+PASS duplicate retains prefab and overrides
+PASS delete
+PASS undo restores deleted prefab
+PASS redo deletes it again
+PASS unreachable elevated platform warned
+PASS intentional player-help distinguished
+PASS edited geometry marks preview unverified
+failures=0
