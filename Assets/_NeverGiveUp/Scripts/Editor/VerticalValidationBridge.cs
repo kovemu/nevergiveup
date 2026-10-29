@@ -30,6 +30,24 @@ namespace NeverGiveUp.Editor
             {
                 switch(command)
                 {
+                    case "m8b-create":M8BReview.Create();break;
+                    case "m8b-memory":M8BReview.MemoryChecks();break;
+                    case "m8b-planner-checks":M8BPlannerChecks.Run();break;
+                    case "m8b-rescue":M8BReview.Rescue();break;
+                    case "m8b-diagnose":M8BReview.Diagnose();break;
+                    case "m8b-build-eval":M8BReview.Build(true);break;
+                    case "m8b-build":M8BReview.Build(false);break;
+                    case "m8b-rescue-on":M8BReview.Play("Blocked",true,true);break;
+                    case "m8b-rescue-off":M8BReview.Play("Blocked",false,true);break;
+                    case "m8b-fall":M8BReview.Play("ClimbPlaytest",true,false,true);break;
+                    case "m8b-climb":M8BReview.Play("ClimbPlaytest",true);break;
+                    case "m8b-onlyup":M8BReview.Play("OnlyUpMain",true);break;
+                    case "m8b-blocked-off":M8BReview.Play("Blocked",false);break;
+                    case "m8b-detour-off":M8BReview.Play("Detour",false);break;
+                    case "m8b-offset-off":M8BReview.Play("Offset",false);break;
+                    case "m8b-blocked-on":M8BReview.Play("Blocked",true);break;
+                    case "m8b-detour-on":M8BReview.Play("Detour",true);break;
+                    case "m8b-offset-on":M8BReview.Play("Offset",true);break;
                     case "m8-create":LevelAuthoring.CreateSample();break;
                     case "m8-dock":foreach(var w in Resources.FindObjectsOfTypeAll<LevelEditorWindow>())w.Close();LevelEditorWindow.Open();break;
                     case "m8-window":LevelEditorWindow.Open();break;

@@ -17,6 +17,9 @@ namespace NeverGiveUp.Training
         public int HorizontalDecision => horizontal;
         public int JumpDecision => previousJump;
         public int PendingJump => pendingJump;
+        public int RawHorizontal {get;private set;}
+        public int RawJump {get;private set;}
+        public AutonomousStrategyPlanner Strategy=>gameplay?gameplay.Strategy:vertical?vertical.Strategy:null;
         PolicyActionCorrection correction;
         public PolicyActionCorrection Correction => correction;
         public bool CorrectionEnabled => gameplay ? gameplay.CorrectPolicyActions : vertical && Academy.Instance.EnvironmentParameters.GetWithDefault("action_correction",0)>.5f;
@@ -143,6 +146,7 @@ namespace NeverGiveUp.Training
             if(gameplay && gameplay.LocomotionBlocked)
             {horizontal=previousJump=pendingJump=0;Preparation=0;return;}
             int next=actions.DiscreteActions[0]-1, jump=actions.DiscreteActions[1];
+            RawHorizontal=next;RawJump=jump;
             // A validated jump is a committed action through its brief wind-up.
             // Changing launch direction mid-preparation invalidated the approach
             // and caused repeated turns without ever taking off.
@@ -212,6 +216,7 @@ namespace NeverGiveUp.Training
                         {pendingJump=0;Preparation=0;return;}
                         if(CorrectionEnabled)correction.Launched(CurrentRoute,CurrentJump,pendingDowngrade);
                         if(vertical)vertical.Launch(this,CurrentJump);
+                        Strategy?.Launched(CurrentJump,horizontal);
                         Motor.Jump(horizontal*Motor.MaxJumpHorizontal*.65f,Motor.JumpVelocity(CurrentJump));
                         if(CurrentJump==JumpMode.Short)ShortJumps++;else LongJumps++;
                         jumps++;Reward(-.025f);
@@ -240,6 +245,7 @@ namespace NeverGiveUp.Training
         }
         void OnContact(Collision collision)
         {
+            Strategy?.Contact(collision);
             if(Time.time-collisionAt<.25f)return;
             for(int i=0;i<collision.contactCount;i++) if(collision.GetContact(i).normal.y<.45f)
             {collisionAt=Time.time;collisions++;correction.Contact();Reward(-.025f);if(vertical)vertical.Contact(this);break;}

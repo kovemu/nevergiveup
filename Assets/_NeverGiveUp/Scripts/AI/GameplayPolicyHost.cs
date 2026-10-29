@@ -19,6 +19,14 @@ namespace NeverGiveUp
         [SerializeField] StageController stage;
         [SerializeField] bool useIntermediateTargets;
         [SerializeField] bool correctPolicyActions=true;
+        [Header("M8-B Learned strategy (opt in)")]
+        [SerializeField] bool autonomousStrategy;
+        [SerializeField] bool showStrategyDebug;
+        AutonomousStrategyPlanner planner;
+        public AutonomousStrategyPlanner Strategy=>autonomousStrategy && correctPolicyActions?planner:null;
+        public bool AutonomousStrategyEnabled=>autonomousStrategy && correctPolicyActions;
+        [ContextMenu("Clear Learned strategy session memory")]
+        void ClearStrategyMemory(){planner?.ClearMemory();}
         public bool CorrectPolicyActions=>correctPolicyActions;
         public PolicyRoute Route=>route;
         [SerializeField, Min(.05f)] float shortPreparation=.4f,longPreparation=.4f;
@@ -46,7 +54,7 @@ namespace NeverGiveUp
         float routeMissingSince=-1;
         public ControlMode Mode=>mode;
         public string LastFallback {get;private set;}="none";
-        public Vector3 Goal=>useIntermediateTargets && route!=null?route.Target:stage?stage.GoalPosition:motor.Feet;
+        public Vector3 Goal=>Strategy!=null?Strategy.ObservationGoal:useIntermediateTargets && route!=null?route.Target:stage?stage.GoalPosition:motor.Feet;
         public CharacterState? ReactionState=>recovery.Active?(recovery.GettingUp?CharacterState.GettingUp:CharacterState.KnockedDown):
             recovery.ObstacleReacting?recovery.ObstacleState:recovery.Stumbling?CharacterState.Stumbling:
             VoluntaryResting?(Time.time<sitAt+(presentation?presentation.SitSeconds:.35f)?CharacterState.SittingDown:Time.time<restUntil?CharacterState.Resting:CharacterState.GettingUpFromSit):
@@ -77,6 +85,7 @@ namespace NeverGiveUp
                 route=new PolicyRoute(stage.Graph,motor);
                 route.KeepApproachingBlockedRoute=correctPolicyActions;
                 if(route!=null){motor.SampleGround();route.Refresh(stage.GoalPosition,true);}
+                planner=new AutonomousStrategyPlanner(stage.Graph,motor,route);
                 var behavior=GetComponent<BehaviorParameters>();
                 if(!behavior)behavior=gameObject.AddComponent<BehaviorParameters>();
                 behavior.BehaviorName="NGUClimb";behavior.BrainParameters.VectorObservationSize=42;
@@ -112,7 +121,16 @@ namespace NeverGiveUp
             if(mode!=ControlMode.Learned)return false;
             if(brain.enabled){StopLearned("conflicting movement authority");return false;}
             recovery.Tick(Time.fixedDeltaTime);
+            if(stage.Completed && Strategy!=null)
+            {
+                Strategy.ObserveCompletedGoal();
+                // Preserve external recovery physics even after reaching a goal.
+                if(!LocomotionBlocked)motor.Stop();
+                return false;
+            }
             if(route!=null){route.KeepApproachingBlockedRoute=correctPolicyActions;route.Refresh(stage.GoalPosition);}
+            if(Strategy!=null)Strategy.Tick(stage.GoalPosition,VoluntaryResting,recovery.ExternalReaction || recovery.ObstacleReacting,agent.PendingJump!=0);
+            else if(planner!=null)planner.Suspend();
             if(recovery.ExternalReaction || VoluntaryResting && !motor.Grounded)standUntil=restUntil=0;
             // Ordinary recoil also suppresses control, but is not player help.
             // Only a genuine external event resets accumulated failed attempts.
@@ -121,8 +139,8 @@ namespace NeverGiveUp
             if(VoluntaryResting){motor.Stop();return false;}
             if(LocomotionBlocked) return false;
             if(stage.Completed){motor.Stop();return false;}
-            if(correctPolicyActions && motor.Grounded && Time.time-progressAt>6 &&
-                (agent.Correction.FailedAttempts-failureBaseline>=3 || stalledReversals>=4) && Mathf.Abs(motor.Body.linearVelocity.y)<.2f)
+            if(correctPolicyActions && motor.Grounded &&
+                (Strategy!=null && Strategy.NeedsRest || Time.time-progressAt>6 && (agent.Correction.FailedAttempts-failureBaseline>=3 || stalledReversals>=4)) && Mathf.Abs(motor.Body.linearVelocity.y)<.2f)
             {
                 sitAt=Time.time;restUntil=sitAt+(presentation?presentation.SitSeconds:.35f)+2.5f;
                 standUntil=restUntil+(presentation?presentation.StandSeconds:.5f);VoluntaryRestCount++;
@@ -165,6 +183,12 @@ namespace NeverGiveUp
             if(!motor.TryObstacle(collision,out var contact))return;
             contactAt=Time.time;
             recovery.ReactToObstacle(contact,presentation?presentation.SitSeconds:.35f,presentation?presentation.StandSeconds:.5f);
+        }
+        void OnGUI()
+        {
+            if(!showStrategyDebug || !Debug.isDebugBuild || Strategy==null)return;
+            var s=Strategy;var c=s.Selected;
+            GUI.Box(new Rect(12,70,620,195),$"M8-B {s.Status}\nSupport: {motor.Support?.name} -> {route.TargetCollider?.name}\nStrategy: {c?.Id}\nApproach: {c?.Launch.x:F2} action: {c?.Action} candidates: {s.Candidates.Count} score: {c?.Score:F2} experience: {(c==null?0:s.Memory.Value(c.Id)):F2}\nPPO: {agent.RawHorizontal}/{agent.RawJump} | correction: {agent.Correction.Reason}\nLast: {s.LastOutcome} repeat: {s.RepeatedAttempts} changes: {s.Changes} successes: {s.SuccessfulChanges}\nLast success: {s.Memory.LastSuccess}\nRest: {VoluntaryResting} environment changes: {s.EnvironmentChanges} player moved: {s.PlayerEnvironmentChanged}");
         }
         void FixedUpdate()
         {

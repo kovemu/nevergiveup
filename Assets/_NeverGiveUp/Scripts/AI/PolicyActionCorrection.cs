@@ -29,6 +29,7 @@ namespace NeverGiveUp
         Collider approachSupport;
         public int StabilizeApproach(PolicyRoute route,int proposed,bool jumpRequested)
         {
+            if(route!=null && route.StrategyActive)return proposed;
             // Finish a short, already model-selected approach instead of reacting
             // to a one-tick reversal. Never choose a new direction or an air input.
             if(jumpRequested && motor.Grounded && hasApproach && State==Phase.Approaching &&
@@ -115,6 +116,7 @@ namespace NeverGiveUp
         bool CanProbe(PolicyRoute route,int horizontal,JumpMode requested,out JumpMode selected)
         {
             selected=requested;
+            if(route.StrategyAvoidUnsafeProbes)return false;
             if(!route.KeepApproachingBlockedRoute || probeCount>=3 || Time.time-lastProbeAt<.7f || !motor.Grounded || motor.ControlSuppressed)return false;
             float direction=Mathf.Sign(route.Target.x-motor.Feet.x);
             if(horizontal!=0 && horizontal!=direction)return false;
@@ -136,6 +138,16 @@ namespace NeverGiveUp
             pendingProbe=false;
             selected=requested;
             if(route==null || !route.HasRoute){State=Phase.Waiting;Reason="no feasible route; reevaluate";Blocked++;return false;}
+            if(route.StrategyActive)
+            {
+                hasApproach=false;evaluatedTarget=route.TargetCollider;evaluatedMinX=float.NegativeInfinity;evaluatedMaxX=float.PositiveInfinity;
+                if(route.StrategyApproaching || route.StrategyAction==StrategyAction.Walk)
+                {State=Phase.Approaching;Reason="strategy approach goal; PPO walking";Blocked++;return false;}
+                selected=route.StrategyAction==StrategyAction.Short?JumpMode.Short:JumpMode.Long;
+                if(!route.ArcForInput(motor.Feet,route.Target,route.TargetCollider,selected,horizontal))
+                {State=Phase.Waiting;Reason="strategy rejected for actual PPO launch input";Blocked++;return false;}
+                State=Phase.Ready;Reason="strategy validated for actual PPO input";return true;
+            }
             var support=route.CurrentPlatform;
             bool blockedAhead=ResolveLocalTarget(route,horizontal,out var target,out var landing,out float minimumX,out float maximumX);
             if(route.WalkableTarget && !blockedAhead)
@@ -177,6 +189,11 @@ namespace NeverGiveUp
         {
             if(route==null || !route.HasRoute)return 0;
             float speed=horizontal*motor.MoveSpeed;
+            if(route.StrategyActive && route.StrategyApproaching)
+            {
+                float delta=route.StrategyLaunchX-motor.Feet.x;
+                if(Mathf.Sign(delta)==horizontal)speed=horizontal*Mathf.Min(motor.MoveSpeed,Mathf.Abs(delta)*5);
+            }
             if(route.WalkableTarget)
             {
                 float remaining=route.Target.x-motor.Feet.x;

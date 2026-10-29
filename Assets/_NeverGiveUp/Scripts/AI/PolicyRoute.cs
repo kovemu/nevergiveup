@@ -21,6 +21,18 @@ namespace NeverGiveUp
         public bool WalkableTarget {get;private set;}
         public bool KeepApproachingBlockedRoute {get;set;}
         public bool UsingBlockedRouteIntent {get;private set;}
+        public bool StrategyActive {get;private set;}
+        public bool StrategyAvoidUnsafeProbes {get;set;}
+        public bool StrategyApproaching {get;set;}
+        public float StrategyLaunchX {get;private set;}
+        public StrategyAction StrategyAction {get;private set;}
+        public void SetStrategy(Collider target,Vector3 landing,float launchX,StrategyAction action,bool approaching)
+        {
+            StrategyActive=true;StrategyApproaching=approaching;StrategyLaunchX=launchX;StrategyAction=action;
+            TargetCollider=target;Target=landing;WalkableTarget=action==NeverGiveUp.StrategyAction.Walk;
+            HasRoute=target;UsingBlockedRouteIntent=false;Revision++;
+        }
+        public void ClearStrategy(){if(!StrategyActive)return;StrategyActive=false;StrategyApproaching=false;refreshAt=0;Revision++;}
         public int GeometryRevision => graph.EnvironmentRevision;
         public PlatformGraph.Platform CurrentPlatform => graph.Support(motor.Support) ?? graph.At(motor.Feet);
         readonly RaycastHit[] sweepHits=new RaycastHit[24];
@@ -28,6 +40,7 @@ namespace NeverGiveUp
         public PolicyRoute(PlatformGraph graph,CharacterMotor motor){this.graph=graph;this.motor=motor;Target=motor.Feet;}
         public void Refresh(Vector3 destination,bool force=false)
         {
+            if(StrategyActive && TargetCollider)return;
             if(!force && (!motor.Grounded || (Time.time<refreshAt && support==motor.Support && Vector3.Distance(final,destination)<.05f)))return;
             Collider previousSupport=support;
             refreshAt=Time.time+.6f;support=motor.Support;final=destination;
@@ -106,6 +119,23 @@ namespace NeverGiveUp
                 count=Physics.SphereCastNonAlloc(to+Vector3.up*height,.12f,Vector3.right*Mathf.Sign(delta.x),sweepHits,.9f,~0,QueryTriggerInteraction.Ignore);
                 if(count==sweepHits.Length)return false;
                 for(int i=0;i<count;i++)if(sweepHits[i].rigidbody!=motor.Body && sweepHits[i].collider!=motor.Support && Mathf.Abs(sweepHits[i].normal.x)>=.45f)return false;
+            }
+            return true;
+        }
+        public bool WalkToClear(Vector3 to)
+        {
+            Vector3 from=motor.Feet,delta=to-from;var c=motor.Capsule;
+            int count=Physics.OverlapCapsuleNonAlloc(from+Vector3.up*(c.radius+.035f),from+Vector3.up*(c.height-c.radius+.035f),c.radius*.94f,startOverlaps,~0,QueryTriggerInteraction.Ignore);
+            if(count==startOverlaps.Length)return false;
+            for(int i=0;i<count;i++)if(startOverlaps[i].attachedRigidbody!=motor.Body)return false;
+            count=Physics.CapsuleCastNonAlloc(from+Vector3.up*(c.radius+.035f),from+Vector3.up*(c.height-c.radius+.035f),c.radius*.94f,delta.normalized,sweepHits,delta.magnitude,~0,QueryTriggerInteraction.Ignore);
+            if(count==sweepHits.Length)return false;
+            for(int i=0;i<count;i++)if(sweepHits[i].rigidbody!=motor.Body)return false;
+            int steps=Mathf.CeilToInt(delta.magnitude/.15f);
+            for(int i=0;i<=steps;i++)
+            {
+                Vector3 p=Vector3.Lerp(from,to,steps==0?0:(float)i/steps);
+                if(!Physics.Raycast(p+Vector3.up*.2f,Vector3.down,out var hit,.45f,~0,QueryTriggerInteraction.Ignore) || hit.rigidbody==motor.Body || hit.normal.y<.7f)return false;
             }
             return true;
         }

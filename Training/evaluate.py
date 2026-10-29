@@ -1,4 +1,4 @@
-"""Held-out evaluation through the actual Unity physics executable, no planner."""
+"""Held-out Unity physics evaluation with independently toggled correction/strategy."""
 import argparse
 import json
 from collections import defaultdict
@@ -22,6 +22,7 @@ def main():
     parser.add_argument('--worker-id', type=int, default=7)
     parser.add_argument('--output', required=True)
     parser.add_argument('--correction', type=int, choices=[0,1], default=0)
+    parser.add_argument('--strategy', type=int, choices=[0,1], default=0)
     args = parser.parse_args()
     engine = EngineConfigurationChannel()
     engine.set_configuration_parameters(time_scale=20, quality_level=0)
@@ -29,6 +30,7 @@ def main():
     params.set_float_parameter('level', args.level)
     params.set_float_parameter('seed', args.seed)
     params.set_float_parameter('action_correction', args.correction)
+    params.set_float_parameter('autonomous_strategy', args.strategy)
     if args.stage is not None:
         params.set_float_parameter('stage', args.stage)
         params.set_float_parameter('simple_fraction', 0)
@@ -69,7 +71,7 @@ def main():
             if len(metrics['Climb/Success']) >= args.episodes:
                 break
         result = {'model': args.model or 'uniform random actions (untrained baseline)',
-                  'seed': args.seed, 'level': args.level, 'stage': args.stage, 'correction':args.correction,
+                  'seed': args.seed, 'level': args.level, 'stage': args.stage, 'correction':args.correction, 'strategy':args.strategy,
                   'episodes': len(metrics['Climb/Success']),
                   'means': {k: float(np.mean(v)) for k, v in metrics.items() if v},
                   'samples': dict(metrics)}

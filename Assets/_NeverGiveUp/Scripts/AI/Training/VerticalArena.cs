@@ -12,7 +12,8 @@ namespace NeverGiveUp.Training
         public float shortPreparation=.22f,longPreparation=.45f;
         [Range(0,.2f)] public float unnecessaryLongCost=.035f;
         public PolicyRoute Route {get;private set;}
-        public Vector3 Target=>Route?.Target??Final;
+        public AutonomousStrategyPlanner Strategy {get;private set;}
+        public Vector3 Target=>Strategy?.ObservationGoal??Route?.Target??Final;
         public Vector3 Final {get;private set;}
         public float Height {get;private set;}
         public int Layers {get;private set;}
@@ -79,6 +80,7 @@ namespace NeverGiveUp.Training
                 if(attempt==15)throw new InvalidOperationException("Generated vertical map has no collision-clear ascent path.");
             }
             Route=new PolicyRoute(graph,motor);visited.Clear();bestDistance.Clear();
+            Strategy=Academy.Instance.EnvironmentParameters.GetWithDefault("autonomous_strategy",0)>.5f?new AutonomousStrategyPlanner(graph,motor,Route):null;
             ticks=shorts=longs=unneeded=excessLong=collisions=reversals=shortLand=longLand=jumpFalls=jumpCollisions=reascents=0;
             maxHeight=previousStable=fallFrom=goalDwell=0;collisionAt=-100;stableSupport=null;stableAt=Time.time;
             jumping=contactDuringJump=recoveryBonus=false;
@@ -93,6 +95,7 @@ namespace NeverGiveUp.Training
         {
             if(Route==null)return true; // Academy has not started the first episode yet.
             ticks++;Route.KeepApproachingBlockedRoute=agent.CorrectionEnabled;Route.Refresh(Final);
+            Strategy?.Tick(Final,false,false,agent.PendingJump!=0);
             agent.AddReward(-.00025f);
             if(motor.Grounded && stableSupport==motor.Support){}
             else {stableSupport=motor.Support;stableAt=Time.time;}
@@ -144,6 +147,8 @@ namespace NeverGiveUp.Training
         {
             var s=Academy.Instance.StatsRecorder;
             var agent=motor.GetComponent<ClimbAgent>();
+            s.Add("Strategy/Changes",Strategy?.Changes??0);s.Add("Strategy/SuccessfulChanges",Strategy?.SuccessfulChanges??0);
+            s.Add("Strategy/RepeatedAttempts",Strategy?.RepeatedAttempts??0);
             s.Add("Behavior/WalkSeconds",agent.WalkSeconds);s.Add("Behavior/WalkDistance",agent.WalkDistance);
             s.Add("Behavior/AnimationMetricsAvailable",agent.HasAnimationMetrics?1:0);
             if(agent.HasAnimationMetrics)s.Add("Behavior/RunAnimationSeconds",agent.RunSeconds);
